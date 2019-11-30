@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>ACAVUCAB.</title>
+    <title>ACAVUCAB</title>
     <style >
       .carousel-item {
   height: 65vh;

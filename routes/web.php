@@ -1,5 +1,7 @@
 <?php
 
+use JasperPHP\JasperPHP as JasperPHP; 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +33,32 @@ Auth::routes();
 Route::resource('/eventos', 'EventoController');
 
 Route::get('/homes', 'HomeController@index')->name('homes');
+
+Route::get('/compilar', function () {
+    // Crear el objeto JasperPHP
+    $jasper = new JasperPHP;
+    
+    // Compilar el reporte para generar .jasper
+    $jasper->compile(base_path() . '/vendor/cossou/jasperphp/examples/hello_world.jrxml')->execute();
+   
+    return view('welcome');
+});
+
+Route::get('/reporte', function () {
+    // Crear el objeto JasperPHP
+    $jasper = new JasperPHP;
+    
+    // Generar el Reporte
+    $jasper->process(
+        // Ruta y nombre de archivo de entrada del reporte
+        base_path() . '/vendor/cossou/jasperphp/examples/hello_world.jasper', 
+        false, // Ruta y nombre de archivo de salida del reporte (sin extensión)
+        array('pdf', 'rtf'), // Formatos de salida del reporte
+        array('php_version' => phpversion()) // Parámetros del reporte
+    )->execute();
+   
+    return view('welcome');
+
+        exec($jasper->output().' 2>&1', $output);
+    print_r($output);
+});

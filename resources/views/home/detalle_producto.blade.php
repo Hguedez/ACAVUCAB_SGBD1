@@ -1,3 +1,6 @@
+@extends('layouts.compralayout')
+@section('content')
+	
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -146,7 +149,9 @@ text-align: center;
     				<img src="fondo_cerveza2.jpg" class="img-fluid">Cerveza</a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>Bell Pepper</h3>
+					
+					<h3>{{$detalle->nombre}}</h3>
+					<!--<p>Categoría:$detalle->catalogo->nombre }}</p>-->
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
 								<a href="#" class="mr-2">5.0</a>
@@ -164,8 +169,7 @@ text-align: center;
 							</p>
 						</div>
     				<p class="price"><span>$120.00</span></p>
-    				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until.
-						</p>
+    				<p>{{$detalle->descripcion}}</p>
 						<div class="row mt-4">
 							<div class="col-md-6">
 								<div class="form-group d-flex">
@@ -485,3 +489,4 @@ text-align: center;
     
   </body>
 </html>
+@endsection

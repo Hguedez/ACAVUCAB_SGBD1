@@ -1,6 +1,9 @@
 <?php
 
+use App\Detalle;
+
 use JasperPHP\JasperPHP as JasperPHP; 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +28,17 @@ Route::get('/diario', function () { // diario necesita un controlador
 Route::get('/comprar', function () {
     return view('home.comprar');
 });
-Route::get('/detalle', function () {
+/*Route::get('/detalle/{id}', function ($id) {
+    $detalle =Detalle::findOrfail($id);
+    return view('home.detalle_producto',compact('detalle'));
+});*/
+/*Route::get('/detalle', function () {
     return view('home.detalle_producto');
-});
+});*/
 Auth::routes();
 
 Route::resource('/eventos', 'EventoController');
+Route::resource('/detalle', 'DetalleController');
 
 Route::get('/homes', 'HomeController@index')->name('homes');
 

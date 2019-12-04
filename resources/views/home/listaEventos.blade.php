@@ -86,9 +86,9 @@
             </thead>
         @foreach ($eventos as $item)
             <tr>
-                <td>{{$item->nombre}}</td>
-                <td>{{$item->fecha}}</td>
-                <td>{{$item->lugar}}</td>
+                <td>{{$item->nombre_evento}}</td>
+                <td>{{$item->fecha_evento}}</td>
+                <td>{{$item->usuario}}</td>
                 <td>
                   <a href="#" class="btn btn-dark btn-sm">Editar</a>
                 </td>

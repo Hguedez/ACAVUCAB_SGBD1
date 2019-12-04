@@ -5,8 +5,8 @@
     <h2>Agregar Evento</h2>
     <form action="/eventos" method="POST">
         @csrf
-       <input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" required>
-       <input type="date" name="fecha" placeholder="Fecha" class="form-control mb-2" required >
+       <input type="text" name="nombre_evento" placeholder="Nombre" class="form-control mb-2" required>
+       <input type="date" name="fecha_evento" placeholder="Fecha" class="form-control mb-2" required >
        <input type="text" name="lugar" placeholder="Lugar" class="form-control mb-2" required>
        <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
     </form>

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('apellido2');
             $table->integer('cedula');
             $table->string('rif');
+           
             $table->rememberToken();
             $table->timestamps();
         });

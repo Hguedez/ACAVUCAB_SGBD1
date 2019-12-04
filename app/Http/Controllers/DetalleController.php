@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use App\Evento;
-class EventoController extends Controller
+use App\Detalle;
+class DetalleController extends Controller
 {
-    public function __construct()
-{
-    $this->middleware('auth');
-}
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +13,7 @@ class EventoController extends Controller
      */
     public function index()
     {
-        $usuarioEmail = auth()->user()->email;
-        $eventos = Evento::where('usuario', $usuarioEmail)->paginate(5);
-        return view('home.listaEventos',compact('eventos'));
+        //
     }
 
     /**
@@ -29,7 +23,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        return view('home.crearEvento');
+        //
     }
 
     /**
@@ -40,13 +34,7 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        $evento = new Evento();
-        $evento->nombre_evento = $request->nombre_evento;
-        $evento->fecha_evento = $request->fecha_evento;
-        //$evento->lugar = $request->lugar;
-        $evento->usuario = auth()->user()->email;
-        $evento->save();
-        return back()->with('Evento Agregado!');
+        //
     }
 
     /**
@@ -57,7 +45,8 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        //
+        $detalle = Detalle::findOrFail($id);
+        return view('home.detalle_producto',compact('detalle'));
     }
 
     /**

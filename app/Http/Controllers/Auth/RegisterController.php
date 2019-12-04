@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'apellido2' => $data['apellido2'],
             'cedula' => $data['cedula'],
             'rif' => $data['rif'],
+            
         ]);
     }
 }

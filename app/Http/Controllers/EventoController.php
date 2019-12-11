@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Evento;
+//use App\Lugar;
+use Illuminate\Support\Facades\DB;
 class EventoController extends Controller
 {
     public function __construct()
@@ -17,8 +19,12 @@ class EventoController extends Controller
      */
     public function index()
     {
-        $usuarioEmail = auth()->user()->email;
-        $eventos = Evento::where('usuario', $usuarioEmail)->paginate(5);
+        
+        $eventos = DB::select( DB::raw("SELECT nombre_evento, fecha
+                                        from evento 
+                                        WHERE nombre_evento is not null"
+                                        
+                                        ));
         return view('home.listaEventos',compact('eventos'));
     }
 
@@ -29,7 +35,11 @@ class EventoController extends Controller
      */
     public function create()
     {
-        return view('home.crearEvento');
+        /*$lugar = DB::select( DB::raw(
+        "SELECT nombre
+        from lugar"
+        ));*/
+        return view('home.crearEvento');//,compact('lugar'));
     }
 
     /**
@@ -42,10 +52,12 @@ class EventoController extends Controller
     {
         $evento = new Evento();
         $evento->nombre_evento = $request->nombre_evento;
-        $evento->fecha_evento = $request->fecha_evento;
-        //$evento->lugar = $request->lugar;
-        $evento->usuario = auth()->user()->email;
+        $evento->fecha = $request->fecha;
+        //$evento->fk_lugar = $request->fk_lugar;
+        //$evento->usuario = auth()->user()->email;
         $evento->save();
+
+        
         return back()->with('Evento Agregado!');
     }
 
@@ -57,7 +69,8 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        //
+        $evento = Evento::findOrFail($id);
+        return view('home.verEvento',compact('evento'));
     }
 
     /**
@@ -90,7 +103,9 @@ class EventoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        $evento=Evento::findOrFail($id);
+        $evento->delete();
+        return back()->with('Evento eliminado');
     }
 }

@@ -20,16 +20,18 @@ Route::get('/catalogo', function () { //catalogo necesita un controlador
 Route::get('/diario', function () { // diario necesita un controlador
     return view('home.diarioCerveza');
 });
-Route::get('/comprar', function () {
+Route::get('/comprar', function () { //comprar necesita un controlador
     return view('home.comprar');
 });
 /*Route::get('/detalle/{id}', function ($id) {
     $detalle =Detalle::findOrfail($id);
     return view('home.detalle_producto',compact('detalle'));
 });*/
-/*Route::get('/detalle', function () {
-    return view('home.detalle_producto');
-});*/
+Route::get('/ordenes', function () {
+    return view('home.misOrdenes');
+});
+/*Route::delete('/eventos/{id}', 'Evento@Controller')->name('eventos') ;*/
+
 Auth::routes();
 
 Route::resource('/eventos', 'EventoController');

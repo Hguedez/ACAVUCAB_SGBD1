@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
     
@@ -24,7 +24,7 @@
     
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
-   
+    
     <style>
     .carousel-item {
   height: 65vh;
@@ -74,6 +74,9 @@
   <body class="goto-here">
 		
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top " >
+        <a class="navbar-brand ml-auto" href="/ordenes">
+          <img src="add_shopping_cart-24px.svg" width="30" height="30" class="d-inline-block align-top " alt="">
+        </a>
 	    <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -128,6 +131,7 @@
                     </a>
                    
                   <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                  <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -163,6 +167,7 @@
             </div>
           </div>
         </div>
+    
     <section class="ftco-section">
       <div class="container">
         <div class="row justify-content-center">
@@ -313,24 +318,7 @@
       </div>
     </section> <!-- .section -->
 
-		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-      <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-          <div class="col-md-6">
-          	<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-          	<span>Get e-mail updates about our latest shops and special offers</span>
-          </div>
-          <div class="col-md-6 d-flex align-items-center">
-            <form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="submit px-3">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+	
     <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">

@@ -87,10 +87,13 @@
         @foreach ($eventos as $item)
             <tr>
                 <td>{{$item->nombre_evento}}</td>
-                <td>{{$item->fecha_evento}}</td>
-                <td>{{$item->usuario}}</td>
+                <td>{{$item->fecha}}</td>
+                
                 <td>
-                  <a href="#" class="btn btn-dark btn-sm">Editar</a>
+                  <form action={{ route('eventos.destroy', ['evento' => $item->id_evento]) }} method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
                 </td>
             </tr>
         @endforeach
@@ -99,4 +102,3 @@
   </div>
     </div>
 @endsection
-

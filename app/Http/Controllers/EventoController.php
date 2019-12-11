@@ -20,7 +20,7 @@ class EventoController extends Controller
     public function index()
     {
         
-        $eventos = DB::select( DB::raw("SELECT nombre_evento, fecha
+        $eventos = DB::select( DB::raw("SELECT id_evento,nombre_evento, fecha
                                         from evento 
                                         WHERE nombre_evento is not null"
                                         

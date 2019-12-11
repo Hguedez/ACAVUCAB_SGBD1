@@ -90,7 +90,7 @@
                 <td>{{$item->fecha}}</td>
                 
                 <td>
-                  <form action={{ route('eventos.destroy', ['evento' => $item]) }} method="POST" class="d-inline">
+                  <form action={{ route('eventos.destroy', ['evento' => $item->id_evento]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>

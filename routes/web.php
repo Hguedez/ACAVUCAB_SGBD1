@@ -36,5 +36,6 @@ Auth::routes();
 
 Route::resource('/eventos', 'EventoController');
 Route::resource('/detalle', 'DetalleController');
+Route::resource('/entradas', 'EntradaController');
 
 Route::get('/homes', 'HomeController@index')->name('homes');

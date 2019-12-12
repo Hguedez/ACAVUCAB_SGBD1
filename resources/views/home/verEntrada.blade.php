@@ -74,40 +74,34 @@
     <div class="event">
   <div class="container " >
         <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
-        <h4 class="centro">Eventos</h4>
+        <h4 class="centro">Entradas</h4>
         <table class="table table-primary table-bordered tope">
             <thead>
               <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Fecha</th>
-                
+                <th scope="col">Numero de Entrada</th>
+                <th scope="col">Precio Entrada</th>
+                <th scope="col">Del evento</th>
                 <th scope="col">Eliminar</th>
-                <th scope="col">Entradas disponibles</th>
+                
               </tr>
             </thead>
-        @foreach ($eventos as $item)
+        @foreach ($entradas as $item)
             <tr>
+                <td>{{$item->numero_entrada}}</td>
+                <td>{{$item->precio_entrada}}</td>
                 <td>{{$item->nombre_evento}}</td>
-                <td>{{$item->fecha}}</td>
                 
                 <td>
-                  <form action={{ route('eventos.destroy', ['evento' => $item->id_evento]) }} method="POST" class="d-inline">
+                  <form action={{ route('entradas.destroy', ['entrada' => $item->id_entrada]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
-                  </form>
                 </td>
-                <td>
-                  <form action={{ route('entradas.store', ['evento' => $item->id_evento]) }}  method="POST" class="d-inline">
-                    @csrf
-                    <a href="{{ route('entradas.store', ['evento' => $item->id_evento]) }} " class="btn btn-dark btn-sm">Entradas</a>
-                  </form>
-                </td>
+                
             </tr>
         @endforeach
         </table>
-        <a href="/eventos/create" class="btn btn-secondary btn-lg btn-block">Nuevo Evento</a>
-        <a href="/entradas" class="btn btn-secondary btn-lg btn-block">Nueva entrada</a>
+        <a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nuevo Entrada</a>
   </div>
     </div>
 @endsection

@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use App\Evento;
-//use App\Lugar;
 use App\Entrada;
+use App\Evento;
 use Illuminate\Support\Facades\DB;
-class EventoController extends Controller
+
+class EntradaController extends Controller
 {
     public function __construct()
 {
@@ -20,13 +20,12 @@ class EventoController extends Controller
      */
     public function index()
     {
-        
-        $eventos = DB::select( DB::raw("SELECT id_evento,nombre_evento, fecha
-                                        from evento 
-                                        WHERE nombre_evento is not null"
+        $entradas = DB::select( DB::raw("SELECT id_entrada,numero_entrada, precio_entrada,fk_evento,id_evento,nombre_evento
+                                        from evento ,entrada
+                                        WHERE fk_evento=id_evento"
                                         
                                         ));
-        return view('home.listaEventos',compact('eventos'));
+        return view('home.entrada',compact('entradas'));
     }
 
     /**
@@ -36,11 +35,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        /*$lugar = DB::select( DB::raw(
-        "SELECT nombre
-        from lugar"
-        ));*/
-        return view('home.crearEvento');//,compact('lugar'));
+        return view('home.crearEntrada');
     }
 
     /**
@@ -49,17 +44,28 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $evento = new Evento();
-        $evento->nombre_evento = $request->nombre_evento;
-        $evento->fecha = $request->fecha;
-        //$evento->fk_lugar = $request->fk_lugar;
+    public function store(Request $request,$id)
+    { 
+        $entrada = new Entrada();
+        $entrada->numero_entrada = $request->numero_entrada;
+        $entrada->precio_entrada = $request->precio_entrada;
+        $entrada->fk_evento = $id;
+        $array= DB::select( DB::raw("SELECT nombre_evento
+                                                  from evento
+                                                  WHERE $entrada->fk_evento=id_evento"
+                                                    ));
+        $entradas = DB::select( DB::raw("SELECT id_entrada,numero_entrada, precio_entrada,fk_evento,id_evento,nombre_evento
+                                         from evento ,entrada
+                                         WHERE fk_evento=id_evento"
+                                        ));
+        $hola = array_push($entradas,$array[0]);
+        
+
         //$evento->usuario = auth()->user()->email;
-        $evento->save();
+        $entrada->save();
 
         
-        return back()->with('Evento Agregado!');
+        return back()->with('Entrada agregada!');
     }
 
     /**
@@ -70,9 +76,8 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        $evento = Evento::findOrFail($id);
-        return view('home.verEventos',compact('evento'));
-        //return view('home.entrada',compact('evento'));
+        $entrada = Entrada::findOrFail($id);
+        return view('home.verEntradas',compact('entrada'));
     }
 
     /**
@@ -105,9 +110,7 @@ class EventoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-        $evento=Evento::findOrFail($id);
-        $evento->delete();
-        return back()->with('Evento eliminado');
+    {
+        //
     }
 }

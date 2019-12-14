@@ -1,32 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use App\Evento;
-//use App\Lugar;
-use App\Entrada;
+use App\Horario;
 use Illuminate\Support\Facades\DB;
-class EventoController extends Controller
+class HorarioController extends Controller
 {
     public function __construct()
-{
-    $this->middleware('auth');
-}
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        
-        $eventos = DB::select( DB::raw("SELECT id_evento,nombre_evento, fecha,
-        (SELECT id_horario FROM horario WHERE  id_horario=id_evento )
-                                        FROM evento 
-                                        WHERE nombre_evento is not null"
-                                        ));
-        return view('home.listaEventos',compact('eventos'));
+    public function index(Request $request, $id_evento,$id_horario)
+    {   
+        $horarios = DB::select( DB::raw("SELECT id_horario,dia,hora_inicio,hora_fin
+        from horario 
+        WHERE dia is not null"
+        ));
+        return view('home.horario')->with('horarios', $horarios)->with('id_evento', $id_evento);
     }
 
     /**
@@ -36,11 +32,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        /*$lugar = DB::select( DB::raw(
-        "SELECT nombre
-        from lugar"
-        ));*/
-        return view('home.crearEvento');//,compact('lugar'));
+       return view('home.crearHorario');
     }
 
     /**
@@ -51,15 +43,12 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        $evento = new Evento();
-        $evento->nombre_evento = $request->nombre_evento;
-        $evento->fecha = $request->fecha;
-        //$evento->fk_lugar = $request->fk_lugar;
-        //$evento->usuario = auth()->user()->email;
-        $evento->save();
-
-        
-        return back()->with('Evento Agregado!');
+        $horario =new Horario();
+        $horario->dia=$request->dia;
+        $horario->hora_inicio=$request->hora_inicio;
+        $horario->hora_fin=$request->hora_fin;
+        $horario->save();
+        return back();
     }
 
     /**
@@ -70,9 +59,7 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        $evento = Evento::findOrFail($id);
-        return view('home.verEventos',compact('evento'));
-        //return view('home.entrada',compact('evento'));
+        //
     }
 
     /**
@@ -105,9 +92,7 @@ class EventoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-        $evento=Evento::find($id);
-        $evento->delete();
-        return back()->with('Evento eliminado');
+    {
+        //
     }
 }

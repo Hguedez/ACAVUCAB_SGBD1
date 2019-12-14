@@ -1,5 +1,6 @@
 @extends('layouts.listaEventoslayout')
 @section('content')
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
         <div class="container">
          
@@ -9,21 +10,21 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             
             <ul class="navbar-nav mr-auto ">
-              <li class="nav-item active">
+              <li class="nav-item active tamano">
                 <a class="nav-link " href="/">Home
                       <span class="sr-only">(current)</span>
                     </a>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item tamano">
                 <a class="nav-link" href="/catalogo">Catalogo</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item tamano">
                 <a class="nav-link" href="#">Servicios</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item tamano">
                 <a class="nav-link" href="#">Contacto</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item tamano">
                 <a class="nav-link" href="#">Ayuda</a>
               </li>
       
@@ -42,11 +43,11 @@
                     @endif
                     
                   @else
-                  <li class="nav-item active dropdown">
+                  <li class="nav-item active dropdown tamano">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-                  <div class="dropdown"  >
+                  <div class="dropdown "  >
                             <a class="" href="{{ route('logout') }}">
                     <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
                         <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
@@ -64,8 +65,8 @@
                   @endguest
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+                        <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-dark my-2 my-sm-0 tamano" type="submit">Search</button>
                       </form>
                     </div>
                   </div>
@@ -80,7 +81,8 @@
               <tr>
                 <th scope="col">Numero de Entrada</th>
                 <th scope="col">Precio Entrada</th>
-                <th scope="col">Del evento</th>
+                <th scope="col">Nombre Del evento</th>
+                
                 <th scope="col">Eliminar</th>
                 
               </tr>
@@ -88,13 +90,12 @@
 
         @foreach ($entradas as $item)
             <tr> 
-              @if ($item->fk_evento)
+              
                 <td>{{$item->numero_entrada}}</td>
                 <td>{{$item->precio_entrada}}</td>
                 <td>{{$item->nombre_evento}}</td>
-              @endif
-                <td>
-                  <form action={{ route('entradas.destroy', ['entrada' => $item->id_entrada]) }} method="POST" class="d-inline">
+                <td> 
+                  <form action={{ route('entradas.destroy', ['entrada' => $item->id_entrada, 'nentrada' => $item->id_entrada]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
@@ -104,7 +105,8 @@
             </tr>
         @endforeach
         </table>
-        <a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva Entrada</a>
+        <!--<a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva Entrada</a>-->
   </div>
     </div>
+
 @endsection

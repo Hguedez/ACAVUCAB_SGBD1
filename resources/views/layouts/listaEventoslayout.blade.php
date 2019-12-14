@@ -4,17 +4,20 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     <title>ACAVUCAB</title>
     <style >
+
         	body {
   				padding-top: 56px;
-          background-image: url(fondoevento.jpg);
-        background-size: cover;
+          background-image: url("/fondoevento.jpg");
+          background-size: cover;
 			}
+      
       .dropnegro{
   color: #141519;
   text-align: center;
@@ -24,16 +27,21 @@
             background: #141519;
             background: linear-gradient(to right, #424448, #B7BCCD);
         }
+        .tamano{
+          font-size: 16px;
+        }
         .tope{
             margin-top: 10px;
         }
         .centro{
             text-align: center;
         }
-        
+        .letra{
+          font-family: helvetica;
+        }
     </style>
   </head>
-  <body>
+  <body >
       <div class="app">
           @yield('content')
       </div>

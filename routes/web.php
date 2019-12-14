@@ -35,6 +35,7 @@ Route::get('/comprar', function () { //comprar necesita un controlador
 Route::get('/ordenes', function () {
     return view('home.misOrdenes');
 });
+
 /*Route::delete('/eventos/{id}', 'Evento@Controller')->name('eventos') ;*/
 
 Auth::routes();
@@ -42,7 +43,11 @@ Auth::routes();
 Route::resource('/eventos', 'EventoController');
 Route::resource('/detalle', 'DetalleController');
 Route::resource('/entradas', 'EntradaController');
-
+Route::resource('/eventos/{evento}/entradas', 'EntradaController');
+//Route::resource('/horario', 'HorarioController');
+//Route::resource('/eventos/{evento}/horarios', 'HorarioeventoController');
+Route::resource('/eventos/{evento}/horarios/{eventos}/funciona', 'HorarioController');
+Route::resource('/eventos/{evento}/horarios/{horario}/hola', 'HorarioeventoController');
 Route::get('/homes', 'HomeController@index')->name('homes');
 
 Route::get('/compilar', function () {

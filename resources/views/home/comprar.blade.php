@@ -132,6 +132,7 @@
                    
                   <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
                   <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                  <a class="dropnegro dropdown-item" href="/horario">Horarios</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>

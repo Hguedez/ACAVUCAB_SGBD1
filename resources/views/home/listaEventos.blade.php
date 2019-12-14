@@ -1,5 +1,45 @@
-@extends('layouts.listaEventoslayout')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+   
+    
+    <title>ACAVUCAB</title>
+    <style >
+
+        	body {
+  				padding-top: 56px;
+          background-image: url("/fondoevento.jpg");
+          background-size: cover;
+			}
+      
+      .dropnegro{
+  color: #141519;
+  text-align: center;
+  
+}
+      nav.navbar {
+            background: #141519;
+            background: linear-gradient(to right, #424448, #B7BCCD);
+        }
+        .tamano{
+          font-size: 16px;
+        }
+        .tope{
+            margin-top: 10px;
+        }
+        .centro{
+            text-align: center;
+        }
+        
+    </style>
+  </head>
+  <body >
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
         <div class="container">
          
@@ -54,7 +94,9 @@
                                          document.getElementById('logout-form').submit();">
                             {{ __('Cerrar sesion') }}
                         </a>
-                       
+                        <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                        <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                        <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -80,34 +122,44 @@
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Fecha</th>
-                
                 <th scope="col">Eliminar</th>
                 <th scope="col">Entradas disponibles</th>
+                <th scope="col">Horarios Disponibles</th>
               </tr>
             </thead>
         @foreach ($eventos as $item)
             <tr>
                 <td>{{$item->nombre_evento}}</td>
                 <td>{{$item->fecha}}</td>
-                
+
                 <td>
                   <form action={{ route('eventos.destroy', ['evento' => $item->id_evento]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
                   </form>
+                
                 </td>
                 <td>
-                  <form action={{ route('entradas.store', ['evento' => $item->id_evento]) }}  method="POST" class="d-inline">
-                    @csrf
-                    <a href="{{ route('entradas.store', ['evento' => $item->id_evento]) }} " class="btn btn-dark btn-sm">Entradas</a>
-                  </form>
+                    <a href="/eventos/{{$item->id_evento}}/entradas" class="btn btn-dark btn-sm">Entradas</a>
                 </td>
+                <td>
+                <a href="/eventos/{{$item->id_evento}}/horarios/{{$item->id_horario}}/funciona" class="btn btn-dark btn-sm">Horarios</a>
+              </td>
             </tr>
+            
         @endforeach
         </table>
         <a href="/eventos/create" class="btn btn-secondary btn-lg btn-block">Nuevo Evento</a>
-        <a href="/entradas" class="btn btn-secondary btn-lg btn-block">Nueva entrada</a>
+        <a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva entrada</a>
+        <a href="/eventos/1/horarios/1/funciona/create" class="btn btn-secondary btn-lg btn-block">Crear Horario</a>
+        
   </div>
     </div>
-@endsection
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

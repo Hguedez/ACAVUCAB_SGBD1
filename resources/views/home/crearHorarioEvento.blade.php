@@ -115,18 +115,17 @@
               </nav>
 <div class="container">
     
-    <h2>Agregar Entradas</h2>
-    <form action="/entradas" method="POST">
+    <h2>Asignar un evento a  un Horario </h2>
+    <form action="/eventos/1/horarios/1/hola" method="POST">
         @csrf
         
-       <input type="number" name="numero_entrada" placeholder="Numero Entrada" class="form-control mb-2" required>
-       <input type="number" name="precio_entrada" placeholder="Precio Entrada" class="form-control mb-2" required >
-       <input type="number" name="fk_evento" placeholder="ID al evento" class="form-control mb-2" required>
-       <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
+       <input type="number" name="fk_evento" placeholder="ID del evento" class="form-control mb-2" required>
+       <input type="number" name="fk_horario" placeholder="ID del horario" class="form-control mb-2" required>
     
-       
-       <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
-       <a href="/eventos" class="btn btn-primary btn-sm">Volver al menu anterior</a>
+       <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
+          
+       <button clas="btn btn-primary btn-block" type="submit">Aceptar</button>
+       <a href="/eventos/1/horarios/1/funciona" class="btn btn-primary btn-sm">Volver al menu anterior</a>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

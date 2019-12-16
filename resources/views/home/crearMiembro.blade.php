@@ -33,7 +33,9 @@
 .tamano{
     font-size: 16px;
 }
-
+.izquierda{
+    margin-bottom: 100px;
+}
     </style>
 
   </head>
@@ -115,20 +117,36 @@
               </nav>
 <div class="container">
 
-    <h2>Agregar Entradas</h2>
-    <form action="/entradas" method="POST">
+    <h2>Agregar Miembro</h2>
+    <!--<form action=/miembros/1/telefonos method="POST" class="d-inline">-->
+
+    <form action="/eventos/1/miembros/1/asociados" method="POST">
         @csrf
 
-       <input type="number" name="numero_entrada" placeholder="Numero Entrada" class="form-control mb-2" required>
-       <input type="number" name="precio_entrada" placeholder="Precio Entrada" class="form-control mb-2" required >
-       <input type="text" name="disponible" placeholder="Disponibilidad" class="form-control mb-2" required>
-       <input type="number" name="fk_evento" placeholder="ID al evento" class="form-control mb-2" required>
-       <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
+       <input type="text" name="razon_social" placeholder="Razon Social" class="form-control mb-2" required>
+       <input type="text" name="denominacion_comercial" placeholder="Denominacion Comercial" class="form-control mb-2" required >
+       <input type="text" name="web" placeholder="Web" class="form-control mb-2" required >
+       <input type="text" name="rif" placeholder="Rif" class="form-control mb-2" required >
+       <input type="number" name="codigo_area" placeholder="Codigo de area" class="form-control mb-2" required>
+       <input type="number" name="numero" placeholder="Numero" class="form-control mb-2" required>
 
+       <!--<div class="container form-inline ">
+               <input type="text" name="correo" placeholder="Correo" class="form-control mb-2" required>
+                <div class="form-group col-md-4 izquierda">
+                        <select id="inputState" class="form-control">
+                          <option selected>Tipo de corrreo</option>
+                          <option>@gmail</option>
+                          <option>@outlook</option>
+                          <option>@yahoo</option>
+                        </select>
+                </div>
+       </div>-->
 
        <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
-       <a href="/eventos" class="btn btn-primary btn-sm">Volver al menu anterior</a>
+       <a href="/eventos/1/miembros/1/asociados" class="btn btn-primary btn-sm">Volver al menu anterior</a>
     </form>
+
+
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

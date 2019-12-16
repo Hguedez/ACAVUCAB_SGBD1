@@ -10,21 +10,21 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
 
             <ul class="navbar-nav mr-auto ">
-              <li class="nav-item active tamano">
+              <li class="nav-item active tamano letra">
                 <a class="nav-link " href="/">Home
                       <span class="sr-only">(current)</span>
                     </a>
               </li>
-              <li class="nav-item tamano">
+              <li class="nav-item tamano letra">
                 <a class="nav-link" href="/catalogo">Catalogo</a>
               </li>
-              <li class="nav-item tamano">
+              <li class="nav-item tamano letra">
                 <a class="nav-link" href="#">Servicios</a>
               </li>
-              <li class="nav-item tamano">
+              <li class="nav-item tamano letra">
                 <a class="nav-link" href="#">Contacto</a>
               </li>
-              <li class="nav-item tamano">
+              <li class="nav-item tamano letra">
                 <a class="nav-link" href="#">Ayuda</a>
               </li>
 
@@ -33,29 +33,31 @@
                     <!-- Authentication Links -->
                     @guest
 
-                    <li class="nav-item">
+                    <li class="nav-item tamano letra">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                     </li>
                     @if (Route::has('register'))
-                        <li class="nav-item">
+                        <li class="nav-item tamano letra">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                         </li>
                     @endif
 
                   @else
-                  <li class="nav-item active dropdown tamano">
+                  <li class="nav-item active dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-                  <div class="dropdown "  >
+                  <div class="dropdown"  >
                             <a class="" href="{{ route('logout') }}">
                     <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
-                        <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                        <a class="dropnegro dropdown-item tamano letra" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                             {{ __('Cerrar sesion') }}
                         </a>
-
+                        <a class="dropnegro dropdown-item tamano letra" href="/eventos">Mis eventos</a>
+                        <a class="dropnegro dropdown-item tamano letra" href="/ordenes">Mis ordenes</a>
+                        <a class="dropnegro dropdown-item tamano letra" href="/eventos/1/horarios/1/funciona">Horarios</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -65,8 +67,8 @@
                   @endguest
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-dark my-2 my-sm-0 tamano" type="submit">Search</button>
+                        <input class="form-control mr-sm-2 tamano letra" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-dark my-2 my-sm-0 tamano letra" type="submit">Search</button>
                       </form>
                     </div>
                   </div>
@@ -75,38 +77,26 @@
     <div class="event">
   <div class="container " >
         <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
-        <h4 class="centro">Entradas</h4>
+        <h4 class="centro">Correos</h4>
         <table class="table table-primary table-bordered tope">
             <thead>
               <tr>
-                <th scope="col">Numero de Entrada</th>
-                <th scope="col">Precio Entrada</th>
-                <th scope="col">Nombre Del evento</th>
-
-                <th scope="col">Eliminar</th>
-
+                <th scope="col tamano letra">Correo</th>
+                <th scope="col tamano letra">Eliminate</th>
               </tr>
             </thead>
-
-        @foreach ($entradas as $item)
+        @foreach ($correos as $item)
             <tr>
-
-                <td>{{$item->numero_entrada}}</td>
-                <td>{{$item->precio_entrada}}</td>
-                <td>{{$item->nombre_evento}}</td>
+                <td>{{$item->nombre}}</td>
                 <td>
-                 
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
-                  </form>
+                    <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
                 </td>
-
             </tr>
+
         @endforeach
         </table>
-        <!--<a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva Entrada</a>-->
+        <a href="/eventos/1/miembros/1/asociados" class="btn btn-secondary btn-lg btn-block">Atras</a>
+
   </div>
     </div>
-
 @endsection

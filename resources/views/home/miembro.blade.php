@@ -1,45 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+@extends('layouts.listaEventoslayout')
+@section('content')
 
 
-    <title>ACAVUCAB</title>
-    <style >
-
-        	body {
-  				padding-top: 56px;
-          background-image: url("/fondoevento.jpg");
-          background-size: cover;
-			}
-
-      .dropnegro{
-  color: #141519;
-  text-align: center;
-
-}
-      nav.navbar {
-            background: #141519;
-            background: linear-gradient(to right, #424448, #B7BCCD);
-        }
-        .tamano{
-          font-size: 16px;
-        }
-        .tope{
-            margin-top: 10px;
-        }
-        .centro{
-            text-align: center;
-        }
-
-    </style>
-  </head>
-  <body >
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
         <div class="container">
 
@@ -97,7 +59,6 @@
                         <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
                         <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                         <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
-                        <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -117,49 +78,61 @@
     <div class="event">
   <div class="container " >
         <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
-        <h4 class="centro">Eventos</h4>
+        <h4 class="centro">Miembros</h4>
         <table class="table table-primary table-bordered tope">
             <thead>
               <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Fecha</th>
+                <th scope="col">Razon Social</th>
+                <th scope="col">Denominacion Comercial</th>
+                <th scope="col">Web</th>
+                <th scope="col">Rif</th>
+                <th scope="col">Ver Correos</th>
                 <th scope="col">Eliminar</th>
-                <th scope="col">Entradas disponibles</th>
-                <th scope="col">Horario</th>
-                <th scope="col">Miembros responsables</th>
+                <th scope="col">Persona de contacto</th>
+                <th scope="col">Ver telefonos</th>
+                <th scope="col">Eventos asociados</th>
+
+
               </tr>
             </thead>
-        @foreach ($eventos as $item)
+        @foreach ($miembros as $item)
             <tr>
-                <td>{{$item->nombre_evento}}</td>
-                <td>{{$item->fecha}}</td>
+                <td>{{$item->razon_social}}</td>
+                <td>{{$item->denominacion_comercial}}</td>
+                <td>{{$item->web}}</td>
+                <td>{{$item->rif}}</td>
 
+                <td width="15%">
+                    <div class="container ">
+                       <a href="/miembros/{{$item->id_miembro}}/correos" class="btn btn-dark btn-sm">Ver</a>
+
+                       <a href="/correos/{{$item->id_miembro}}/miembros/create" class="btn btn-dark btn-sm">Agregar</a>
+                    </div>
+                </td>
                 <td>
-                  <form action={{ route('eventos.destroy', ['evento' => $item->id_evento]) }} method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
-                  </form>
+
+                        <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
+                   
 
                 </td>
                 <td>
-                    <a href="/eventos/{{$item->id_evento}}/entradas" class="btn btn-dark btn-sm">Entradas</a>
+                    <a href="/miembros/{{$item->id_miembro}}/contactos" class="btn btn-dark btn-sm">Ver</a>
+                    <a href="/miembros/{{$item->id_miembro}}/contactos/create" class="btn btn-dark btn-sm">Agregar</a>
+                </td>
+                <td width="15%">
+                    <div class="container">
+                        <a href="/miembros/{{$item->id_miembro}}/telefonos" class="btn btn-dark btn-sm">Ver </a>
+                        <a href="/miembros/{{$item->id_miembro}}/telefonos/create" class="btn btn-dark btn-sm">Agregar</a>
+                    </div>
                 </td>
                 <td>
-                  <a href="/eventos/{{$item->id_evento}}/horarios/1/funciona" class="btn btn-dark btn-sm">Horarios</a>
-                </td>
-                <td>
-                    <a href="/eventos/{{$item->id_evento}}/miembros/{{$item->id_miembro}}/asociados" class="btn btn-dark btn-sm letra">Miembros </a>
+                    <a href="/eventos/{{$id_evento}}/miembros/{{$item->id_miembro}}/miembroevento" class="btn btn-dark btn-sm letra">Visualizar</a>
                 </td>
             </tr>
 
         @endforeach
         </table>
-        <a href="/eventos/create" class="btn btn-secondary btn-lg btn-block">Nuevo Evento</a>
-        <a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva entrada</a>
-        <a href="/eventos/1/horarios/1/funciona/create" class="btn btn-secondary btn-lg btn-block">Crear Horario</a>
-        <a href="/eventos/1/miembros/1/miembroevento/create" class="btn btn-secondary btn-lg btn-block">Asignar un Evento a un miembro</a>
-        <!--<a href="/eventos/1/miembros/1/asociados/create" class="btn btn-secondary btn-lg btn-block">Crear miembro</a>-->
+        <a href="/miembros/create" class="btn btn-secondary btn-lg btn-block">Crear Miembro</a>
 
 
   </div>
@@ -171,3 +144,4 @@
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+@endsection

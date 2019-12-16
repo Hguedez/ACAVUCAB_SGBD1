@@ -1,7 +1,5 @@
 @extends('layouts.listaEventoslayout')
 @section('content')
-
-
      <!-- Navigation -->
 
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
@@ -57,7 +55,7 @@
                   <a class="dropnegro dropdown-item tamano" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">
-                      {{ __(' Cerrar sesion') }}
+                      {{ __(' Cerrarsesion') }}
                   </a>
 
                 <a class="dropnegro dropdown-item tamano" href="/eventos">Mis eventos</a>
@@ -85,38 +83,30 @@
 
   <div class="container">
       <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
-      <h3 class="centro letra">Horario</h3>
+      <h4 class="centro">Miembros proveedores de los eventos</h4>
       <table class="table table-light">
           <thead class="thead-dark">
             <tr>
-              <th class="letra"scope="col">Dia</th>
-              <th class="letra" scope="col">Hora Inicio</th>
-              <th class="letra" scope="col">Hora Fin</th>
-              <th class="letra" scope="col">Eliminar</th>
-              <th class="letra" scope="col">Evento asignado</th>
+              <th scope="col">Razon social</th>
+              <th scope="col">Nombre del evento</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
-          @foreach ($horarios as $item)
+          @foreach ($miembro_evento as $item)
           <tr>
-              <td class="letra">{{$item->dia}}</td>
-              <td class="letra">{{$item->hora_inicio}}</td>
-              <td class="letra">{{$item->hora_fin}}</td>
+              <td>{{$item->razon_social}}</td>
+              <td>{{$item->nombre_evento}}</td>
+              <td>{{$item->fecha}}</td>
               <td>
-                  <button class="btn btn-dark btn-sm letra" type="submit">Eliminar</button>
+                  <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
               </td>
-              <td>
-              <a href="/eventos/{{$id_evento}}/horarios/{{$item->id_horario}}/hola" class="btn btn-dark btn-sm letra">Evento</a>
-            </td>
           </tr>
+
       @endforeach
 
       </table>
-      <!--<a href="/horario/create" class="btn btn-secondary btn-lg btn-block">Nuevo Horario</a>-->
-      <a href="/eventos/1/horarios/1/hola/create" class="btn btn-secondary btn-lg btn-block">Nuevo Horario Evento</a>
-      <!--Todo lo que tiene 1 es para que funcione la ruta y ya hola tambien-->
+
   </div>
 
-
-
-
-  @endsection
+ @endsection

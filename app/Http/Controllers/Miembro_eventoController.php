@@ -1,32 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use App\Evento;
-//use App\Lugar;
-use App\Entrada;
 use Illuminate\Support\Facades\DB;
-class EventoController extends Controller
+use App\Miembro_evento;
+class Miembro_eventoController extends Controller
 {
     public function __construct()
-{
-    $this->middleware('auth');
-}
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $id,$id2)
     {
+       $miembro_evento = DB::select(DB::raw("SELECT id_miembro_evento, fk_evento,fk_miembro, (
+             SELECT razon_social FROM miembro WHERE id_miembro = fk_miembro ),(SELECT nombre_evento FROM evento WHERE id_evento = fk_evento ),(SELECT fecha FROM evento WHERE id_evento = fk_evento )
+             FROM miembro_evento WHERE fk_evento = '$id' and fk_miembro='$id2' "));
+        return view ('home.miembro_evento', compact('miembro_evento'));
 
-        $eventos = DB::select( DB::raw("SELECT id_evento,nombre_evento, fecha,
-        (SELECT id_horario FROM horario WHERE  id_horario=id_evento ),(SELECT id_miembro FROM miembro WHERE  id_miembro=id_evento )
-                                        FROM evento
-                                        WHERE nombre_evento is not null"
-                                        ));
-        return view('home.listaEventos',compact('eventos'));
     }
 
     /**
@@ -36,11 +32,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        /*$lugar = DB::select( DB::raw(
-        "SELECT nombre
-        from lugar"
-        ));*/
-        return view('home.crearEvento');//,compact('lugar'));
+        return view('home.crearMiembro_evento');
     }
 
     /**
@@ -51,15 +43,11 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        $evento = new Evento();
-        $evento->nombre_evento = $request->nombre_evento;
-        $evento->fecha = $request->fecha;
-        //$evento->fk_lugar = $request->fk_lugar;
-        //$evento->usuario = auth()->user()->email;
-        $evento->save();
-
-
-        return back()->with('Evento Agregado!');
+        $miembro_evento=new Miembro_evento();
+        $miembro_evento->fk_evento=$request->fk_evento;
+        $miembro_evento->fk_miembro=$request->fk_miembro;
+        $miembro_evento->save();
+        return back();
     }
 
     /**
@@ -70,9 +58,7 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        $evento = Evento::findOrFail($id);
-        return view('home.verEventos',compact('evento'));
-        //return view('home.entrada',compact('evento'));
+        //
     }
 
     /**
@@ -106,8 +92,6 @@ class EventoController extends Controller
      */
     public function destroy($id)
     {
-        $evento=Evento::find($id);
-        $evento->delete();
-        return back()->with('Evento eliminado');
+        //
     }
 }

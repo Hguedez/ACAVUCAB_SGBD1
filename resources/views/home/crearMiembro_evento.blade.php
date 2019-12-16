@@ -115,18 +115,16 @@
               </nav>
 <div class="container">
 
-    <h2>Agregar Entradas</h2>
-    <form action="/entradas" method="POST">
+    <h2>Asignar un evento a  un miembro</h2>
+    <form action="/eventos/1/miembros/1/miembroevento" method="POST">
         @csrf
 
-       <input type="number" name="numero_entrada" placeholder="Numero Entrada" class="form-control mb-2" required>
-       <input type="number" name="precio_entrada" placeholder="Precio Entrada" class="form-control mb-2" required >
-       <input type="text" name="disponible" placeholder="Disponibilidad" class="form-control mb-2" required>
-       <input type="number" name="fk_evento" placeholder="ID al evento" class="form-control mb-2" required>
+       <input type="number" name="fk_evento" placeholder="ID del evento" class="form-control mb-2" required>
+       <input type="number" name="fk_miembro" placeholder="ID del miembro" class="form-control mb-2" required>
+
        <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
 
-
-       <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
+       <button clas="btn btn-primary btn-block" type="submit">Aceptar</button>
        <a href="/eventos" class="btn btn-primary btn-sm">Volver al menu anterior</a>
     </form>
 </div>

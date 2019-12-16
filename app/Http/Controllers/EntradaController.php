@@ -24,7 +24,7 @@ class EntradaController extends Controller
         $entradas = DB::select( DB::raw("SELECT id_entrada,numero_entrada, precio_entrada,fk_evento,id_evento,nombre_evento
                                         from evento ,entrada
                                         WHERE fk_evento=id_evento"
-                                        
+
                                         ));
         return view('home.entrada',compact('entradas'));
     }
@@ -36,8 +36,8 @@ class EntradaController extends Controller
      */
 
      public function index(Request $request, $id){
-        $entradas = DB::select(DB::raw("SELECT id_entrada, numero_entrada, precio_entrada, fk_evento, (
-            SELECT nombre_evento FROM evento WHERE id_evento = fk_evento 
+        $entradas = DB::select(DB::raw("SELECT id_entrada, numero_entrada, precio_entrada,disponible, fk_evento, (
+            SELECT nombre_evento FROM evento WHERE id_evento = fk_evento
         ) FROM entrada WHERE fk_evento = '$id'"));
 
         return view ('home.entrada', compact('entradas'));
@@ -60,10 +60,11 @@ class EntradaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)//$id)
-    { 
+    {
         $entrada = new Entrada();
         $entrada->numero_entrada = $request->numero_entrada;
         $entrada->precio_entrada = $request->precio_entrada;
+        $entrada->disponible = $request->disponible;
         //$entrada->fk_evento = ;
         /*$array= DB::select( DB::raw("SELECT nombre_evento
                                                   from evento
@@ -75,12 +76,12 @@ class EntradaController extends Controller
                                         ));*/
 
         //$hola = array_push($entradas,$array[0]);
-        
+
         //$evento->usuario = auth()->user()->email;
         $entrada->fk_evento=$request->fk_evento;
         $entrada->save();
 
-        
+
         return back()->with('Entrada agregada!');
     }
 

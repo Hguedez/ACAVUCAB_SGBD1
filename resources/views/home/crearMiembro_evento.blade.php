@@ -121,6 +121,7 @@
 
        <input type="number" name="fk_evento" placeholder="ID del evento" class="form-control mb-2" required>
        <input type="number" name="fk_miembro" placeholder="ID del miembro" class="form-control mb-2" required>
+       <input type="number" name="cantidad" placeholder="Cantidad de cervezas" class="form-control mb-2" required>
 
        <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
 

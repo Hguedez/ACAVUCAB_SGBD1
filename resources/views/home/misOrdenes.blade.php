@@ -4,17 +4,17 @@
     <title>ACAVUCAB</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    
+
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    
-    
+
+
+
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    
+
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -26,13 +26,13 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
-    
+
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
        .rojo{
-           background: #f4374b; 
+           background: #f4374b;
            color: white;
        }
      .alinear{
@@ -40,25 +40,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
-    
+
      }
      .checkout-mine{
        margin-top: -200px !important;
      }
         .fondo{
         background-color: black;
-    
+
       }
       .espacio{
         display: inline;
         color: white;
       }
       nav.navbar {
-      
+
         background: #141519;
         background: linear-gradient(to right, #424448, #B7BCCD);
         /*height: 58px; /* aqui escoges el alto que necesites */
-     
+
     }
 
     .siz{
@@ -67,21 +67,21 @@
     .dropnegro{
       color: #141519;
       text-align: center;
-      
+
     }
-    
+
         </style>
   </head>
   <body class="goto-here">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
-    
+
         <div class="container">
-         
+
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            
+
             <ul class="navbar-nav mr-auto ">
               <li class="nav-item">
                 <a class="nav-link " href="/">Home
@@ -100,12 +100,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Ayuda</a>
               </li>
-      
+
             </ul>
             <ul class="navbar-nav mr-auto">
             <!-- Authentication Links -->
             @guest
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
             </li>
@@ -114,7 +114,7 @@
                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                 </li>
             @endif
-            
+
           @else
             <li class="nav-item active dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
@@ -128,7 +128,10 @@
                                      document.getElementById('logout-form').submit();">
                         {{ __('Cerrar sesion') }}
                     </a>
-                   
+                    <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
+                    <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
                   <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -137,7 +140,7 @@
               </div>
             </li>
           @endguest
-      
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -145,9 +148,9 @@
             </form>
           </div>
         </div>
-        
+
       </nav>
-    
+
     <!-- END nav -->
 
     <div class="hero-wrap hero-bread" style="background-image: url('fondo_cerveza3.jpg');">
@@ -180,43 +183,43 @@
 						    <tbody>
 						      <tr class="text-center">
 						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
+
 						        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
-						        
+
 						        <td class="product-name">
 						        	<h3>Bell Pepper</h3>
 						        	<p>Far far away, behind the word mountains, far from the countries</p>
 						        </td>
-						        
+
 						        <td class="price">$4.90</td>
-						        
+
 						        <td class="quantity">
 						        	<div class="input-group mb-3">
 					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
 					          	</div>
 					          </td>
-						        
+
 						        <td class="total">$4.90</td>
 						      </tr><!-- END TR-->
 
 						      <tr class="text-center">
 						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
+
 						        <td class="image-prod"><div class="img" style="background-image:url(images/product-4.jpg);"></div></td>
-						        
+
 						        <td class="product-name">
 						        	<h3>Bell Pepper</h3>
 						        	<p>Far far away, behind the word mountains, far from the countries</p>
 						        </td>
-						        
+
 						        <td class="price">$15.70</td>
-						        
+
 						        <td class="quantity">
 						        	<div class="input-group mb-3">
 					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
 					          	</div>
 					          </td>
-						        
+
 						        <td class="total">$15.70</td>
 						      </tr><!-- END TR-->
 						    </tbody>
@@ -286,7 +289,7 @@
 			</div>
 		</section>
 
-		
+
     <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">
@@ -360,8 +363,8 @@
         </div>
       </div>
     </footer>
-    
-  
+
+
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
@@ -389,19 +392,19 @@
 
 		var quantitiy=0;
 		   $('.quantity-right-plus').click(function(e){
-		        
+
 		        // Stop acting like a button
 		        e.preventDefault();
 		        // Get the field name
 		        var quantity = parseInt($('#quantity').val());
-		        
+
 		        // If is not undefined
-		            
+
 		            $('#quantity').val(quantity + 1);
 
-		          
+
 		            // Increment
-		        
+
 		    });
 
 		     $('.quantity-left-minus').click(function(e){
@@ -409,17 +412,17 @@
 		        e.preventDefault();
 		        // Get the field name
 		        var quantity = parseInt($('#quantity').val());
-		        
+
 		        // If is not undefined
-		      
+
 		            // Increment
 		            if(quantity>0){
 		            $('#quantity').val(quantity - 1);
 		            }
 		    });
-		    
+
 		});
 	</script>
-    
+
   </body>
 </html>

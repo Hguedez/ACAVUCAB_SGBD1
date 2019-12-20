@@ -119,8 +119,16 @@
 <form action="/correos/{{$id_miembro}}/miembros" method="POST">
         @csrf
 
-       <input type="text" name="nombre" placeholder="Correo" class="form-control mb-2" required>
+      <input type="email" name="nombre" placeholder="ejemplo@gmail.com" class="form-control mb-2"
+       pattern=".+@gmail.com" size="30" required>
+       <!--<input type="email" name="nombre" size="40" list="defaultEmails" pattern=".+@gmail.com"
+       pattern=".+@outlook.com" required>
 
+       <datalist id="defaultEmails">
+         <option value="ejemplo@gmail.com">
+         <option value="ejemplo@outlook.com">
+         <option value="ejemplo@yahoo.com">
+       </datalist>-->
        <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
        <a href="/eventos/1/miembros/1/asociados" class="btn btn-primary btn-sm">Volver al menu anterior</a>
     </form>

@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
+
     <title>ACAVUCAB</title>
     <style >
 
@@ -17,11 +17,11 @@
           background-image: url("/fondoevento.jpg");
           background-size: cover;
 			}
-      
+
       .dropnegro{
   color: #141519;
   text-align: center;
-  
+
 }
       nav.navbar {
             background: #141519;
@@ -39,6 +39,10 @@
         .letra{
           font-family: helvetica;
         }
+        .colores{
+            background: #141519;
+            color: white;
+        }
     </style>
   </head>
   <body >
@@ -46,8 +50,8 @@
           @yield('content')
       </div>
   </body>
-      
-    
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

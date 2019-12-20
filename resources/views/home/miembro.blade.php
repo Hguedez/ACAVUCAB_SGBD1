@@ -59,6 +59,7 @@
                         <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
                         <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                         <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
+                        <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -105,15 +106,15 @@
                 <td width="15%">
                     <div class="container ">
                        <a href="/miembros/{{$item->id_miembro}}/correos" class="btn btn-dark btn-sm">Ver</a>
-
                        <a href="/correos/{{$item->id_miembro}}/miembros/create" class="btn btn-dark btn-sm">Agregar</a>
                     </div>
                 </td>
                 <td>
-
+                    <form action{{ route('miembrosDestroy', ['id' => $item->id_miembro]) }} method="POST" class="d-inline" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
                         <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
-                   
-
+                      </form>
                 </td>
                 <td>
                     <a href="/miembros/{{$item->id_miembro}}/contactos" class="btn btn-dark btn-sm">Ver</a>
@@ -132,7 +133,7 @@
 
         @endforeach
         </table>
-        <a href="/miembros/create" class="btn btn-secondary btn-lg btn-block">Crear Miembro</a>
+        <a href="/eventos/1/miembros/1/asociados/create" class="btn btn-secondary btn-lg btn-block">Crear Miembro</a>
 
 
   </div>

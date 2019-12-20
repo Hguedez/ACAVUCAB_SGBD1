@@ -59,8 +59,8 @@
           <div class="container fondo col-sm-4">
           <h1>ACAVUCAB</h1>
           </div>
-          <h3 class="display-4">First Slide</h3>
-          <p class="lead">This is a description for the first slide.</p>
+          <h3 class="display-4">Cerveza Artesanal</h3>
+          <!--<p class="lead">This is a description for the first slide.</p> -->
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
@@ -69,8 +69,8 @@
           <div class="container fondo col-sm-4">
           <h1>ACAVUCAB</h1>
           </div>
-          <h3 class="display-4">Second Slide</h3>
-          <p class="lead">This is a description for the second slide.</p>
+          <h3 class="display-4">Promociones Atractivas</h3>
+          <p class="lead">Contamos con distintas ofertas cada 2 semanas.</p>
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
@@ -79,8 +79,8 @@
           <div class="container fondo col-sm-4">
           <h1>ACAVUCAB</h1>
           </div>
-          <h3 class="display-4">Third Slide</h3>
-          <p class="lead">This is a description for the third slide.</p>
+          <h3 class="display-4">Tus Cervezas Favoritas</h3>
+          <p class="lead">Una Gran Variedad Para Que Te Deleites Con Tus Preferidas.</p>
         </div>
       </div>
     </div>
@@ -155,6 +155,7 @@
                 <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
                 <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                 <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
+                <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                   </form>
@@ -176,6 +177,50 @@
 <!-- Page Content -->
 <section class="py-5">
   <div class="container">
+    <section class="container">
+        <p class="mt-5 text-center text-uppercase font-weight-bold font-italic"> La Cerveza Artesanal. </p> <!--m es el marge y t el top 5 es la cantidad-->
+        <p class="text-danger"> La cerveza artesanal nace por el gusto y necesidad de probar nuevos y distintos sabores de esta
+            bebida, que con el paso de los años va posicionándose y convirtiéndose en una de las bebidas más
+            populares dentro de la sociedad, pues su consumo es más por placer que por adicción.
+        </p>
+        <p class="bg-primary text-white p-3 w-25 float-left mr-4"> En el mundo existe una gran variedad de microempresarios que elaboran cerveza artesanal, con la
+            cual presentan una variedad de sabores y colores que abren paso a nuevas experiencias dejando a un
+            lado las clásicas y típicas cervezas. Es una cerveza llena de autenticidad y pasión. Se elabora únicamente con ingredientes tradicionales
+            en su estado más puro y natural como los son: maltas de cebada, agua, lúpulo y levadura.
+        </p>
+         <p> El caso de Estados Unidos, el país en el que más rápidamente está creciendo este fenómeno, y en el
+            que hoy dominan el 4 % del mercado. Su origen está en elaborar una cerveza adaptada al paladar que
+            el fabricante quiere, en definitiva, personalizarla. Un ejemplo de lo que es el auge de las
+            microcervecerías es Australia, un país en el que han crecido rápidamente por la gran aceptación que
+            han tenido estas cervezas más personalizadas. En Japón, también se produce la cerveza artesanal y se
+            ha puesto de moda.
+        </p>
+         <p> La primera cerveza fabricada en suelo criollo se hizo en la Colonia Tovar, cuyos habitantes provenían
+            de la Selva Negra Alemana. En 1843 llegaron los primeros colonos, que traían consigo las semillas de
+            cebada y pocos meses después ya tenían los primeros frutos. Sin embargo, Agustín Codazzi (1793 –
+            1859) uno de los responsables intelectuales del proyecto, ya había contemplado la producción de la
+            bebida, como parte del proyecto en la tierras cedidas por Martín Tovar.
+        </p>
+         <p> En Venezuela, poco a poco, empezaron a surgir creadores artesanales. Hace más de una década la
+            Cervecería Tovar, apenas arrancaba con Kilian De Fries como maestro cervecero. Luego irrumpió
+            Destilo y al poco tiempo se fueron filtrando nombres de etiquetas que sonaban casi clandestinas, en
+            botellas de un litro, con diseños atrevidos y divertidos, que ofrecen en copa una gama sensorial
+            inesperada.
+        </p>
+         <p> Entonces, en octubre de 2012, hacen oficial su alianza con 54 miembros fundadores, que agrupan
+            hasta el momento alrededor de 30 etiquetas, en la Asociación de Cerveceros Artesanales Venezolanos
+            de la UCAB. Es una asociación sin fines de lucro creada para la difusión de la cultura cervecera
+            artesanal y casera.
+        </p>
+        <p> El objetivo es innovar e interpretar estilos históricos dándoles un toque particular, y desarrollar nuevos
+            estilos. Los cerveceros artesanales y caseros tienen contacto con la comunidad a través la
+            participación y creación de eventos. Los cerveceros artesanales y caseros tienen un trato distintivo y
+            mucha proximidad con los consumidores, con el fin de conectarse con ellos y satisfacer sus
+            demandas. Los cerveceros artesanales y caseros se caracterizan por mantener una postura íntegra en
+            lo que a producción e independencia se refiere, libres de los intereses e influencias de los cerveceros
+            industriales.
+        </p>
+      </section>
   </div>
 </section>
 

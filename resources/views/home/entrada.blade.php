@@ -55,7 +55,10 @@
                                          document.getElementById('logout-form').submit();">
                             {{ __('Cerrar sesion') }}
                         </a>
-
+                        <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                        <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                        <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
+                        <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -95,7 +98,7 @@
                 <td>{{$item->precio_entrada}}</td>
                 <td>{{$item->nombre_evento}}</td>
                 <td>
-                 
+
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>

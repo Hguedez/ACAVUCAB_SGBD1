@@ -18,6 +18,7 @@ class EventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
 
@@ -49,16 +50,14 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
         $evento = new Evento();
         $evento->nombre_evento = $request->nombre_evento;
         $evento->fecha = $request->fecha;
-        //$evento->fk_lugar = $request->fk_lugar;
-        //$evento->usuario = auth()->user()->email;
         $evento->save();
-
-
         return back()->with('Evento Agregado!');
     }
 

@@ -60,6 +60,8 @@ Route::resource('/eventos/{evento}/horarios/{horario}/hola', 'HorarioeventoContr
 
 //Route::resource('/miembros', 'MiembroController');
 
+Route::delete('/miembros/{id}', 'miembroController@destroy')->name('miembrosDestroy'); //-----ver----
+
 Route::resource('/contactos', 'Persona_de_contactoController');
 
 Route::resource('/miembros/{miembros}/contactos', 'Persona_de_contactoController');
@@ -74,7 +76,11 @@ Route::resource('/eventos/{eventos}/miembros/{miembros}/asociados', 'miembroCont
 
 Route::resource('/eventos/{eventos}/miembros/{miembros}/miembroevento', 'Miembro_eventoController');
 
+Route::resource('/tipoCerveza', 'Tipo_cervezaController');
 
+Route::resource('/cervezas/{cervezas}/tipos', 'CervezaController');
+
+Route::resource('/comentarios/{comentarios}/tipos', 'ComentarioController');
 
 //Route::resource('/telefonos', 'TelefonoController');
 Route::get('/homes', 'HomeController@index')->name('homes');
@@ -84,7 +90,7 @@ Route::get('/compilar', function () {
     $jasper = new JasperPHP;
 
     // Compilar el reporte para generar .jasper
-    $jasper->compile(base_path() . '/vendor/cossou/jasperphp/examples/hello_world.jrxml')->execute();
+    $jasper->compile(base_path() . '/vendor/cossou/jasperphp/examples/Carnet.jrxml')->execute();
 
     return view('welcome');
 });
@@ -96,11 +102,11 @@ Route::get('/reporte', function () {
     // Generar el Reporte
     $jasper->process(
         // Ruta y nombre de archivo de entrada del reporte
-        base_path() . '/vendor/cossou/jasperphp/examples/hello_world.jasper',
+        base_path() . '/vendor/cossou/jasperphp/examples/Carnet.jasper',
         false, // Ruta y nombre de archivo de salida del reporte (sin extensión)
         array('pdf', 'rtf'), // Formatos de salida del reporte
         array('php_version' => phpversion()) // Parámetros del reporte
-    )->execute();
+    )->output();
 
     return view('welcome');
 

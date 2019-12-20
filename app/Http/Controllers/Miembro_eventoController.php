@@ -18,7 +18,7 @@ class Miembro_eventoController extends Controller
      */
     public function index(Request $request, $id,$id2)
     {
-       $miembro_evento = DB::select(DB::raw("SELECT id_miembro_evento, fk_evento,fk_miembro, (
+       $miembro_evento = DB::select(DB::raw("SELECT id_miembro_evento, fk_evento,fk_miembro,cantidad, (
              SELECT razon_social FROM miembro WHERE id_miembro = fk_miembro ),(SELECT nombre_evento FROM evento WHERE id_evento = fk_evento ),(SELECT fecha FROM evento WHERE id_evento = fk_evento )
              FROM miembro_evento WHERE fk_evento = '$id' and fk_miembro='$id2' "));
         return view ('home.miembro_evento', compact('miembro_evento'));
@@ -44,6 +44,7 @@ class Miembro_eventoController extends Controller
     public function store(Request $request)
     {
         $miembro_evento=new Miembro_evento();
+        $miembro_evento->cantidad=$request->cantidad;
         $miembro_evento->fk_evento=$request->fk_evento;
         $miembro_evento->fk_miembro=$request->fk_miembro;
         $miembro_evento->save();

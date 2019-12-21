@@ -91,8 +91,10 @@ class Miembro_eventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idmiembro_evento)
     {
-        //
+        $miembro_evento=Miembro_evento::find($idmiembro_evento);
+        $miembro_evento->delete();
+        return back();
     }
 }

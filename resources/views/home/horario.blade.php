@@ -102,7 +102,11 @@
               <td class="letra">{{$item->hora_inicio}}</td>
               <td class="letra">{{$item->hora_fin}}</td>
               <td>
-                  <button class="btn btn-dark btn-sm letra" type="submit">Eliminar</button>
+                <form action={{ route('horariosDestroy',['id_horario' => $item->id_horario]) }} method="POST" class="d-inline">
+                  @csrf
+                  @method('DELETE')
+                      <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                    </form>
               </td>
               <td>
               <a href="/eventos/{{$id_evento}}/horarios/{{$item->id_horario}}/hola" class="btn btn-dark btn-sm letra">Evento</a>

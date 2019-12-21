@@ -90,7 +90,11 @@
                 <td>{{$item->codigo_area}}</td>
                 <td>{{$item->numero}}</td>
                 <td>
-                    <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
+                  <form action={{ route('telefonosDestroy',['id_telefono' => $item->codigo_telefono]) }} method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                      </form>
                 </td>
 
             </tr>

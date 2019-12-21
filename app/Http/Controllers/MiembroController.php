@@ -117,7 +117,7 @@ class MiembroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($idevento, $idmiembro, $idasociado)
+    public function destroy($idmiembro)
     {
         $miembro=Miembro::find($idmiembro);
         $miembro->delete();

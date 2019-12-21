@@ -94,7 +94,11 @@
                 <td>{{$item->apellido}}</td>
                 <td>{{$item->razon_social}}</td>
                 <td>
-                    <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
+                  <form action={{ route('contactosDestroy',['id_contacto' => $item->id_persona]) }} method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                      </form>
                 </td>
 
             </tr>

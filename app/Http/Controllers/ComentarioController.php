@@ -94,8 +94,10 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idcomentario)
     {
-        //
+        $comentario=Comentario::find($idcomentario);
+        $comentario->delete();
+        return back();
     }
 }

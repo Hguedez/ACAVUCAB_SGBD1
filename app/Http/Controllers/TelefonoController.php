@@ -108,8 +108,10 @@ class TelefonoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idtelefono)
     {
-        //
+        $telefono=Telefono::find($idtelefono);
+        $telefono->delete();
+        return back();
     }
 }

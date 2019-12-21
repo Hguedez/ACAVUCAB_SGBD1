@@ -93,8 +93,10 @@ class CorreoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idcorreo)
     {
-        //
+        $correo=Correo::find($idcorreo);
+        $correo->delete();
+        return back();
     }
 }

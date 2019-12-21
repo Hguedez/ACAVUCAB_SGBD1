@@ -96,8 +96,10 @@ class CervezaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idcerveza)
     {
-        //
+        $cerveza=Cerveza::find($idcerveza);
+        $cerveza->delete();
+        return back();
     }
 }

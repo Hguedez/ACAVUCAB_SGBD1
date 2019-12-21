@@ -56,19 +56,29 @@ Route::resource('/eventos/{evento}/entradas', 'EntradaController');
 //Route::resource('/eventos/{evento}/horarios', 'HorarioeventoController');
 Route::resource('/eventos/{evento}/horarios/{eventos}/funciona', 'HorarioController');
 
+Route::delete('/horario/{id_horario}', 'HorarioController@destroy')->name('horariosDestroy');
+
 Route::resource('/eventos/{evento}/horarios/{horario}/hola', 'HorarioeventoController');
+
+Route::delete('/horario_evento/{id_horario_evento}', 'HorarioeventoController@destroy')->name('horarioeventosDestroy');
 
 //Route::resource('/miembros', 'MiembroController');
 
-Route::delete('/miembros/{id}', 'miembroController@destroy')->name('miembrosDestroy'); //-----ver----
+Route::delete('/miembros/{id_miembro}', 'miembroController@destroy')->name('miembrosDestroy');
 
 Route::resource('/contactos', 'Persona_de_contactoController');
 
 Route::resource('/miembros/{miembros}/contactos', 'Persona_de_contactoController');
 
+Route::delete('/contacto/{id_contacto}', 'Persona_de_contactoController@destroy')->name('contactosDestroy');
+
 Route::resource('/miembros/{miembros}/telefonos', 'TelefonoController');
 
+Route::delete('/telefono/{id_telefono}', 'TelefonoController@destroy')->name('telefonosDestroy');
+
 Route::resource('/correos/{correo}/miembros', 'CorreoController');
+
+Route::delete('/correo/{id_correo}', 'CorreoController@destroy')->name('correosDestroy');
 
 Route::resource('/miembros/{miembros}/correos', 'CorreoController');
 
@@ -76,11 +86,17 @@ Route::resource('/eventos/{eventos}/miembros/{miembros}/asociados', 'miembroCont
 
 Route::resource('/eventos/{eventos}/miembros/{miembros}/miembroevento', 'Miembro_eventoController');
 
+Route::delete('/miembro_evento/{id_miembro_evento}', 'Miembro_eventoController@destroy')->name('miembroeventosDestroy');
+
 Route::resource('/tipoCerveza', 'Tipo_cervezaController');
 
 Route::resource('/cervezas/{cervezas}/tipos', 'CervezaController');
 
+Route::delete('/cerveza/{id_cerveza}', 'CervezaController@destroy')->name('cervezasDestroy');
+
 Route::resource('/comentarios/{comentarios}/tipos', 'ComentarioController');
+
+Route::delete('/comentario/{id_comentario}', 'ComentarioController@destroy')->name('comentariosDestroy');
 
 //Route::resource('/telefonos', 'TelefonoController');
 Route::get('/homes', 'HomeController@index')->name('homes');

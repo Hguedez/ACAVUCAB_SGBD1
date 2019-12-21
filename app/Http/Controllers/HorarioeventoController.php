@@ -97,8 +97,10 @@ class HorarioeventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idhorario_evento)
     {
-        //
+        $horario_evento=horario_evento::find($idhorario_evento);
+        $horario_evento->delete();
+        return back();
     }
 }

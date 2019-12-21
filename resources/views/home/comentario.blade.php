@@ -91,7 +91,11 @@
                 <td>{{$item->nombre}}</td>
                 <td>{{$item->descripcion}}</td>
                 <td>
-                    <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                  <form action={{ route('comentariosDestroy',['id_comentario' => $item->id_comentario]) }} method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                      </form>
                 </td>
             </tr>
 

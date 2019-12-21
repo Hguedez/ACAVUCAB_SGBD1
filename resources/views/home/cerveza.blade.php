@@ -95,7 +95,11 @@
                 <td>{{$item->costo}}</td>
                 <td>{{$item->precio_venta}}</td>
                 <td>
-                    <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                  <form action={{ route('cervezasDestroy',['id_cerveza' => $item->numero_cerveza]) }} method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                      </form>
                 </td>
             </tr>
 

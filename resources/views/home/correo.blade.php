@@ -82,14 +82,18 @@
             <thead>
               <tr>
                 <th scope="col tamano letra">Correo</th>
-                <th scope="col tamano letra">Eliminate</th>
+                <th scope="col tamano letra">Eliminar</th>
               </tr>
             </thead>
         @foreach ($correos as $item)
             <tr>
                 <td>{{$item->nombre}}</td>
                 <td>
-                    <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                  <form action={{ route('correosDestroy',['id_correo' => $item->id_correo]) }} method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                        <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                      </form>
                 </td>
             </tr>
 

@@ -101,7 +101,11 @@
               <td>{{$item->hora_inicio}}</td>
               <td>{{$item->hora_fin}}</td>
               <td>
-                  <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
+                <form action={{ route('horarioeventosDestroy',['id_horario_evento' => $item->id_horario_evento]) }} method="POST" class="d-inline">
+                  @csrf
+                  @method('DELETE')
+                      <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                    </form>
               </td>
           </tr>
           

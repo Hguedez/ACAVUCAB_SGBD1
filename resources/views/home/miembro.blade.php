@@ -110,9 +110,9 @@
                     </div>
                 </td>
                 <td>
-                    <form action{{ route('miembrosDestroy', ['id' => $item->id_miembro]) }} method="POST" class="d-inline" enctype="multipart/form-data">
-                        @csrf
-                        @method('DELETE')
+                  <form action={{ route('miembrosDestroy',['id_miembro' => $item->id_miembro]) }} method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
                         <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
                       </form>
                 </td>

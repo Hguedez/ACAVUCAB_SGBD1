@@ -115,7 +115,7 @@
               </nav>
 <div class="container">
 
-    <h2>Agregar Cerveza</h2>
+    <h2>Agregar Comentario</h2>
 <form action="/comentarios/{{$id_tipo_cerveza}}/tipos" method="POST">
         @csrf
 

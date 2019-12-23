@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Cerveza;
 
-class CervezaController extends Controller
-{
+class Oferta_cervezaController extends Controller
+{   
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,12 +17,12 @@ class CervezaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id_tipo_cerveza)
+    public function index(Request $request,$id_tipo_cerveza,$id_oferta)
     {
         $cervezas = DB::select(DB::raw("SELECT numero_cerveza, nombre,descripcion,costo,precio_venta,fk_tipo_cerveza,fk_oferta
-        FROM cerveza WHERE fk_tipo_cerveza = '$id_tipo_cerveza'"));
+        FROM cerveza WHERE fk_oferta = '$id_oferta' and fk_tipo_cerveza='$id_tipo_cerveza'"));
 
-        return view ('home.cerveza')->with('cervezas',$cervezas)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.cervezaOferta')->with('cervezas',$cervezas)->with('id_oferta',$id_oferta)->with('id_tipo_cerveza',$id_tipo_cerveza);
     }
 
     /**
@@ -30,12 +30,12 @@ class CervezaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_tipo_cerveza)
+    public function create(Request $request,$id_tipo_cerveza,$id_oferta)
     {
         $cervezas = DB::select(DB::raw("SELECT numero_cerveza, nombre,descripcion,costo,precio_venta,fk_tipo_cerveza,fk_oferta
-        FROM cerveza WHERE fk_tipo_cerveza = '$id_tipo_cerveza'"));
+        FROM cerveza WHERE fk_oferta = '$id_oferta' and fk_tipo_cerveza='$id_tipo_cerveza'"));
 
-        return view ('home.crearCerveza')->with('cervezas',$cervezas)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.crearOfertaCerveza')->with('cervezas',$cervezas)->with('id_oferta',$id_oferta)->with('id_tipo_cerveza',$id_tipo_cerveza);
     }
 
     /**
@@ -44,14 +44,15 @@ class CervezaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request,$id_oferta,$id_tipo_cerveza)
     {
         $cerveza = new Cerveza();
         $cerveza->nombre=$request->nombre;
         $cerveza->descripcion=$request->descripcion;
         $cerveza->costo=$request->costo;
         $cerveza->precio_venta=$request->precio_venta;
-        $cerveza->fk_tipo_cerveza=$id;
+        $cerveza->fk_tipo_cerveza=$id_oferta; //estan invertidos los ids pero funcionan bien 
+        $cerveza->fk_oferta=$id_tipo_cerveza;
         $cerveza->save();
         return back();
     }
@@ -96,10 +97,8 @@ class CervezaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($idcerveza)
+    public function destroy($id)
     {
-        $cerveza=Cerveza::find($idcerveza);
-        $cerveza->delete();
-        return back();
+        //
     }
 }

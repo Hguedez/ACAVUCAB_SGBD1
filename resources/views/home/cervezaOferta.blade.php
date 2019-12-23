@@ -85,7 +85,6 @@
                 <th scope="col tamano letra">Descripcion</th>
                 <th scope="col tamano letra">Costo</th>
                 <th scope="col tamano letra">Precio de Venta</th>
-                <th scope="col tamano letra">Ofertas</th>
                 <th scope="col tamano letra">Eliminar</th>
               </tr>
             </thead>
@@ -95,9 +94,6 @@
                 <td>{{$item->descripcion}}</td>
                 <td>{{$item->costo}}</td>
                 <td>{{$item->precio_venta}}</td>
-                <td>
-                  <a href="/ofertas" class="btn btn-dark btn-sm">Ver</a>
-                </td>
                 <td>
                   <form action={{ route('cervezasDestroy',['id_cerveza' => $item->numero_cerveza]) }} method="POST" class="d-inline">
                     @csrf

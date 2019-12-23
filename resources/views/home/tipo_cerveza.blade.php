@@ -88,6 +88,7 @@
                 <th scope="col">Historia</th>
                 <th scope="col">Cervezas</th>
                 <th scope="col">Comentarios</th>
+                <th scope="col">Ofertas de cervezas</th>
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
@@ -108,6 +109,12 @@
                         <a href="/comentarios/{{$item->id_tipo_cerveza}}/tipos/create" class="btn btn-dark btn-sm">Agregar</a>
                     </div>
                 </td>
+                <td width="15%">
+                  <div class="container">
+                  <a href="/tipos/{{$item->id_tipo_cerveza}}/ofers" class="btn btn-dark btn-sm">Ver</a>
+                      <a href="/ofertas/create" class="btn btn-dark btn-sm">Agregar</a>
+                  </div>
+              </td>
                 <td>
                     <form action={{ route('tipoCerveza.destroy', ['tipoCerveza' => $item->id_tipo_cerveza]) }} method="POST" class="d-inline">
                         @csrf

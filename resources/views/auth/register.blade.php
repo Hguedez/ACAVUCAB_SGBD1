@@ -16,7 +16,17 @@
                   
                   <form method="POST" action="{{ route('register') }}">
                       @csrf
-                      
+                      <ul class="nav nav-tabs linea">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="/register">Admin</a>
+                        </li>
+                        <li class="nav-item ">
+                          <a class="nav-link" href="/clienteNatural/create">Cliente Natural</a>
+                        </li>
+                        <li class="nav-item ">
+                          <a class="nav-link" href="#">Cliente juridico</a>
+                        </li>
+                      </ul>
                             <input type="radio" id="natural" value="natural" name="tipo">
                             <label for="natural">Cliente Natural</label>
                             <input type="radio" id="juridico" value="juridico" name="tipo">

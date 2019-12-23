@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Cerveza;
+use App\Oferta;
 
-class CervezaController extends Controller
-{
+class OfertaController extends Controller
+{   
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,10 +19,10 @@ class CervezaController extends Controller
      */
     public function index(Request $request,$id_tipo_cerveza)
     {
-        $cervezas = DB::select(DB::raw("SELECT numero_cerveza, nombre,descripcion,costo,precio_venta,fk_tipo_cerveza,fk_oferta
-        FROM cerveza WHERE fk_tipo_cerveza = '$id_tipo_cerveza'"));
+        $ofertas = DB::select(DB::raw("SELECT id_oferta, descuento,fecha_inicio,fecha_fin
+        FROM oferta "));
 
-        return view ('home.cerveza')->with('cervezas',$cervezas)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.oferta')->with('ofertas',$ofertas)->with('id_tipo_cerveza',$id_tipo_cerveza);
     }
 
     /**
@@ -32,10 +32,10 @@ class CervezaController extends Controller
      */
     public function create(Request $request,$id_tipo_cerveza)
     {
-        $cervezas = DB::select(DB::raw("SELECT numero_cerveza, nombre,descripcion,costo,precio_venta,fk_tipo_cerveza,fk_oferta
-        FROM cerveza WHERE fk_tipo_cerveza = '$id_tipo_cerveza'"));
+        $ofertas = DB::select(DB::raw("SELECT id_oferta, descuento,fecha_inicio,fecha_fin
+        FROM oferta "));
 
-        return view ('home.crearCerveza')->with('cervezas',$cervezas)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.crearOferta')->with('ofertas',$ofertas)->with('id_tipo_cerveza',$id_tipo_cerveza);
     }
 
     /**
@@ -44,15 +44,14 @@ class CervezaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
-        $cerveza = new Cerveza();
-        $cerveza->nombre=$request->nombre;
-        $cerveza->descripcion=$request->descripcion;
-        $cerveza->costo=$request->costo;
-        $cerveza->precio_venta=$request->precio_venta;
-        $cerveza->fk_tipo_cerveza=$id;
-        $cerveza->save();
+        $oferta=new Oferta();
+        $oferta->descuento=$request->descuento;
+        $oferta->fecha_inicio=$request->fecha_inicio;
+        $oferta->fecha_fin=$request->fecha_fin;
+        $oferta->save();
+
         return back();
     }
 
@@ -96,10 +95,8 @@ class CervezaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($idcerveza)
+    public function destroy($id)
     {
-        $cerveza=Cerveza::find($idcerveza);
-        $cerveza->delete();
-        return back();
+        //
     }
 }

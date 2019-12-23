@@ -77,39 +77,39 @@
     <div class="event">
   <div class="container " >
         <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
-        <h4 class="centro">Cervezas</h4>
+        <h4 class="centro">Ofertas</h4>
         <table class="table table-primary table-bordered tope">
             <thead>
               <tr>
-                <th scope="col tamano letra">Nombre</th>
-                <th scope="col tamano letra">Descripcion</th>
-                <th scope="col tamano letra">Costo</th>
-                <th scope="col tamano letra">Precio de Venta</th>
-                <th scope="col tamano letra">Ofertas</th>
+                <th scope="col tamano letra">Descuento</th>
+                <th scope="col tamano letra">Fecha inicio</th>
+                <th scope="col tamano letra">Fecha fin</th>
+                <th scope="col tamano letra">Cervezas con esta oferta</th>
                 <th scope="col tamano letra">Eliminar</th>
               </tr>
             </thead>
-        @foreach ($cervezas as $item)
+        @foreach ($ofertas as $item)
             <tr>
-                <td>{{$item->nombre}}</td>
-                <td>{{$item->descripcion}}</td>
-                <td>{{$item->costo}}</td>
-                <td>{{$item->precio_venta}}</td>
-                <td>
-                  <a href="/ofertas" class="btn btn-dark btn-sm">Ver</a>
+                <td>{{$item->descuento}}</td>
+                <td>{{$item->fecha_inicio}}</td>
+                <td>{{$item->fecha_fin}}</td>
+                <td width="15%">
+                    <div class="container">
+                        <a href="/tipos/{{$id_tipo_cerveza}}/ofertas/{{$item->id_oferta}}/ofertasCerveza" class="btn btn-dark btn-sm">Ver</a>
+                        <a href="/tipos/{{$id_tipo_cerveza}}/ofertas/{{$item->id_oferta}}/ofertasCerveza/create" class="btn btn-dark btn-sm">Agregar</a>
+                    </div>
                 </td>
                 <td>
-                  <form action={{ route('cervezasDestroy',['id_cerveza' => $item->numero_cerveza]) }} method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
+                
                         <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
-                      </form>
+                     
                 </td>
             </tr>
 
         @endforeach
         </table>
-        <a href="/tipoCerveza" class="btn btn-secondary btn-lg btn-block">Atras</a>
+    <a href="/tipoCerveza" class="btn btn-secondary btn-lg btn-block">Atras</a>
+    <a href="/tipos/1/ofers/create" class="btn btn-secondary btn-lg btn-block">Crear Nueva Oferta</a>
 
   </div>
     </div>

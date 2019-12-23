@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+    
+
+<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-     
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ACAVUCAB</title>
     <style >
-     :root {
+
+:root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
 }
@@ -43,10 +44,17 @@ margin-left: -5%;
 .card-signin .card-img-left {
   width: 55%;
   /* Link to your background image using in the property below! */
-  background: scroll center url(registerimg.jpg);
+  background: scroll center url(/registerimg.jpg);
   background-size: cover;
 }
 
+.tamano{
+          font-size: 16px;
+          
+        }
+.btn-tamano{
+    font-size: 20px;
+}
 .card-signin .card-body {
   padding: 2rem;
 }
@@ -139,25 +147,17 @@ margin-left: -5%;
 }
     </style>
   </head>
-  <body>
-        <div id="app">
-            @yield('content')
-        </div>
-    
-  <!-- Optional JavaScript -->
+  <body >
+      <div class="app">
+          @yield('content')
+      </div>
+  </body>
+
+
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-                            $('#natural').click(function () {
-                                $("#name2").prop('disabled', false);
-                              
-                            });
-                            $('#juridico').click(function () {
-                              $("#name2").prop('disabled', true); //Terminar de verificar
-                              });
-                          
-                          </script>
-</body>
+  </body>
 </html>

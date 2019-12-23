@@ -98,6 +98,14 @@ Route::resource('/comentarios/{comentarios}/tipos', 'ComentarioController');
 
 Route::delete('/comentario/{id_comentario}', 'ComentarioController@destroy')->name('comentariosDestroy');
 
+//Route::resource('/ofertas', 'OfertaController');
+
+Route::resource('/tipos/{tipos}/ofers', 'OfertaController');
+
+Route::resource('/tipos/{tipos}/ofertas/{ofertas}/ofertasCerveza', 'Oferta_cervezaController');
+
+Route::resource('/clienteNatural', 'Cliente_naturalController');
+
 //Route::resource('/telefonos', 'TelefonoController');
 Route::get('/homes', 'HomeController@index')->name('homes');
 

@@ -139,7 +139,7 @@
                                   {{ __('Registrarse') }}
                               </button>
                   </form>   
-                  <form method="POST" action="/clienteNatural">
+                <form method="POST" action="/clienteNatural">
                     @csrf
                    <!-- Aqui empieza cliente natural-->
                     

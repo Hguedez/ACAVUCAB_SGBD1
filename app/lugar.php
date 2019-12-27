@@ -9,6 +9,6 @@ class lugar extends Model
     protected $primaryKey = 'id_lugar';
     protected $table = 'lugar';
     public $incrementing = false;
-    protected $fillable = ['nombre', 'tipo','fk_lugar'];
+    protected $fillable = ['id_lugar','nombre', 'tipo','fk_lugar'];
     public $timestamps = false;
 }

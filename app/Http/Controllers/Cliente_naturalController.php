@@ -83,7 +83,7 @@ class Cliente_naturalController extends Controller
         ]);
         //$cliente_natural->email=$request->email;
         //$cliente_natural->password=$request->password;
-        $cliente_natural->fk_lugar=getMunicipio();
+        //$cliente_natural->fk_lugar=getMunicipio();
            
 
         $cliente_natural->save();

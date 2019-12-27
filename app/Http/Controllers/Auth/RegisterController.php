@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Lugar;
+use Log;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -76,4 +79,27 @@ class RegisterController extends Controller
             
         ]);
     }
+
+    public function getMunicipio(Request $request){
+       if ($request->ajax()){
+           //echo "hola";
+            $municipios = Lugar::where('fk_lugar',$request->id_lugar)->get();
+            foreach($municipios as $municipio){
+                $municipiosArray[$municipio->id_lugar] = $municipio->nombre;
+                Log::info($municipiosArray[$municipio->id_lugar]);
+            }
+            
+            return response()->json($municipiosArray);
+        }
+    }
+
+    public function getParroquia(Request $request){
+        if ($request->ajax()){
+             $parroquias = Lugar::where('fk_lugar',$request->id_lugar)->get();
+             foreach($parroquias as $parroquia){
+                 $parroquiasArray[$parroquia->id_lugar] = $parroquia->nombre;
+             }
+             return response()->json($parroquiasArray);
+         }
+     }
 }

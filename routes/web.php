@@ -44,10 +44,6 @@ Route::get('/carnet', function () {
 
 Auth::routes();
 
-/*Route::get('/municipios', 'Auth\RegisterController@getMunicipio');
-
-Route::get('/parroquias','Auth\RegisterController@getParroquia');*/
-
 Route::get('/municipios', 'Cliente_naturalController@getMunicipio');
 
 Route::get('/parroquias','Cliente_naturalController@getParroquia');
@@ -111,6 +107,8 @@ Route::delete('/comentario/{id_comentario}', 'ComentarioController@destroy')->na
 Route::resource('/tipos/{tipos}/ofers', 'OfertaController');
 
 Route::resource('/tipos/{tipos}/ofertas/{ofertas}/ofertasCerveza', 'Oferta_cervezaController');
+
+//Route::post('/clienteNatural/{id_cliente_natural}/clientes', 'Cliente_natural@create');
 
 Route::resource('/clienteNatural', 'Cliente_naturalController');
 

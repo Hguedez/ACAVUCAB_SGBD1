@@ -3,7 +3,8 @@
 @section('content')
     
  <!-- Navigation -->
-
+ @inject('lugares','App\Services\Lugares')
+ 
  <div class="container">
   <div class="row">
     <div class="col-lg-10 col-xl-9 mx-auto">
@@ -57,6 +58,8 @@
                           </div>
                       </div>
                       
+                      
+
                       <div class="form-group row">
                           <label for="apellido" class="col-md-5 col-form-label text-md-right tamano" >Primer Apellido</label>
 
@@ -140,6 +143,58 @@
                               <input id="password-confirm" type="password" placeholder="Confirm-Password" class="form-control tamano" name="password_confirmation" required autocomplete="new-password">
                           </div>
                       </div>
+
+                      <div class="form-group row">
+                        <label for="lugar" class="col-md-8 col-form-label text-md-right">DIRECCION</label>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="lugar" class="col-md-5 col-form-label text-md-right">Estado</label>
+
+                        <div class="col-md-6">
+                            <select id="estado" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}">
+                                @foreach($lugares->get() as $index => $lugar)
+                                    <option value="{{ $index }}" {{ old('id_lugar') == $index ? 'selected' : '' }}>
+                                        {{ $lugar }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @if ($errors->has('id_lugar'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('id_lugar') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="lugar" class="col-md-5 col-form-label text-md-right">Municipio</label>
+
+                        <div class="col-md-6">
+                            <select id="municipio" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+
+                            @if ($errors->has('id_lugar'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('id_lugar') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="lugar" class="col-md-5 col-form-label text-md-right">Parroquia</label>
+
+                        <div class="col-md-6">
+                            <select id="parroquia" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+
+                            @if ($errors->has('id_lugar'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('id_lugar') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                      </div>
                       
                               <button type="submit" class="btn btn-lg btn-dark btn-block text-uppercase btn-tamano">
                                   {{ __('Registrarse') }}
@@ -152,4 +207,38 @@
           </div>
         </div>
           
+@endsection
+
+@section('script')
+    <script>
+            $('#estado').on('change',function(){
+                var id_estado = $(this).val();
+                //console.log(id_estado);
+                if ($.trim(id_estado) != ''){
+                    $.get('municipios',{id_lugar:id_estado},function(municipios){
+                        console.log(municipios);
+                        $("#municipio").find('option').remove();
+                        $('#municipio').append("<option value=''>Selecciona un municipio</option>");
+                        $.each(municipios,function(index,valor){
+                            $('#municipio').append("<option value='" + index + "'>" + valor + "</option>")
+                        });
+                    });
+                }
+            });
+    </script>
+
+    <script>
+            $('#municipio').on('change',function(){
+                var id_municipio = $(this).val();
+                if ($.trim(id_municipio) != ''){
+                    $.get('parroquias',{id_lugar:id_municipio},function(parroquias){
+                        $("#parroquia").find('option').remove();
+                        $('#parroquia').append("<option value=''>Selecciona una parroquia</option>");
+                        $.each(parroquias,function(index,valor){
+                            $('#parroquia').append("<option value'" + index + "'>" + valor + "</option>")
+                        });
+                    });
+                }
+            });
+    </script>
 @endsection

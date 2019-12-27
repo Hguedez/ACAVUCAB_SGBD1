@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Cliente_natural;
+use Log;
+//Esto es para lugar
+use App\Lugar;
+use Illuminate\Support\Facades\Hash;
 
 
 class Cliente_naturalController extends Controller
@@ -26,11 +30,12 @@ class Cliente_naturalController extends Controller
      */
     public function create()
     {
+        Log::info(1);
         $cliente_natural = DB::select( DB::raw("SELECT id_cliente_natural,rif, numero_carnet,cedula,primer_nombre,
                                                 segundo_nombre,primer_apellido,segundo_apellido,fk_lugar/*password,email*/
                                             FROM cliente_natural"
                                         ));
-        return view('home.crearCliente_natural',compact('cliente_natural'));
+        return view('auth.register',compact('cliente_natural'));
     }
     /**
      * Store a newly created resource in storage.
@@ -38,6 +43,30 @@ class Cliente_naturalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //Lugar
+    public function getMunicipio(Request $request){
+        if ($request->ajax()){
+             $municipios = Lugar::where('fk_lugar',$request->id_lugar)->get();
+             foreach($municipios as $municipio){
+                 $municipiosArray[$municipio->id_lugar] = $municipio->nombre;
+             }
+            
+             return response()->json($municipiosArray);
+         }
+     }
+ 
+     public function getParroquia(Request $request){
+         if ($request->ajax()){
+              $parroquias = Lugar::where('fk_lugar',$request->id_lugar)->get();
+              foreach($parroquias as $parroquia){
+                  $parroquiasArray[$parroquia->id_lugar] = $parroquia->nombre;
+              }
+              return response()->json($parroquiasArray);
+          }
+      }
+
+    
     public function store(Request $request)
     {
         $cliente_natural=new Cliente_natural();
@@ -54,6 +83,9 @@ class Cliente_naturalController extends Controller
         ]);
         //$cliente_natural->email=$request->email;
         //$cliente_natural->password=$request->password;
+        $cliente_natural->fk_lugar=getMunicipio();
+           
+
         $cliente_natural->save();
         return view('home.home2');
     }
@@ -102,4 +134,7 @@ class Cliente_naturalController extends Controller
     {
         //
     }
+
+    
+   
 }

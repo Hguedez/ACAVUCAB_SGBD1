@@ -149,15 +149,70 @@ margin-left: -5%;
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
     <script type="text/javascript">
-                            $('#natural').click(function () {
-                                $("#name2").prop('disabled', false);
-                              
-                            });
-                            $('#juridico').click(function () {
-                              $("#name2").prop('disabled', true); //Terminar de verificar
-                              });
-                          
-                          </script>
+    $(document).ready(function(){
+      $("#admin").on( "click", function() {
+          $('#name2').show(); //muestro mediante id
+          $('#name').show();
+          $('#apellido').show();
+          $('#apellido2').show();
+          $('#cedula').show();
+          $('#rif').show();
+          $('#boton').show();
+          $('#email').show();
+          $('#password').show();
+          $('#password_C').show();
+          $('#nombre1').hide();
+          $('#nombre2').hide();
+          $('#apellido_1').hide();
+          $('#apellido_2').hide();
+          $('#cedula_1').hide();
+          $('#rif_1').hide();
+          $('#numero_carnet').hide();
+          $('#boton2').hide();
+          $('#email_1').hide();
+          $('#password_1').hide();
+          $('#password_c2').hide();
+       });
+      $("#natural").on( "click", function() {
+          $('#name2').hide(); //muestro mediante id
+          $('#name').hide();
+          $('#apellido').hide();
+          $('#apellido2').hide();
+          $('#cedula').hide();
+          $('#rif').hide();
+          $('#boton').hide();
+          $('#email').hide();
+          $('#password').hide();
+          $('#password_C').hide();
+          $('#nombre1').show();
+          $('#nombre2').show();
+          $('#apellido_1').show();
+          $('#apellido_2').show();
+          $('#cedula_1').show();
+          $('#rif_1').show();
+          $('#numero_carnet').show();
+          $('#boton2').show();
+          $('#email_1').show();
+          $('#password_1').show();
+          $('#password_c2').show();
+       });
+        $("#juridico").on( "click", function() {
+          $('#name2').hide(); //oculto mediante id
+          $('#name').hide();
+          $('#apellido').hide();
+          $('#apellido2').hide();
+          $('#cedula').hide();
+          $('#rif').hide();
+        });
+      });
+    </script>
+    
+                          @yield('script')
+    
 </body>
 </html>

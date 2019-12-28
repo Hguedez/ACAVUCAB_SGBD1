@@ -214,6 +214,7 @@
                   </div>
               </div>
               <!--Aqui va el correo-->
+              
               <div class="form-group row" id="email_1">
                 <label for="email" class="col-md-5 col-form-label text-md-right tamano">Email</label>
 

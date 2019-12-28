@@ -155,6 +155,18 @@ margin-left: -5%;
     crossorigin="anonymous"></script>
     <script type="text/javascript">
     $(document).ready(function(){
+      $('input:radio[id=admin]').attr('checked',true);
+          $('#nombre1').hide();
+          $('#nombre2').hide();
+          $('#apellido_1').hide();
+          $('#apellido_2').hide();
+          $('#cedula_1').hide();
+          $('#rif_1').hide();
+          $('#numero_carnet').hide();
+          $('#boton2').hide();
+          $('#email_1').hide();
+          $('#password_1').hide();
+          $('#password_c2').hide();
       $("#admin").on( "click", function() {
           $('#name2').show(); //muestro mediante id
           $('#name').show();

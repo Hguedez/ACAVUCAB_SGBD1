@@ -129,7 +129,7 @@ class Cliente_naturalController extends Controller
              foreach($municipios as $municipio){
                  $municipiosArray[$municipio->id_lugar] = $municipio->nombre;
              }
-            
+             
              return response()->json($municipiosArray);
          }
      }

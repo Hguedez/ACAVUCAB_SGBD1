@@ -44,6 +44,8 @@ Route::get('/carnet', function () {
 
 Auth::routes();
 
+Route::resource('/loginCliente', 'Login_clienteController');
+
 Route::get('/municipios', 'Cliente_naturalController@getMunicipio');
 
 Route::get('/parroquias','Cliente_naturalController@getParroquia');

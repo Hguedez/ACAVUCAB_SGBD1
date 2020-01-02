@@ -116,17 +116,13 @@
 <div class="container">
 
     <h2>Asignar un evento a  un miembro</h2>
-    <form action="/eventos/1/miembros/1/miembroevento" method="POST">
+<form action="/eventos/{{$id_evento}}/miembros/{{$id_miembro}}/miembroevento" method="POST">
         @csrf
 
-       <input type="number" name="fk_evento" placeholder="ID del evento" class="form-control mb-2" required>
-       <input type="number" name="fk_miembro" placeholder="ID del miembro" class="form-control mb-2" required>
        <input type="number" name="cantidad" placeholder="Cantidad de cervezas" class="form-control mb-2" required>
 
-       <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
-
        <button clas="btn btn-primary btn-block" type="submit">Aceptar</button>
-       <a href="/eventos" class="btn btn-primary btn-sm">Volver al menu anterior</a>
+       <a href="/eventos/1/miembros/1/asociados" class="btn btn-primary btn-sm">Volver al menu anterior</a>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

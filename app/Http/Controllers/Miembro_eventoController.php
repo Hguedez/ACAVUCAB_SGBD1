@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Miembro_evento;
+use App\Evento;
+
 class Miembro_eventoController extends Controller
 {
     public function __construct()
@@ -16,11 +18,11 @@ class Miembro_eventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id,$id2)
+    public function index(Request $request, $id_evento,$id_miembro)
     {
        $miembro_evento = DB::select(DB::raw("SELECT id_miembro_evento, fk_evento,fk_miembro,cantidad, (
              SELECT razon_social FROM miembro WHERE id_miembro = fk_miembro ),(SELECT nombre_evento FROM evento WHERE id_evento = fk_evento ),(SELECT fecha FROM evento WHERE id_evento = fk_evento )
-             FROM miembro_evento WHERE fk_evento = '$id' and fk_miembro='$id2' "));
+             FROM miembro_evento WHERE fk_evento = '$id_evento' and fk_miembro='$id_miembro' "));
         return view ('home.miembro_evento', compact('miembro_evento'));
 
     }
@@ -30,9 +32,13 @@ class Miembro_eventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id_evento,$id_miembro)
     {
-        return view('home.crearMiembro_evento');
+        $miembro_evento = DB::select(DB::raw("SELECT id_miembro_evento, fk_evento,fk_miembro,cantidad, (
+            SELECT razon_social FROM miembro where id_miembro='$id_miembro'),(SELECT nombre_evento FROM evento where id_evento='$id_evento'),(SELECT fecha FROM evento where id_evento='$id_evento')
+            FROM miembro_evento WHERE fk_evento = '$id_evento' and fk_miembro='$id_miembro' "));
+
+        return view('home.crearMiembro_evento')->with('miembro_evento',$miembro_evento)->with('id_evento', $id_evento)->with('id_miembro',$id_miembro);
     }
 
     /**
@@ -41,13 +47,15 @@ class Miembro_eventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id_evento,$id_miembro)
     {
+
         $miembro_evento=new Miembro_evento();
         $miembro_evento->cantidad=$request->cantidad;
-        $miembro_evento->fk_evento=$request->fk_evento;
-        $miembro_evento->fk_miembro=$request->fk_miembro;
+        $miembro_evento->fk_evento=$id_evento;
+        $miembro_evento->fk_miembro=$id_miembro;
         $miembro_evento->save();
+
         return back();
     }
 

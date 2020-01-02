@@ -116,16 +116,14 @@
 <div class="container">
 
     <h2>Agregar Entradas</h2>
-    <form action="/entradas" method="POST">
+<form action="/eventos/{{$id_evento}}/entradas" method="POST">
         @csrf
 
        <input type="number" name="numero_entrada" placeholder="Numero Entrada" class="form-control mb-2" required>
        <input type="number" name="precio_entrada" placeholder="Precio Entrada" class="form-control mb-2" required >
        <input type="text" name="disponible" placeholder="Disponibilidad" class="form-control mb-2" required>
-       <input type="number" name="fk_evento" placeholder="ID al evento" class="form-control mb-2" required>
-       <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
-
-
+       <!---<input type="number" name="fk_evento" placeholder="ID al evento" class="form-control mb-2" required>-->
+       
        <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
        <a href="/eventos" class="btn btn-primary btn-sm">Volver al menu anterior</a>
     </form>

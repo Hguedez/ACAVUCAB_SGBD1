@@ -127,7 +127,8 @@
                     </div>
                 </td>
                 <td>
-                    <a href="/eventos/{{$id_evento}}/miembros/{{$item->id_miembro}}/miembroevento" class="btn btn-dark btn-sm letra">Visualizar</a>
+                    <a href="/eventos/{{$id_evento}}/miembros/{{$item->id_miembro}}/miembroevento" class="btn btn-dark btn-sm letra">Ver</a>
+                    <a href="/eventos/{{$id_evento}}/miembros/{{$item->id_miembro}}/miembroevento/create" class="btn btn-dark btn-sm letra">Agregar</a>
                 </td>
             </tr>
 

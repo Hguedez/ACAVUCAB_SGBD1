@@ -105,7 +105,7 @@
 
         @endforeach
         </table>
-        <a href="/tipoCerveza" class="btn btn-secondary btn-lg btn-block">Atras</a>
+        <a href="/tipos/1/ofers" class="btn btn-secondary btn-lg btn-block">Atras</a>
 
   </div>
     </div>

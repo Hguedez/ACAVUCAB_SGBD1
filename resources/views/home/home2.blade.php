@@ -168,7 +168,7 @@
         @else
           <li class="nav-item active dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
-                  {{ Auth::user()->email }} <span class="caret"></span>
+                  {{ Auth::user()->name }} <span class="caret"></span>
               </a>
             <div class="dropdown"  >
                       <a class="" href="{{ route('logout') }}">

@@ -19,15 +19,6 @@ class EntradaController extends Controller
      * @return \Illuminate\Http\Response
      */
     /*
-    public function index()
-    {
-        $entradas = DB::select( DB::raw("SELECT id_entrada,numero_entrada, precio_entrada,fk_evento,id_evento,nombre_evento
-                                        from evento ,entrada
-                                        WHERE fk_evento=id_evento"
-
-                                        ));
-        return view('home.entrada',compact('entradas'));
-    }
 
         /**
      * Display a listing of the resource.
@@ -48,9 +39,13 @@ class EntradaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id_evento)
     {
-        return view('home.crearEntrada');
+        $entradas = DB::select(DB::raw("SELECT id_entrada, numero_entrada, precio_entrada,disponible, fk_evento, (
+            SELECT nombre_evento FROM evento WHERE id_evento = fk_evento
+        ) FROM entrada WHERE fk_evento = '$id_evento'"));
+
+        return view ('home.crearEntrada')->with('entradas',$entradas)->with('id_evento',$id_evento);
     }
 
     /**
@@ -59,12 +54,15 @@ class EntradaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)//$id)
+    public function store(Request $request,$id_evento)
     {
         $entrada = new Entrada();
         $entrada->numero_entrada = $request->numero_entrada;
         $entrada->precio_entrada = $request->precio_entrada;
         $entrada->disponible = $request->disponible;
+
+        /*$now = new \DateTime();
+        dd($now->format('d-m-Y'));*/ //---->Guarda la fecha actual
         //$entrada->fk_evento = ;
         /*$array= DB::select( DB::raw("SELECT nombre_evento
                                                   from evento
@@ -78,7 +76,7 @@ class EntradaController extends Controller
         //$hola = array_push($entradas,$array[0]);
 
         //$evento->usuario = auth()->user()->email;
-        $entrada->fk_evento=$request->fk_evento;
+        $entrada->fk_evento=$id_evento;
         $entrada->save();
 
 
@@ -126,10 +124,10 @@ class EntradaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id_evento,$id_entrada)
+    public function destroy($identrada)
     {
-         $entrada=Entrada::findOrFail($id_entrada,$id_evento);
-         $entrada->delete();
-        return back()->with('Entrada eliminada');
+        $entrada=Entrada::find($identrada);
+        $entrada->delete();
+        return back();
     }
 }

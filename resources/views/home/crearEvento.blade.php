@@ -8,6 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+   	<link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+   	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>ACAVUCAB</title>
     <style >
          .fondo{
@@ -34,6 +42,76 @@
     font-size: 16px;
 }
 
+/*Contact sectiom*/
+.content-header{
+  font-family: 'Oleo Script', cursive;
+  color:#fcc500;
+  font-size: 45px;
+}
+
+.section-content{
+  text-align: center; 
+
+}
+body{
+  background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color : #fff;
+}
+#contact{
+    
+    font-family: 'Teko', sans-serif;
+  padding-top: 60px;
+  width: 100%;
+  width: 100vw;
+  height: 550px;
+  background: #3a6186; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left , #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color : #fff;    
+}
+.contact-section{
+  padding-top: 40px;
+}
+.contact-section .col-md-6{
+  width: 50%;
+}
+
+.centrado{
+  /*margin-left: 30px;*/
+  margin-left :auto;
+  margin-right :auto;
+}
+.form-group{
+  margin-top: 10px;
+}
+label{
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: normal;
+}
+.form-control{
+  color: #080808;
+}
+textarea.form-control {
+    height: 135px;
+   /* margin-top: px;*/
+}
+
+.submit{
+  font-size: 1.1em;
+  float: right;
+  width: 150px;
+  background-color: transparent;
+  color: #fff;
+
+}
+
+
+.sizee{
+  font-size: 18px;
+}
+
+/*Se agrego el color al body la clase centrado y sizee*/
     </style>
   
   </head>
@@ -113,21 +191,39 @@
                 </div>
                 
               </nav>
-<div class="container">
+
+<div id="contact">
+  <div class="section-content">
+    <h1 class="section-header">ACAVUCAB <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">Agregar eventos</span></h1>
+    <h3>Lo mejor en cervezas artesanales</h3>
+  </div>
+  <div class="contact-section">
+  <div class="container">
     
-    <h2>Agregar Evento</h2>
-    <form action="/eventos" method="POST">
-        @csrf
-        
-       <input type="text" name="nombre_evento" placeholder="Nombre" class="form-control mb-2" required>
-       <input type="date" name="fecha" placeholder="Fecha" class="form-control mb-2" required >
-       <!--<input type="text" name="nombre" value="$eventos->nombre}}" class="form-control mb-2"  >-->
+      <div class="col-md-6 centrado">
+        <form action="/eventos" method="POST">
+          @csrf
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control mb-2 sizee" id="nombre" placeholder="Nombre" name="nombre_evento"  required>
+          </div>
+          <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" class="form-control mb-2 sizee" id="fecha" placeholder="Fecha" name="fecha" required>
+          </div>	
           
-       
-       <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
-       <a href="/eventos" class="btn btn-primary btn-sm">Volver al menu anterior</a>
-    </form>
+
+            <a href="/eventos" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
+            <button type="submit" class="btn btn-default submit sizee"><i class="fa fa-paper-plane" aria-hidden="true"></i>Agregar</button>
+        </div>
+        
+          
+        </form>
+      
+    
+  </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>

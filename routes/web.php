@@ -58,6 +58,8 @@ Route::resource('/entradas', 'EntradaController');
 
 Route::resource('/eventos/{evento}/entradas', 'EntradaController');
 
+Route::delete('/entrada/{id_entrada}', 'EntradaController@destroy')->name('entradasDestroy');
+
 //Route::resource('/horario', 'HorarioController');
 //Route::resource('/eventos/{evento}/horarios', 'HorarioeventoController');
 Route::resource('/eventos/{evento}/horarios/{eventos}/funciona', 'HorarioController');
@@ -109,6 +111,10 @@ Route::delete('/comentario/{id_comentario}', 'ComentarioController@destroy')->na
 Route::resource('/tipos/{tipos}/ofers', 'OfertaController');
 
 Route::resource('/tipos/{tipos}/ofertas/{ofertas}/ofertasCerveza', 'Oferta_cervezaController');
+
+Route::resource('/entradas/{id_entrada}/ventaEntrada/{precio_entrada}/montoTotal', 'Venta_entradaController');
+
+Route::resource('/entradas/{id_entrada}/comprar/{id_venta_entrada}/detalle_ventaEntrada/{monto_total}/precio', 'Detalle_venta_entradaController');
 
 //Route::post('/clienteNatural/{id_cliente_natural}/clientes', 'Cliente_natural@create');
 

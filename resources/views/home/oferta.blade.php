@@ -101,7 +101,7 @@
                 </td>
                 <td>
                 
-                        <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                  <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
                      
                 </td>
             </tr>

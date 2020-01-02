@@ -91,6 +91,7 @@
               <th scope="col">Razon social</th>
               <th scope="col">Nombre del evento</th>
               <th scope="col">Fecha</th>
+              <th scope="col">Cantidad cervezas</th>
               <th scope="col">Eliminar</th>
             </tr>
           </thead>
@@ -99,6 +100,7 @@
               <td>{{$item->razon_social}}</td>
               <td>{{$item->nombre_evento}}</td>
               <td>{{$item->fecha}}</td>
+              <td>{{$item->cantidad}}</td>
               <td>
                 <form action={{ route('miembroeventosDestroy',['id_miembro_evento' => $item->id_miembro_evento]) }} method="POST" class="d-inline">
                   @csrf

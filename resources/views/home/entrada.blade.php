@@ -85,7 +85,7 @@
                 <th scope="col">Numero de Entrada</th>
                 <th scope="col">Precio Entrada</th>
                 <th scope="col">Nombre Del evento</th>
-
+                <th scope="col">Comprar</th>
                 <th scope="col">Eliminar</th>
 
               </tr>
@@ -98,11 +98,14 @@
                 <td>{{$item->precio_entrada}}</td>
                 <td>{{$item->nombre_evento}}</td>
                 <td>
-
+                  <a href="/entradas/{{$item->id_entrada}}/ventaEntrada/{{$item->precio_entrada}}/montoTotal" class="btn btn-dark btn-sm tamano ">Comprar</a>
+                </td>
+                <td>
+                  <form action={{ route('entradasDestroy',['id_entrada' => $item->id_entrada]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>
-                  </form>
+                        <button class="btn btn-dark btn-sm tamano" type="submit">Eliminar</button>
+                      </form>
                 </td>
 
             </tr>

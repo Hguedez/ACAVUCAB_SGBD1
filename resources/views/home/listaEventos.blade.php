@@ -144,7 +144,8 @@
 
                 </td>
                 <td>
-                    <a href="/eventos/{{$item->id_evento}}/entradas" class="btn btn-dark btn-sm">Entradas</a>
+                    <a href="/eventos/{{$item->id_evento}}/entradas" class="btn btn-dark btn-sm">Ver</a>
+                    <a href="/eventos/{{$item->id_evento}}/entradas/create" class="btn btn-dark btn-sm">Agregar</a>
                 </td>
                 <td>
                   <a href="/eventos/{{$item->id_evento}}/horarios/1/funciona" class="btn btn-dark btn-sm">Horarios</a>
@@ -157,9 +158,9 @@
         @endforeach
         </table>
         <a href="/eventos/create" class="btn btn-secondary btn-lg btn-block">Nuevo Evento</a>
-        <a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva entrada</a>
+        <!--<a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva entrada</a>-->
         <a href="/eventos/1/horarios/1/funciona/create" class="btn btn-secondary btn-lg btn-block">Crear Horario</a>
-        <a href="/eventos/1/miembros/1/miembroevento/create" class="btn btn-secondary btn-lg btn-block">Asignar un Evento a un miembro</a>
+        <!--<a href="/eventos/1/miembros/1/miembroevento/create" class="btn btn-secondary btn-lg btn-block">Asignar un Evento a un miembro</a>-->
         <!--<a href="/eventos/1/miembros/1/asociados/create" class="btn btn-secondary btn-lg btn-block">Crear miembro</a>-->
 
 

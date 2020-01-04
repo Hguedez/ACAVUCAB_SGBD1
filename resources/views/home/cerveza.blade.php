@@ -102,7 +102,7 @@
                   <form action={{ route('cervezasDestroy',['id_cerveza' => $item->numero_cerveza]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                        <button class="btn btn-dark btn-sm tamano letra" type="submit">Eliminar</button>
+                        <button class="btn btn-dark btn-sm tamano " type="submit">Eliminar</button>
                       </form>
                 </td>
             </tr>

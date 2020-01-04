@@ -5,25 +5,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/animate.css')}}">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="{{asset('css/aos.css')}}">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="{{asset('css/ionicons.min.css')}}">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery.timepicker.css')}}">
 
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
     
     <style>
     .carousel-item {
@@ -74,8 +74,8 @@
   <body class="goto-here">
 		
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top " >
-        <a class="navbar-brand ml-auto" href="/ordenes">
-          <img src="add_shopping_cart-24px.svg" width="30" height="30" class="d-inline-block align-top " alt="">
+        <a class="navbar-brand ml-auto" href="/">
+          <img src="/add_shopping_cart-24px.svg" width="30" height="30" class="d-inline-block align-top " alt="">
         </a>
 	    <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -159,9 +159,9 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active " style="background-image: url(fondoevento.jpg); ">
+          <div class="carousel-item active " style="background-image: url(/fondoevento.jpg); ">
             <div class="carousel-caption d-none d-md-block alinear ">
-              <div class="container fondo col-sm-3  ">
+              <div class="container fondo col-sm-4  ">
               <h1 class="display-4 checkout-mine">Checkout</h1>
               </div>
               
@@ -173,74 +173,27 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-7 ftco-animate">
-						<form action="#" class="billing-form">
-							<h3 class="mb-4 billing-heading">Billing Details</h3>
-	          	<div class="row align-items-end">
+						
+              <h3 class="mb-4 billing-heading">Detalles de facturación</h3>
+              <form method="POST" action="/comprar/{{$id_venta}}/venta/{{$id_entrada}}/entrada" class="billing-form">
+                @csrf
+	          	<div class="row align-items-end" id="creditos" >
 	          		<div class="col-md-6">
 	                <div class="form-group">
-	                	<label for="firstname">Firt Name</label>
-	                  <input type="text" class="form-control" placeholder="">
+	                	<label for="firstname">Nombre de banco</label>
+	                  <input type="text" class="form-control" placeholder="" name="nombre_banco" required>
 	                </div>
 	              </div>
 	              <div class="col-md-6">
 	                <div class="form-group">
-	                	<label for="lastname">Last Name</label>
-	                  <input type="text" class="form-control" placeholder="">
+	                	<label for="lastname">Numero de tarjeta</label>
+	                  <input type="number" class="form-control" placeholder="" name="numero_tarjeta" required>
 	                </div>
                 </div>
-                <div class="w-100"></div>
-		            <div class="col-md-12">
-		            	<div class="form-group">
-		            		<label for="country">State / Country</label>
-		            		<div class="select-wrap">
-		                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                  <select name="" id="" class="form-control">
-		                  	<option value="">France</option>
-		                    <option value="">Italy</option>
-		                    <option value="">Philippines</option>
-		                    <option value="">South Korea</option>
-		                    <option value="">Hongkong</option>
-		                    <option value="">Japan</option>
-		                  </select>
-		                </div>
-		            	</div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                	<label for="streetaddress">Street Address</label>
-	                  <input type="text" class="form-control" placeholder="House number and street name">
-	                </div>
-		            </div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
-	                </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                	<label for="towncity">Town / City</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-		            </div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-		            		<label for="postcodezip">Postcode / ZIP *</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
+                <div class="col-md-12">
 	                <div class="form-group">
-	                	<label for="phone">Phone</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-	              </div>
-	              <div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="emailaddress">Email Address</label>
-	                  <input type="text" class="form-control" placeholder="">
+	                	<label for="lastname">Fecha de vencimiento</label>
+                    <input type="date" class="form-control" placeholder="" name="fecha_vencimiento" required>
 	                </div>
                 </div>
                 <div class="w-100"></div>
@@ -252,8 +205,11 @@
 										</div>
 									</div>
                 </div>
-	            </div>
-	          </form><!-- END -->
+                <button type="submit" class="btn btn-primary py-3 px-4">Efectuar Pago</button>
+                
+              </div>
+            </form><!--Aqui termina el form de tarjeta de credito-->
+	          
 					</div>
 					<div class="col-xl-5">
 	          <div class="row mt-5 pt-3">
@@ -281,25 +237,32 @@
 	          	</div>
 	          	<div class="col-md-12">
 	          		<div class="cart-detail p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Payment Method</h3>
+	          			<h3 class="billing-heading mb-4">Metodo de pago</h3>
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Direct Bank Tranfer</label>
+											   <label><input type="radio" id="trans" name="optradio" class="mr-2"> Transferencia</label>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Check Payment</label>
+											   <label><input type="radio" id="cheque" name="optradio" class="mr-2"> Cheque</label>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
+											   <label><input type="radio" id="credito" name="optradio" class="mr-2"> Tarjeta de Credito</label>
+											</div>
+										</div>
+                  </div>
+                  <div class="form-group">
+										<div class="col-md-12">
+											<div class="radio">
+											   <label><input type="radio" id="debito" name="optradio" class="mr-2"> Tarjeta de Debito</label>
 											</div>
 										</div>
 									</div>
@@ -310,7 +273,6 @@
 											</div>
 										</div>
 									</div>
-									<p><a href="#"class="btn btn-primary py-3 px-4">Place an order</a></p>
 								</div>
 	          	</div>
 	          </div>
@@ -399,26 +361,37 @@
   
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/scrollax.min.js"></script>
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+  <script src="{{asset('js/jquery-migrate-3.0.1.min.js')}}"></script>
+  <script src="{{asset('js/popper.min.js')}}"></script>
+  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('js/jquery.easing.1.3.js')}}"></script>
+  <script src="{{asset('js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('js/jquery.stellar.min.js')}}"></script>
+  <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
+  <script src="{{asset('js/aos.js')}}"></script>
+  <script src="{{asset('js/jquery.animateNumber.min.js')}}"></script>
+  <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
+  <script src="{{asset('js/scrollax.min.js')}}"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{asset('js/google-map.js')}}"></script>
+  <script src="{{asset('js/main.js')}}"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="js/bootstrap.min.js"></script>
-
+  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('input:radio[id=credito]').attr('checked',true);
+          $('#creditos').show(); // Add this
+      $("#credito").on( "click", function() {
+          $('#creditos').show(); //muestro mediante id
+      });
+      $("#trans").on( "click", function() {
+        $('#creditos').hide(); //oculto mediante id
+      });
+    });
+    </script>
   <script>
 		$(document).ready(function(){
 

@@ -25,16 +25,14 @@ Route::get('/catalogo', function () { //catalogo necesita un controlador
 Route::get('/diario', function () { // diario necesita un controlador
     return view('home.diarioCerveza');
 });
-Route::get('/comprar', function () { //comprar necesita un controlador
-    return view('home.comprar');
-});
+
 /*Route::get('/detalle/{id}', function ($id) {
     $detalle =Detalle::findOrfail($id);
     return view('home.detalle_producto',compact('detalle'));
 });*/
-Route::get('/ordenes', function () {
+/*Route::get('/ordenes', function () {
     return view('home.misOrdenes');
-});
+});*/
 
 Route::get('/carnet', function () {
     return view('home.misOrdenes');
@@ -106,8 +104,6 @@ Route::resource('/comentarios/{comentarios}/tipos', 'ComentarioController');
 
 Route::delete('/comentario/{id_comentario}', 'ComentarioController@destroy')->name('comentariosDestroy');
 
-//Route::resource('/ofertas', 'OfertaController');
-
 Route::resource('/tipos/{tipos}/ofers', 'OfertaController');
 
 Route::resource('/tipos/{tipos}/ofertas/{ofertas}/ofertasCerveza', 'Oferta_cervezaController');
@@ -120,7 +116,12 @@ Route::resource('/entradas/{id_entrada}/comprar/{id_venta_entrada}/detalle_venta
 
 Route::resource('/clienteNatural', 'Cliente_naturalController');
 
-//Route::resource('/telefonos', 'TelefonoController');
+
+Route::delete('/detalle_venta_entrada/{id_detalle_entrada}', 'Detalle_venta_entradaController@destroy')->name('Detalle_entradasDestroy');
+
+Route::resource('/comprar/{id_venta}/venta/{id_entrada}/entrada', 'CreditoController');
+Route::post('/comprar/{id_venta}/venta/{id_entrada}/entrada', 'CreditoController@store');
+
 Route::get('/homes', 'HomeController@index')->name('homes');
 
 Route::get('/compilar', function () {

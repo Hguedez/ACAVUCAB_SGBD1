@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Cliente_natural;
@@ -10,8 +8,6 @@ use Log;
 use App\Lugar;
 use App\Usuario;
 use Illuminate\Support\Facades\Hash;
-
-
 class Cliente_naturalController extends Controller
 {
     /**
@@ -23,7 +19,6 @@ class Cliente_naturalController extends Controller
     {   
          return view('home.home2');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -44,8 +39,6 @@ class Cliente_naturalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
     public function store(Request $request)
     {
         $cliente_natural=new Cliente_natural();
@@ -76,7 +69,6 @@ class Cliente_naturalController extends Controller
         
         return view('home.home2');
     }
-
     /**
      * Display the specified resource.
      *
@@ -87,7 +79,6 @@ class Cliente_naturalController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,7 +89,6 @@ class Cliente_naturalController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -110,7 +100,6 @@ class Cliente_naturalController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -121,7 +110,6 @@ class Cliente_naturalController extends Controller
     {
         //
     }
-
      //Lugar
      public function getMunicipio(Request $request){
         if ($request->ajax()){

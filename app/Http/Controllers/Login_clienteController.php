@@ -93,7 +93,7 @@ class Login_clienteController extends Controller
 
     public function username(Request $request)
     {   
-        $checkT = DB::select(DB::raw("SELECT email as correo from cliente_natural WHERE correo = '$request->email' and password = '$request->password' "));
+        $checkT = DB::select(DB::raw("SELECT email as correo from cliente_natural,cliente_juridico WHERE correo = '$request->email' and password = '$request->password' "));
         $correo = $checkT[0]->correo;
         return $correo;
     }

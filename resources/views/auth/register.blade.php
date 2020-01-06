@@ -252,6 +252,7 @@
                     <input id="password-confirm" type="password" placeholder="Confirm-Password" class="form-control tamano" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
+            <div id="direccion">
             <div class="form-group row">
                 <label for="lugar" class="col-md-8 col-form-label text-md-right">DIRECCION</label>
               </div>
@@ -303,7 +304,7 @@
                     @endif
                 </div>
               </div>
-             
+            </div>
               <!--Aqui termina el correo-->
               <button  id="boton2" type="submit" class="btn btn-lg btn-dark btn-block text-uppercase btn-tamano">
                 {{ __('Registrarse') }}
@@ -311,6 +312,178 @@
               <!--Aqui termina cliente natural-->
 
                 </form>
+                <!--Aqui empieza cliente juridico-->
+        <div id="muestra_juridico">
+            <form method="POST" action="/clienteJuridico">
+              @csrf
+          
+             <div class="form-group row ">
+              <label for="name" class="col-md-5 col-form-label text-md-right tamano" >Denominacion comercial</label>
+
+              <div class="col-md-7">
+                   
+                  <input id="name" type="text" placeholder="Denominacion comercial" class="form-control @error('name') is-invalid @enderror tamano" name="denominacion_comercial"  required autocomplete="name" autofocus>
+
+                  @error('name')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+              </div>
+          </div>
+
+          <div class="form-group row" >
+              <label for="name2" class="col-md-5 col-form-label text-md-right tamano" >Razon social</label>
+
+              <div class="col-md-7">
+                    
+                  <input id="name2" type="text" placeholder="Razon social" class="form-control tamano" name="razon_social" required autocomplete="name2">
+
+              </div>
+          </div>
+          
+
+          <div class="form-group row" >
+              <label for="apellido" class="col-md-5 col-form-label text-md-right tamano" >Web</label>
+
+              <div class="col-md-7">
+                  <input id="apellido" type="url" placeholder="Web" class="form-control tamano" name="web" required autocomplete="apellido">
+
+              </div>
+          </div>
+
+          <div class="form-group row" >
+              <label for="apellido2" class="col-md-5 col-form-label text-md-right tamano" >Capital</label>
+
+              <div class="col-md-7">
+                  <input id="apellido2" type="number" placeholder="Capital" class="form-control tamano" name="capital" required autocomplete="apellido2">
+
+              </div>
+          </div>
+
+          <div class="form-group row" >
+              <label for="cedula" class="col-md-5 col-form-label text-md-right tamano" >Direccion Fiscal</label>
+
+              <div class="col-md-7">
+                  <input id="cedula" type="text" placeholder="Direccion fiscal" class="form-control tamano" name="direccion_fiscal" required autocomplete="cedula">
+
+              </div>
+          </div>
+
+          <div class="form-group row" >
+              <label for="rif" class="col-md-5 col-form-label text-md-right tamano" >Rif</label>
+
+              <div class="col-md-7">
+                  <input id="rif" type="text" placeholder="Rif" class="form-control tamano" name="rif" required autocomplete="rif">
+
+              </div>
+          </div>
+
+          <div class="form-group row" >
+            <label for="carnet" class="col-md-5 col-form-label text-md-right tamano" >Numero Carnet</label>
+
+            <div class="col-md-7">
+                <input id="carnet" type="number" placeholder="Numero de Carnet" class="form-control tamano" name="numero_carnet" required autocomplete="cedula">
+
+            </div>
+        </div>
+        <!--Aqui va el correo-->
+        
+        <div class="form-group row" >
+          <label for="email" class="col-md-5 col-form-label text-md-right tamano">Email</label>
+
+          <div class="col-md-7">
+              <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror tamano" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+              @error('email')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="password" class="col-md-5 col-form-label text-md-right tamano">{{ __('Password') }}</label>
+
+          <div class="col-md-7">
+              <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror tamano" name="password" required autocomplete="new-password">
+
+              @error('password')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="password-confirm" class="col-md-5 col-form-label text-md-right tamano">{{ __('Confirm Password') }}</label>
+
+          <div class="col-md-7">
+              <input id="password-confirm" type="password" placeholder="Confirm-Password" class="form-control tamano" name="password_confirmation" required autocomplete="new-password">
+          </div>
+      </div>
+      <div id="direccion_1">
+      <div class="form-group row">
+          <label for="lugar" class="col-md-8 col-form-label text-md-right">DIRECCION</label>
+        </div>
+
+        <div class="form-group row">
+          <label for="lugar" class="col-md-5 col-form-label text-md-right">Estado</label>
+
+          <div class="col-md-6">
+              <select id="estado" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}">
+                  @foreach($lugares->get() as $index => $lugar)
+                      <option value="{{ $index }}" {{ old('id_lugar') == $index ? 'selected' : '' }}>
+                          {{ $lugar }}
+                      </option>
+                  @endforeach
+              </select>
+
+              @if ($errors->has('id_lugar'))
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('id_lugar') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="lugar" class="col-md-5 col-form-label text-md-right">Municipio</label>
+
+          <div class="col-md-6">
+              <select id="municipio" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+
+              @if ($errors->has('id_lugar'))
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('id_lugar') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="lugar" class="col-md-5 col-form-label text-md-right">Parroquia</label>
+
+          <div class="col-md-6">
+              <select id="parroquia" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+
+              @if ($errors->has('id_lugar'))
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('id_lugar') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
+    </div>
+        <!--Aqui termina el correo-->
+        <button  type="submit" class="btn btn-lg btn-dark btn-block text-uppercase btn-tamano">
+          {{ __('Registrarse') }}
+      </button>
+          </form>
+            </div>
+            <!--Aqui termina cliente juridico-->
                           </div>
                       </div>
                     </form>

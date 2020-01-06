@@ -44,6 +44,10 @@ Auth::routes();
 
 Route::resource('/loginCliente', 'Login_clienteController');
 
+Route::get('/municipios', 'Cliente_juridicoController@getMunicipio');
+
+Route::get('/parroquias','Cliente_juridicoController@getParroquia');
+
 Route::get('/municipios', 'Cliente_naturalController@getMunicipio');
 
 Route::get('/parroquias','Cliente_naturalController@getParroquia');
@@ -116,6 +120,7 @@ Route::resource('/entradas/{id_entrada}/comprar/{id_venta_entrada}/detalle_venta
 
 Route::resource('/clienteNatural', 'Cliente_naturalController');
 
+Route::resource('/clienteJuridico', 'Cliente_juridicoController');
 
 Route::delete('/detalle_venta_entrada/{id_detalle_entrada}', 'Detalle_venta_entradaController@destroy')->name('Detalle_entradasDestroy');
 

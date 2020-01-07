@@ -170,6 +170,7 @@ margin-left: -5%;
           $('#muestra_juridico').hide();
           $('#direccion_1').hide();
           $('#direccion').hide();
+          $('#muestra_empleado').hide();
       $("#admin").on( "click", function() {
           $('#name2').show(); //muestro mediante id
           $('#name').show();
@@ -195,6 +196,7 @@ margin-left: -5%;
           $('#muestra_juridico').hide();
           $('#direccion_1').hide();
           $('#direccion').hide();
+          $('#muestra_empleado').hide();
        });
       $("#natural").on( "click", function() {
           $('#name2').hide(); //muestro mediante id
@@ -221,6 +223,7 @@ margin-left: -5%;
           $('#muestra_juridico').hide();
           $('#direccion_1').hide();
           $('#direccion').show();
+          $('#muestra_empleado').hide();
        });
         $("#juridico").on( "click", function() {
           $('#name2').hide(); //oculto mediante id
@@ -247,6 +250,34 @@ margin-left: -5%;
           $('#muestra_juridico').show();
           $('#direccion_1').show();
           $('#direccion').hide();
+          $('#muestra_empleado').hide();
+        });
+        $("#empleado").on( "click", function() {
+          $('#name2').hide(); //oculto mediante id
+          $('#name').hide();
+          $('#apellido').hide();
+          $('#apellido2').hide();
+          $('#cedula').hide();
+          $('#rif').hide();
+          $('#boton').hide();
+          $('#email').hide();
+          $('#password').hide();
+          $('#password_C').hide();
+          $('#nombre1').hide();
+          $('#nombre2').hide();
+          $('#apellido_1').hide();
+          $('#apellido_2').hide();
+          $('#cedula_1').hide();
+          $('#rif_1').hide();
+          $('#numero_carnet').hide();
+          $('#boton2').hide();
+          $('#email_1').hide();
+          $('#password_1').hide();
+          $('#password_c2').hide();
+          $('#muestra_juridico').hide();
+          $('#direccion_1').hide();
+          $('#direccion').hide();
+          $('#muestra_empleado').show();
         });
       });
     </script>

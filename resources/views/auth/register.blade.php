@@ -18,25 +18,24 @@
                   
                   <form method="POST" action="{{ route('register') }}">
                       @csrf
-                      <!--<ul class="nav nav-tabs linea">
+                      <ul class="nav nav-tabs linea">
                         <li class="nav-item">
-                          <a class="nav-link active" href="/register">Admin</a>
+                          <a class="nav-link active" href="/register">Admin y clientes</a>
                         </li>
                         <li class="nav-item ">
-                          <a class="nav-link" href="/clienteNatural/create">Cliente Natural</a>
+                          <a class="nav-link" href="/empleado/create">Empleados</a>
                         </li>
-                        <li class="nav-item ">
-                          <a class="nav-link" href="#">Cliente juridico</a>
-                        </li>
-                      </ul>-->
+                      </ul>
+                      <br>
                             <input type="radio" id="admin" value="administrador" name="tipo">
                             <label for="admin">Admin</label>
                             <input type="radio" id="natural" value="natural" name="tipo">
                             <label for="natural">Cliente Natural</label>
                             <input type="radio" id="juridico" value="juridico" name="tipo">
                             <label for="juridico">Cliente juridico</label>
-                          
-                          
+                            <!--<input type="radio" id="empleado" value="empleado" name="tipo">
+                            <label for="empleado">Empleado</label>-->
+                           
                       <div class="form-group row " id="name" >
                           <label for="name" class="col-md-5 col-form-label text-md-right" >{{ __('Primer Nombre') }}</label>
 
@@ -141,7 +140,7 @@
                   </form>   
                 <form method="POST" action="/clienteNatural">
                     @csrf
-                   <!-- Aqui empieza cliente natural-->
+                   <!-- Aqui empieza cliente natural--------------------------------------------------->
                     
                    <div class="form-group row " id="nombre1">
                     <label for="name" class="col-md-5 col-form-label text-md-right tamano" >Primer Nombre</label>
@@ -312,7 +311,7 @@
               <!--Aqui termina cliente natural-->
 
                 </form>
-                <!--Aqui empieza cliente juridico-->
+                <!--Aqui empieza cliente juridico----------------------------------------------->
         <div id="muestra_juridico">
             <form method="POST" action="/clienteJuridico">
               @csrf
@@ -484,10 +483,14 @@
           </form>
             </div>
             <!--Aqui termina cliente juridico-->
+            <!--aqui va empleado-->
+             <!---------------Aqui empieza Empleado ------------------------------------------------------------->
+    
+            <!--Aqui termina cliente empleado-->
+                         
                           </div>
                       </div>
-                    </form>
-
+              </div>
               </div>
             </div>
           </div>

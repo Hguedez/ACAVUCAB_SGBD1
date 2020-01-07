@@ -212,6 +212,18 @@ textarea.form-control {
             <input type="date" class="form-control mb-2 sizee" id="fecha" placeholder="Fecha" name="fecha" required>
           </div>	
           
+          <div class="form-group row">
+            <label for="country" class="col-md-5 col-form-label text-md-right tamano">Cargo</label>
+            <div class="select-wrap col-md-7">
+                <select name="fk_cargo" id="" class="form-control tamano">
+                    
+                        @foreach ($empleado as $item)
+                            <option value="{{$item->id_cargo}}">{{$item->nombre_cargo}}</option>
+                        @endforeach
+                    
+                </select>
+            </div>
+        </div>
 
             <a href="/eventos" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
             <button type="submit" class="btn btn-default submit sizee"><i class="fa fa-paper-plane" aria-hidden="true"></i>Agregar</button>

@@ -1,14 +1,18 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Cliente_natural;
+use App\Empleado;
 use Log;
 //Esto es para lugar
 use App\Lugar;
 use App\Usuario;
 use Illuminate\Support\Facades\Hash;
-class Cliente_naturalController extends Controller
+
+
+class EmpleadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,23 +21,29 @@ class Cliente_naturalController extends Controller
      */
     public function index()
     {   
-         return view('home.home2');
+        return view('home.home2');
     }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $cliente_natural = DB::select( DB::raw("SELECT id_cliente_natural,rif, numero_carnet,cedula,primer_nombre,
-                                                segundo_nombre,primer_apellido,segundo_apellido,fk_lugar,password,
-                                                email,fk_rol,id_usuario,fk_cliente_natural
-                                            FROM cliente_natural,usuario"
+    {   
+        $cargo = DB::select( DB::raw("SELECT nombre_cargo,id_cargo
+                                        FROM cargo"
                                         ));
-                      
-        return view('auth.register')->with('cliente_natural',$cliente_natural);
+        $empleado = DB::select( DB::raw("SELECT nombre,apellido,cedula,fk_cargo,fk_lugar,fk_tienda_fisica,
+                                        password,email,fk_rol,id_usuario,fk_cliente_natural
+                                        FROM empleado,usuario"
+                                        ));                  
+        $tienda = DB::select( DB::raw("SELECT id_tienda_fisica,nombre
+                                        FROM tienda_fisica"
+                                        ));        
+        return view('home.crearEmpleado')->with('cargo',$cargo)->with('empleado',$empleado)->with('tienda',$tienda);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,16 +52,14 @@ class Cliente_naturalController extends Controller
      */
     public function store(Request $request)
     {
-        $cliente_natural=new Cliente_natural();
-        $cliente_natural->primer_nombre=$request->primer_nombre;
-        $cliente_natural->segundo_nombre=$request->segundo_nombre;
-        $cliente_natural->primer_apellido=$request->primer_apellido;
-        $cliente_natural->segundo_apellido=$request->segundo_apellido;
-        $cliente_natural->cedula=$request->cedula;
-        $cliente_natural->rif=$request->rif;
-        $cliente_natural->numero_carnet=$request->numero_carnet;
-        $cliente_natural->save();
-    
+        $empleado = new Empleado();
+        $empleado->nombre=$request->nombre;
+        $empleado->apellido=$request->apellido;
+        $empleado->cedula=$request->cedula;
+        $empleado->fk_cargo=$request->fk_cargo;
+        $empleado->fk_tienda_fisica=$request->fk_tienda_fisica;
+        $empleado->save();
+
         $usuario=new Usuario();
         $this->validate(request(), [
             'email' => 'required|email',
@@ -59,17 +67,16 @@ class Cliente_naturalController extends Controller
         ]);
         $usuario->email=$request->email;
         $usuario->password=$request->password;
-        $usuario->fk_rol=3;
-        //$usuario->fk_cliente_natural=$cliente_natural->id_cliente_natural;
-        $checkT = DB::select(DB::raw("SELECT id_cliente_natural as id from cliente_natural WHERE rif = '$cliente_natural->rif' AND numero_carnet = '$cliente_natural->numero_carnet'"));
+        $usuario->fk_rol=$request->fk_rol;
+        $checkT = DB::select(DB::raw("SELECT id_empleado as id from empleado WHERE cedula = '$empleado->cedula'"));
         $id = $checkT[0]->id;
-        $usuario->fk_cliente_natural = $id;
-        //$cliente_natural->fk_lugar=getMunicipio();
-    
+        $usuario->fk_empleado = $id;
+
         $usuario->save();
         
         return view('home.home2');
     }
+
     /**
      * Display the specified resource.
      *
@@ -80,6 +87,7 @@ class Cliente_naturalController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -90,6 +98,7 @@ class Cliente_naturalController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -101,6 +110,7 @@ class Cliente_naturalController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -111,8 +121,9 @@ class Cliente_naturalController extends Controller
     {
         //
     }
-     //Lugar
-     public function getMunicipio(Request $request){
+
+    //Lugar
+    public function getMunicipio(Request $request){
         if ($request->ajax()){
              $municipios = Lugar::where('fk_lugar',$request->id_lugar)->get();
              foreach($municipios as $municipio){
@@ -132,5 +143,4 @@ class Cliente_naturalController extends Controller
               return response()->json($parroquiasArray);
           }
       }
-   
 }

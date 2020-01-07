@@ -294,7 +294,7 @@
                 <label for="lugar" class="col-md-5 col-form-label text-md-right">Parroquia</label>
 
                 <div class="col-md-6">
-                    <select id="parroquia" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+                    <select id="parroquia" data-old="{{ old('id_lugar') }}" name="parroquia" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
 
                     @if ($errors->has('id_lugar'))
                         <span class="invalid-feedback" role="alert">
@@ -425,14 +425,14 @@
       </div>
       <div id="direccion_1">
       <div class="form-group row">
-          <label for="lugar" class="col-md-8 col-form-label text-md-right">DIRECCION</label>
+          <label for="lugar" class="col-md-8 col-form-label text-md-right">DIRECCION NATURAL</label>
         </div>
 
         <div class="form-group row">
           <label for="lugar" class="col-md-5 col-form-label text-md-right">Estado</label>
 
           <div class="col-md-6">
-              <select id="estado" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}">
+              <select id="estado2" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}">
                   @foreach($lugares->get() as $index => $lugar)
                       <option value="{{ $index }}" {{ old('id_lugar') == $index ? 'selected' : '' }}>
                           {{ $lugar }}
@@ -452,7 +452,7 @@
           <label for="lugar" class="col-md-5 col-form-label text-md-right">Municipio</label>
 
           <div class="col-md-6">
-              <select id="municipio" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+              <select id="municipio2" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
 
               @if ($errors->has('id_lugar'))
                   <span class="invalid-feedback" role="alert">
@@ -466,7 +466,7 @@
           <label for="lugar" class="col-md-5 col-form-label text-md-right">Parroquia</label>
 
           <div class="col-md-6">
-              <select id="parroquia" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+              <select id="parroquia2" data-old="{{ old('id_lugar') }}" name="parroquia" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
 
               @if ($errors->has('id_lugar'))
                   <span class="invalid-feedback" role="alert">
@@ -483,8 +483,7 @@
           </form>
             </div>
             <!--Aqui termina cliente juridico-->
-            <!--aqui va empleado-->
-             <!---------------Aqui empieza Empleado ------------------------------------------------------------->
+            <!---------------Aqui empieza Empleado ------------------------------------------------------------->
     
             <!--Aqui termina cliente empleado-->
                          
@@ -528,4 +527,33 @@
                 }
             });
     </script>
+    <script>
+        $('#estado2').on('change',function(){
+            var id_estado = $(this).val();
+            if ($.trim(id_estado) != ''){
+                $.get('municipios',{id_lugar:id_estado},function(municipios){
+                    $("#municipio2").find('option').remove();
+                    $('#municipio2').append("<option value=''>Selecciona un municipio</option>");
+                    $.each(municipios,function(index,valor){
+                        $('#municipio2').append("<option value='" + index + "'>" + valor + "</option>")
+                    });
+                });
+            }
+        });
+</script>
+
+<script>
+        $('#municipio2').on('change',function(){
+            var id_municipio = $(this).val();
+            if ($.trim(id_municipio) != ''){
+                $.get('parroquias',{id_lugar:id_municipio},function(parroquias){
+                    $("#parroquia2").find('option').remove();
+                    $('#parroquia2').append("<option value=''>Selecciona una parroquia</option>");
+                    $.each(parroquias,function(index,valor){
+                        $('#parroquia2').append("<option value'" + index + "'>" + valor + "</option>")
+                    });
+                });
+            }
+        });
+</script>
 @endsection

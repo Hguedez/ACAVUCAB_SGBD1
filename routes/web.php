@@ -52,6 +52,10 @@ Route::get('/municipios', 'Cliente_naturalController@getMunicipio');
 
 Route::get('/parroquias','Cliente_naturalController@getParroquia');
 
+Route::get('/municipios', 'EmpleadoController@getMunicipio');
+
+Route::get('/parroquias','EmpleadoController@getParroquia');
+
 Route::resource('/eventos', 'EventoController');
 
 Route::resource('/detalle', 'DetalleController');
@@ -126,6 +130,9 @@ Route::delete('/detalle_venta_entrada/{id_detalle_entrada}', 'Detalle_venta_entr
 
 Route::resource('/comprar/{id_venta}/venta/{id_entrada}/entrada', 'CreditoController');
 Route::post('/comprar/{id_venta}/venta/{id_entrada}/entrada', 'CreditoController@store');
+
+Route::resource('/empleado', 'EmpleadoController');
+//Route::post('/empleado', 'EmpleadoController@store');
 
 Route::get('/homes', 'HomeController@index')->name('homes');
 

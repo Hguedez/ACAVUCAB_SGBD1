@@ -137,7 +137,7 @@
                   <label for="lugar" class="col-md-5 col-form-label text-md-right">Estado</label>
         
                   <div class="col-md-6">
-                      <select id="estado" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}">
+                      <select id="estado4" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}">
                           @foreach($lugares->get() as $index => $lugar)
                               <option value="{{ $index }}" {{ old('id_lugar') == $index ? 'selected' : '' }}>
                                   {{ $lugar }}
@@ -157,7 +157,7 @@
                   <label for="lugar" class="col-md-5 col-form-label text-md-right">Municipio</label>
         
                   <div class="col-md-6">
-                      <select id="municipio" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+                      <select id="municipio4" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
         
                       @if ($errors->has('id_lugar'))
                           <span class="invalid-feedback" role="alert">
@@ -171,7 +171,7 @@
                   <label for="lugar" class="col-md-5 col-form-label text-md-right">Parroquia</label>
         
                   <div class="col-md-6">
-                      <select id="parroquia" data-old="{{ old('id_lugar') }}" name="id_lugar" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
+                      <select id="parroquia4" data-old="{{ old('id_lugar') }}" name="parroquia" class="form-control{{ $errors->has('id_lugar') ? ' is-invalid' : '' }}"></select>
         
                       @if ($errors->has('id_lugar'))
                           <span class="invalid-feedback" role="alert">
@@ -198,7 +198,7 @@
 
 @section('script')
     <script>
-            $('#estado').on('change',function(){
+            $('#estado4').on('change',function(){
                 var id_estado = $(this).val();
                 //console.log(id_estado);
                 if ($.trim(id_estado) != ''){
@@ -215,7 +215,7 @@
     </script>
 
     <script>
-            $('#municipio').on('change',function(){
+            $('#municipio4').on('change',function(){
                 var id_municipio = $(this).val();
                 if ($.trim(id_municipio) != ''){
                     $.get('parroquias',{id_lugar:id_municipio},function(parroquias){

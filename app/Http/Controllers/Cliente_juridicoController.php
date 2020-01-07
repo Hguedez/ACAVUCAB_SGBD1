@@ -41,6 +41,9 @@ class Cliente_juridicoController extends Controller
      */
     public function store(Request $request)
     {
+        $var = $_POST['parroquia'];
+        $checkL = DB::select(DB::raw("SELECT id_lugar as id from lugar WHERE nombre = '$var' and id_lugar > 359"));
+        $lugar = $checkL[0]->id;
         $cliente_juridico=new Cliente_juridico();
         $cliente_juridico->rif=$request->rif;
         $cliente_juridico->numero_carnet=$request->numero_carnet;
@@ -49,6 +52,7 @@ class Cliente_juridicoController extends Controller
         $cliente_juridico->web=$request->web;
         $cliente_juridico->capital=$request->capital;
         $cliente_juridico->direccion_fiscal=$request->direccion_fiscal;
+        $cliente_juridico->fk_lugar_natural=$lugar;
         $cliente_juridico->save();
     
         $usuario=new Usuario();

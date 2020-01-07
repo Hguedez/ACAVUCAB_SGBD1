@@ -42,6 +42,9 @@ class Cliente_naturalController extends Controller
      */
     public function store(Request $request)
     {
+        $var = $_POST['parroquia'];
+        $checkL = DB::select(DB::raw("SELECT id_lugar as id from lugar WHERE nombre = '$var' and id_lugar > 359"));
+        $lugar = $checkL[0]->id;
         $cliente_natural=new Cliente_natural();
         $cliente_natural->primer_nombre=$request->primer_nombre;
         $cliente_natural->segundo_nombre=$request->segundo_nombre;
@@ -50,6 +53,7 @@ class Cliente_naturalController extends Controller
         $cliente_natural->cedula=$request->cedula;
         $cliente_natural->rif=$request->rif;
         $cliente_natural->numero_carnet=$request->numero_carnet;
+        $cliente_natural->fk_lugar=$lugar;
         $cliente_natural->save();
     
         $usuario=new Usuario();

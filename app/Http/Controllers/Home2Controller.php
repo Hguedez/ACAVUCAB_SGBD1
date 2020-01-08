@@ -1,30 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use App\Evento;
-//use App\Lugar;
-use App\Entrada;
-use Illuminate\Support\Facades\DB;
-class EventoController extends Controller
+
+class Home2Controller extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index(Request $request,$correo)
     {
-
-        $eventos = DB::select( DB::raw("SELECT id_evento,nombre_evento, fecha,
-        (SELECT id_horario FROM horario WHERE  id_horario=id_evento ),(SELECT id_miembro FROM miembro WHERE  id_miembro=id_evento )
-                                        FROM evento
-                                        WHERE nombre_evento is not null"
-                                        ));
-        return view('home.listaEventos')->with('eventos',$eventos)->with('correo',$correo);
+        return view('home.home2')->with('correo',$correo);
     }
 
     /**
@@ -34,11 +23,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        /*$lugar = DB::select( DB::raw(
-        "SELECT nombre
-        from lugar"
-        ));*/
-        return view('home.crearEvento');//,compact('lugar'));
+        //
     }
 
     /**
@@ -47,15 +32,9 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
     public function store(Request $request)
     {
-        $evento = new Evento();
-        $evento->nombre_evento = $request->nombre_evento;
-        $evento->fecha = $request->fecha;
-        $evento->save();
-        return back()->with('Evento Agregado!');
+        //
     }
 
     /**
@@ -66,9 +45,7 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        $evento = Evento::findOrFail($id);
-        return view('home.verEventos',compact('evento'));
-        //return view('home.entrada',compact('evento'));
+        //
     }
 
     /**
@@ -102,8 +79,6 @@ class EventoController extends Controller
      */
     public function destroy($id)
     {
-        $evento=Evento::find($id);
-        $evento->delete();
-        return back()->with('Evento eliminado');
+        //
     }
 }

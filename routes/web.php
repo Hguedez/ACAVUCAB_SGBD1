@@ -69,7 +69,7 @@ Route::resource('/detalle', 'DetalleController');
 
 Route::resource('/entradas', 'EntradaController');
 
-Route::resource('/eventos/{evento}/entradas', 'EntradaController');
+Route::resource('/eventos/{evento}/entradas/{correo}/funciona', 'EntradaController');
 
 Route::delete('/entrada/{id_entrada}', 'EntradaController@destroy')->name('entradasDestroy');
 
@@ -123,9 +123,9 @@ Route::resource('/tipos/{tipos}/ofers', 'OfertaController');
 
 Route::resource('/tipos/{tipos}/ofertas/{ofertas}/ofertasCerveza', 'Oferta_cervezaController');
 
-Route::resource('/entradas/{id_entrada}/ventaEntrada/{precio_entrada}/montoTotal', 'Venta_entradaController');
+Route::resource('/entradas/{id_entrada}/ventaEntrada/{precio_entrada}/montoTotal/{correo}/funciona', 'Venta_entradaController');
 
-Route::resource('/entradas/{id_entrada}/comprar/{id_venta_entrada}/detalle_ventaEntrada/{monto_total}/precio', 'Detalle_venta_entradaController');
+Route::resource('/entradas/{id_entrada}/comprar/{id_venta_entrada}/detalle_ventaEntrada/{monto_total}/precio/{correo}/funciona', 'Detalle_venta_entradaController');
 
 //Route::post('/clienteNatural/{id_cliente_natural}/clientes', 'Cliente_natural@create');
 
@@ -133,10 +133,11 @@ Route::resource('/clienteNatural', 'Cliente_naturalController');
 
 Route::resource('/clienteJuridico', 'Cliente_juridicoController');
 
-Route::delete('/detalle_venta_entrada/{id_detalle_entrada}', 'Detalle_venta_entradaController@destroy')->name('Detalle_entradasDestroy');
+Route::delete('/detalle_venta_entrada/{id_detalle_entrada}/{correo}', 'Detalle_venta_entradaController@destroy')->name('Detalle_entradasDestroy');
 
-Route::resource('/comprar/{id_venta}/venta/{id_entrada}/entrada', 'CreditoController');
-Route::post('/comprar/{id_venta}/venta/{id_entrada}/entrada', 'CreditoController@store');
+Route::get('/comprar/{id_venta}/venta/{id_entrada}/entrada/{correo}/funciona', 'CreditoController@index');
+Route::resource('/comprar/{id_venta}/venta/{id_entrada}/entrada/{correo}/funciona', 'CreditoController');
+Route::post('/comprar/{id_venta}/venta/{id_entrada}/entrada/{correo}/funciona', 'CreditoController@store');
 
 Route::resource('/empleado', 'EmpleadoController');
 //Route::post('/empleado', 'EmpleadoController@store');

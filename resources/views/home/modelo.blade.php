@@ -1,7 +1,7 @@
 <html>
 <head>
    <meta charset="utf-8">
-   <title>Mostrar Ventane Modal de forma Automático</title>
+   <title>ACAVUCAB</title>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -17,14 +17,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
            <div class="modal-header">
-              <h3>Cancelo proceso</h3>
+              <h3>Se Cancelo el proceso</h3>
            </div>
            <div class="modal-body">
               <h4>Se ha cancelado su compra</h4>
               Procedera a ir al menu de eventos nuevamente.
        </div>
            <div class="modal-footer">
-          <a href="/eventos" class="btn btn-danger">Ir</a>
+           <a href="/eventos/{{$correo}}/funciona" class="btn btn-danger">Ir</a>
            </div>
       </div>
    </div>

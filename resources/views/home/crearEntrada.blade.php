@@ -125,7 +125,7 @@ textarea.form-control {
 
                     <ul class="navbar-nav mr-auto ">
                       <li class="nav-item active tamano">
-                        <a class="nav-link " href="/">Home
+                        <a class="nav-link " href="/home/{{$correo}}/funciona">Home
                               <span class="sr-only">(current)</span>
                             </a>
                       </li>
@@ -145,6 +145,32 @@ textarea.form-control {
                     </ul>
                     <ul class="navbar-nav mr-auto">
                     <!-- Authentication Links -->
+
+                    @if ($correo ?? '')
+                    <li class="nav-item active dropdown">
+                      <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+                        {{ $correo ?? '' ?? '' }} <span class="caret"></span>
+                      </a>
+                      <div class="dropdown"  >
+                        <a class="" href="{{ route('logout') }}">
+                        <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
+                          <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                                      onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar sesion') }}
+                          </a>
+          
+                          <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
+                          <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                          <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
+                          <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+                    @else
                     @guest
 
                     <li class="nav-item tamano">
@@ -179,7 +205,7 @@ textarea.form-control {
                       </div>
                     </li>
                   @endguest
-
+                  @endif
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                       <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
@@ -213,7 +239,7 @@ textarea.form-control {
             <label for="disponibilidad">Disponibilidad</label>
             <input type="text" class="form-control mb-2 sizee" id="disponibilidad" placeholder="Disponibilidad" name="disponible" required>
           </div>
-            <a href="/eventos" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
+        <a href="/eventos/{{$correo}}/funciona" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
             <button type="submit" class="btn btn-default submit sizee"><i class="fa fa-paper-plane" aria-hidden="true"></i>Agregar</button>
         </div>
         <br>

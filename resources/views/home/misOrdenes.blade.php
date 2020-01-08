@@ -74,7 +74,7 @@
 
             <ul class="navbar-nav mr-auto ">
               <li class="nav-item">
-                <a class="nav-link " href="/">Home
+              <a class="nav-link " href="/home/{{$correo}}/funciona">Home
                       <span class="sr-only">(current)</span>
                     </a>
               </li>
@@ -94,6 +94,31 @@
             </ul>
             <ul class="navbar-nav mr-auto">
             <!-- Authentication Links -->
+            @if ($correo ?? '')
+                    <li class="nav-item active dropdown">
+                      <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+                        {{ $correo ?? '' ?? '' }} <span class="caret"></span>
+                      </a>
+                      <div class="dropdown"  >
+                        <a class="" href="{{ route('logout') }}">
+                        <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
+                          <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                                      onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar sesion') }}
+                          </a>
+          
+                          <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
+                          <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                          <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
+                          <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+                    @else
             @guest
 
             <li class="nav-item">
@@ -118,11 +143,10 @@
                                      document.getElementById('logout-form').submit();">
                         {{ __('Cerrar sesion') }}
                     </a>
-                    <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
                     <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                     <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
                     <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
-                  <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -130,7 +154,7 @@
               </div>
             </li>
           @endguest
-
+          @endif
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -186,7 +210,7 @@
                   <td>{{$item->primer_nombre}}</td>
                   <td>{{$item->precio}}</td>
                   <td>
-                    <form action={{ route('Detalle_entradasDestroy',['id_detalle_entrada' => $item->id_detalle_entrada]) }} method="POST" class="d-inline">
+                    <form action={{ route('Detalle_entradasDestroy',['id_detalle_entrada' => $item->id_detalle_entrada,'correo' => $correo]) }} method="POST" class="d-inline">
                       @csrf
                       @method('DELETE')
                           <button class="btn btn-dark btn-sm tamano letra" type="submit">Cancelar</button>
@@ -250,7 +274,7 @@
               <span>{{$monto_total}} Bs.S</span>
     					</p>
             </div>
-          <p><a href="/comprar/{{$id_venta}}/venta/{{$id_entrada}}/entrada" class="btn btn-danger py-3 px-4">Proceed to Checkout</a></p>
+          <p><a href="/comprar/{{$id_venta}}/venta/{{$id_entrada}}/entrada/{{$correo}}/funciona" class="btn btn-danger py-3 px-4">Proceed to Checkout</a></p>
     			</div>
     		</div>
 			</div>

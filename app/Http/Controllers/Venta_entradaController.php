@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class Venta_entradaController extends Controller
 {   
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id_entrada,$precio_entrada)
+    public function index(Request $request,$id_entrada,$precio_entrada,$correo)
     {
 
         $ventas=new Venta_entrada();
@@ -34,7 +34,12 @@ class Venta_entradaController extends Controller
         $ventas->save();
         $venta_entrada = DB::select(DB::raw("SELECT id_venta_entrada,monto_total,fecha,fk_cliente_natural,fk_cliente_juridico
                                              FROM venta_entrada "));
-        return view ('home.venta_entrada')->with('venta_entrada',$venta_entrada)->with('id_entrada',$id_entrada)->with('precio_entrada',$precio_entrada)->with('ventas',$ventas);
+        return view ('home.venta_entrada')
+                                        ->with('venta_entrada',$venta_entrada)
+                                        ->with('id_entrada',$id_entrada)
+                                        ->with('precio_entrada',$precio_entrada)
+                                        ->with('ventas',$ventas)
+                                        ->with('correo',$correo);
     }
 
     /**

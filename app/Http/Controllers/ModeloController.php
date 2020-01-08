@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Usuario;
 
-class Home2Controller extends Controller
+class ModeloController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$correo)
+    public function index()
     {
-        return view('home.homeRegister')->with('correo',$correo);
+        //
     }
 
     /**

@@ -14,12 +14,16 @@ class CreditoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id_venta,$id_entrada)
+    public function index(Request $request,$id_venta,$id_entrada,$correo)
     {
         $credito = DB::select(DB::raw("SELECT id_credito,nombre_banco,numero_tarjeta,fecha_vencimiento,
                                         fk_cliente_natural,fk_cliente_juridico,fk_venta
                                         FROM credito "));
-        return view('home.comprar')->with('credito',$credito)->with('id_venta',$id_venta)->with('id_entrada',$id_entrada);
+        return view('home.comprar')
+                                ->with('credito',$credito)
+                                ->with('id_venta',$id_venta)
+                                ->with('id_entrada',$id_entrada)
+                                ->with('correo',$correo);
     }
 
     /**
@@ -27,7 +31,7 @@ class CreditoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_venta,$id_entrada)
+    public function create(Request $request,$id_venta,$id_entrada,$correo)
     {
         $credito = DB::select(DB::raw("SELECT id_credito,nombre_banco,numero_tarjeta,fecha_vencimiento,
                                         fk_cliente_natural,fk_cliente_juridico,fk_venta
@@ -41,7 +45,7 @@ class CreditoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id_venta,$id_entrada)
+    public function store(Request $request,$id_venta,$id_entrada,$correo)
     {
         $credito=new Credito();
         $credito->nombre_banco=$request->nombre_banco;
@@ -50,7 +54,7 @@ class CreditoController extends Controller
         $credito->fk_venta=$id_venta;
         $credito->fk_cliente_natural=1;
         $credito->save();
-        return view('home.modeloEntrada');
+        return view('home.modeloEntrada')->with('correo',$correo);
     }
 
     /**

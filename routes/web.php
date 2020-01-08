@@ -19,6 +19,7 @@ use JasperPHP\JasperPHP as JasperPHP;
 Route::get('/', function () {
     return view('home.home2');
 });
+
 Route::get('/catalogo', function () { //catalogo necesita un controlador
     return view('home.catalogo');
 });
@@ -42,6 +43,10 @@ Route::get('/carnet', function () {
 
 Auth::routes();
 
+Route::resource('/home/{correo}/funciona', 'Home2Controller');
+
+//Route::post('/home/{correo}', 'Home2Controller@create');
+
 Route::resource('/loginCliente', 'Login_clienteController');
 
 Route::get('/municipios', 'Cliente_juridicoController@getMunicipio');
@@ -56,7 +61,9 @@ Route::get('/municipios', 'EmpleadoController@getMunicipio');
 
 Route::get('/parroquias','EmpleadoController@getParroquia');
 
-Route::resource('/eventos', 'EventoController');
+Route::resource('/eventos/{correo}/funciona', 'EventoController');
+
+Route::delete('/evento/{id_evento}', 'EventoController@destroy')->name('eventosDestroy');
 
 Route::resource('/detalle', 'DetalleController');
 

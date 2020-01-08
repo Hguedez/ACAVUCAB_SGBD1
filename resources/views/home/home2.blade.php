@@ -4,9 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ACAVUCAB</title>
@@ -40,6 +40,9 @@
   text-align: center;
 
 }
+.tamano{
+          font-size: 16px;
+        }
 
     </style>
 
@@ -108,21 +111,21 @@
 
           <ul class="navbar-nav mr-auto ">
             <li class="nav-item active">
-              <a class="nav-link " href="/">Home
+              <a class="nav-link tamano" href="/">Home
                     <span class="sr-only">(current)</span>
                   </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="/catalogo">Catalogo</a>
+              <a class="nav-link tamano" href="/catalogo">Catalogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Servicios</a>
+              <a class="nav-link tamnano" href="#">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contacto</a>
+              <a class="nav-link tamano" href="#">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Ayuda</a>
+              <a class="nav-link tamano" href="#">Ayuda</a>
             </li>
 
           </ul>
@@ -131,7 +134,7 @@
          
           @if ($correo ?? '')
           <li class="nav-item active dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle tamano" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
               {{ $correo ?? '' ?? '' }} <span class="caret"></span>
             </a>
             <div class="dropdown"  >
@@ -143,10 +146,10 @@
                           {{ __('Cerrar sesion') }}
                 </a>
 
-                <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
-                <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
-                <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
-                <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                <a class="dropnegro dropdown-item tamano" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
+                <a class="dropnegro dropdown-item tamano" href="/ordenes">Mis ordenes</a>
+                <a class="dropnegro dropdown-item tamano" href="/eventos/1/miembros/1/asociados">Miembros</a>
+                <a class="dropnegro dropdown-item tamano" href="/tipoCerveza">Tipo de cerveza</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>
@@ -158,11 +161,11 @@
           @guest
 
           <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+              <a class="nav-link tamano" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
           </li>
           @if (Route::has('register'))
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                  <a class="nav-link tamano" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
               </li>
           @endif
 
@@ -194,8 +197,8 @@
           @endif
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-dark my-2 my-sm-0 tamano" type="submit">Search</button>
           </form>
         </div>
       </div>

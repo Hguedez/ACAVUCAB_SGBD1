@@ -4,9 +4,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ACAVUCAB</title>
     <style >
@@ -54,7 +55,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active" style="background-image: url(fondo_cerveza2.jpg); ">
+      <div class="carousel-item active" style="background-image: url(/fondo_cerveza2.jpg); ">
         <div class="carousel-caption d-none d-md-block">
           <div class="container fondo col-sm-4">
           <h1>ACAVUCAB</h1>
@@ -64,7 +65,7 @@
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url(fondo_cerveza1.jpg);">
+      <div class="carousel-item" style="background-image: url(/fondo_cerveza1.jpg);">
         <div class="carousel-caption d-none d-md-block">
           <div class="container fondo col-sm-4">
           <h1>ACAVUCAB</h1>
@@ -74,7 +75,7 @@
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url(fondo_cerveza3.jpg);">
+      <div class="carousel-item" style="background-image: url(/fondo_cerveza3.jpg);">
         <div class="carousel-caption d-none d-md-block">
           <div class="container fondo col-sm-4">
           <h1>ACAVUCAB</h1>
@@ -142,7 +143,7 @@
                           {{ __('Cerrar sesion') }}
                 </a>
 
-                <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
                 <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                 <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
                 <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>

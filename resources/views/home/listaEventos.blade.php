@@ -4,10 +4,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ACAVUCAB</title>
     <style >
@@ -50,7 +50,7 @@
 
             <ul class="navbar-nav mr-auto ">
               <li class="nav-item active">
-                <a class="nav-link " href="/">Home
+                <a class="nav-link " href="/home/{{$correo}}/funciona">Home
                       <span class="sr-only">(current)</span>
                     </a>
               </li>
@@ -69,44 +69,71 @@
 
             </ul>
             <ul class="navbar-nav mr-auto">
-                    <!-- Authentication Links -->
-                    @guest
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                        </li>
-                    @endif
-
-                  @else
-                  <li class="nav-item active dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->name }} <span class="caret"></span>
+              <!-- Authentication Links -->
+             
+              @if ($correo ?? '')
+              <li class="nav-item active dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+                  {{ $correo ?? '' ?? '' }} <span class="caret"></span>
+                </a>
+                <div class="dropdown"  >
+                  <a class="" href="{{ route('logout') }}">
+                  <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
+                    <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                              {{ __('Cerrar sesion') }}
                     </a>
-                  <div class="dropdown"  >
-                            <a class="" href="{{ route('logout') }}">
-                    <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
-                        <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Cerrar sesion') }}
-                        </a>
-                        <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
-                        <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
-                        <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
-                        <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
-                        <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
+    
+                    <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
+                    <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>
                   </div>
-                </li>
-                  @endguest
-                </ul>
+                </div>
+              </li>
+              @else
+              @guest
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+              </li>
+              @if (Route::has('register'))
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                  </li>
+              @endif
+    
+            @else
+              <li class="nav-item active dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+                      {{ Auth::user()->name }} <span class="caret"></span>
+                  </a>
+                <div class="dropdown"  >
+                          <a class="" href="{{ route('logout') }}">
+                  <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
+                      <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Cerrar sesion') }}
+                      </a>
+    
+                    <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
+                    <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </div>
+                </div>
+              </li>
+            @endguest
+              @endif
+              </ul>
                 <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
@@ -117,7 +144,7 @@
     <!-- Page Content -->
     <div class="event">
   <div class="container " >
-        <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
+        
         <h4 class="centro">Eventos</h4>
         <table class="table table-primary table-bordered tope">
             <thead>
@@ -136,7 +163,7 @@
                 <td>{{$item->fecha}}</td>
 
                 <td>
-                  <form action={{ route('eventos.destroy', ['evento' => $item->id_evento]) }} method="POST" class="d-inline">
+                  <form action={{ route('eventosDestroy',['id_evento' => $item->id_evento]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-dark btn-sm" type="submit">Eliminar</button>

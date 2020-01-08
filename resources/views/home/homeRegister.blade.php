@@ -4,9 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Bootstrap CSS -->
-    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ACAVUCAB</title>
@@ -40,9 +40,6 @@
   text-align: center;
 
 }
-.tamano{
-          font-size: 16px;
-        }
 
     </style>
 
@@ -99,9 +96,13 @@
   </div>
 </header>
      <!-- Navigation -->
-
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
-
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       <div class="container">
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,30 +112,30 @@
 
           <ul class="navbar-nav mr-auto ">
             <li class="nav-item active">
-              <a class="nav-link tamano" href="/">Home
+              <a class="nav-link " href="/home/{{$correo}}/funciona">Home
                     <span class="sr-only">(current)</span>
                   </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link tamano" href="/catalogo">Catalogo</a>
+              <a class="nav-link" href="/catalogo">Catalogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link tamnano" href="#">Servicios</a>
+              <a class="nav-link" href="#">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link tamano" href="#">Contacto</a>
+              <a class="nav-link" href="#">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link tamano" href="#">Ayuda</a>
+              <a class="nav-link" href="#">Ayuda</a>
             </li>
 
           </ul>
           <ul class="navbar-nav mr-auto">
           <!-- Authentication Links -->
-         
-          @if ($correo ?? '')
+          
+         @if ($correo ?? '')
           <li class="nav-item active dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle tamano" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
               {{ $correo ?? '' ?? '' }} <span class="caret"></span>
             </a>
             <div class="dropdown"  >
@@ -146,10 +147,10 @@
                           {{ __('Cerrar sesion') }}
                 </a>
 
-                <a class="dropnegro dropdown-item tamano" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
-                <a class="dropnegro dropdown-item tamano" href="/ordenes">Mis ordenes</a>
-                <a class="dropnegro dropdown-item tamano" href="/eventos/1/miembros/1/asociados">Miembros</a>
-                <a class="dropnegro dropdown-item tamano" href="/tipoCerveza">Tipo de cerveza</a>
+                <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
+                <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
+                <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>
@@ -161,11 +162,11 @@
           @guest
 
           <li class="nav-item">
-              <a class="nav-link tamano" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+              <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
           </li>
           @if (Route::has('register'))
               <li class="nav-item">
-                  <a class="nav-link tamano" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                  <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
               </li>
           @endif
 
@@ -197,8 +198,8 @@
           @endif
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-dark my-2 my-sm-0 tamano" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
       </div>
@@ -257,9 +258,10 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
 
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

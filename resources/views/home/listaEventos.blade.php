@@ -171,8 +171,8 @@
 
                 </td>
                 <td>
-                    <a href="/eventos/{{$item->id_evento}}/entradas" class="btn btn-dark btn-sm">Ver</a>
-                    <a href="/eventos/{{$item->id_evento}}/entradas/create" class="btn btn-dark btn-sm">Agregar</a>
+                    <a href="/eventos/{{$item->id_evento}}/entradas/{{$correo}}/funciona" class="btn btn-dark btn-sm">Ver</a>
+                    <a href="/eventos/{{$item->id_evento}}/entradas/{{$correo}}/funciona/create" class="btn btn-dark btn-sm">Agregar</a>
                 </td>
                 <td>
                   <a href="/eventos/{{$item->id_evento}}/horarios/1/funciona" class="btn btn-dark btn-sm">Horarios</a>

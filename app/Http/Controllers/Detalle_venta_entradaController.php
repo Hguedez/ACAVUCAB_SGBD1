@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class Detalle_venta_entradaController extends Controller
 {  
-     public function __construct()
+     /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
     
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class Detalle_venta_entradaController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function index(Request $request,$id_entrada,$id_venta_entrada,$id_costo)
+    public function index(Request $request,$id_entrada,$id_venta_entrada,$id_costo,$correo)
     {   
         
         $detalle_entrada=new Detalle_venta_entrada();
@@ -57,7 +57,8 @@ class Detalle_venta_entradaController extends Controller
                                        ->with('detalle_entrada',$detalle_entrada)
                                        ->with('subtotal',$subtotal)
                                        ->with('monto_total',$monto_total)
-                                       ->with('id_venta',$id_venta);
+                                       ->with('id_venta',$id_venta)
+                                       ->with('correo',$correo);
     }
 
     /**
@@ -121,7 +122,7 @@ class Detalle_venta_entradaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_detalle_entrada)
+    public function destroy($id_detalle_entrada,$correo)
     {
         $detalle=Detalle_venta_entrada::find($id_detalle_entrada);
         $detalle->delete();
@@ -129,6 +130,6 @@ class Detalle_venta_entradaController extends Controller
         $id_venta = $checkT[0]->id_venta_eliminar;
         $venta=Venta::find($id_venta);
         $venta->delete();
-        return view('home.modelo');
+        return view('home.modelo')->with('correo',$correo);
     }
 }

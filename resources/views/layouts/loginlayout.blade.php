@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>ACAVUCAB</title>
     <style >

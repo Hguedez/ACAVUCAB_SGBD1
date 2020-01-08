@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class EntradaController extends Controller
 {
-    public function __construct()
+    /*public function __construct()
 {
     $this->middleware('auth');
-}
+}*/
     /**
      * Display a listing of the resource.
      *
@@ -26,12 +26,12 @@ class EntradaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index(Request $request, $id){
+     public function index(Request $request, $id,$correo){
         $entradas = DB::select(DB::raw("SELECT id_entrada, numero_entrada, precio_entrada,disponible, fk_evento, (
             SELECT nombre_evento FROM evento WHERE id_evento = fk_evento
         ) FROM entrada WHERE fk_evento = '$id'"));
 
-        return view ('home.entrada', compact('entradas'));
+        return view ('home.entrada')->with('entradas',$entradas)->with('correo',$correo);
     }
 
     /**
@@ -39,13 +39,13 @@ class EntradaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id_evento)
+    public function create(Request $request, $id_evento,$correo)
     {
         $entradas = DB::select(DB::raw("SELECT id_entrada, numero_entrada, precio_entrada,disponible, fk_evento, (
             SELECT nombre_evento FROM evento WHERE id_evento = fk_evento
         ) FROM entrada WHERE fk_evento = '$id_evento'"));
 
-        return view ('home.crearEntrada')->with('entradas',$entradas)->with('id_evento',$id_evento);
+        return view ('home.crearEntrada')->with('entradas',$entradas)->with('id_evento',$id_evento)->with('correo',$correo);
     }
 
     /**

@@ -24,7 +24,7 @@
               Procedera a ir al menu de eventos nuevamente.
        </div>
            <div class="modal-footer">
-          <a href="/eventos" class="btn btn-danger">Ir</a>
+           <a href="/eventos/{{$correo}}/funciona" class="btn btn-danger">Ir</a>
            </div>
       </div>
    </div>

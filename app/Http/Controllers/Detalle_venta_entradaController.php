@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Detalle_venta_entrada;
 use App\Cliente_natural;
 use App\Venta;
+use App\Entrada;
+use App\Venta_entrada;
 
 use Illuminate\Support\Facades\DB;
 
@@ -24,6 +26,17 @@ class Detalle_venta_entradaController extends Controller
     
     public function index(Request $request,$id_entrada,$id_venta_entrada,$id_costo,$correo)
     {   
+        /*$request_updated_status = Entrada::where('id_entrada',$id_entrada);
+        $request_status_data['disponible'] = 'true'; 
+        $request_updated_status->update($request_status_data);*/
+
+        /*if (Entrada::where(['id_entrada'=>$id_entrada])->first()){
+            dd($id_entrada);
+        }*/
+
+        Entrada::where("id_entrada", $id_entrada)->update([
+            'disponible' => 'false',
+        ]);
         
         $detalle_entrada=new Detalle_venta_entrada();
         $detalle_entrada->precio=$id_costo;
@@ -130,6 +143,10 @@ class Detalle_venta_entradaController extends Controller
         $id_venta = $checkT[0]->id_venta_eliminar;
         $venta=Venta::find($id_venta);
         $venta->delete();
+        $checkV_entrada = DB::select(DB::raw("SELECT MAX(id_venta_entrada) as id_entrada_venta  from venta_entrada WHERE $id_detalle_entrada is not null "));
+        $id_entrada_venta = $checkV_entrada[0]->id_entrada_venta;
+        $venta_entrada = Venta_entrada::find($id_entrada_venta);
+        $venta_entrada->delete();
         return view('home.modelo')->with('correo',$correo);
     }
 }

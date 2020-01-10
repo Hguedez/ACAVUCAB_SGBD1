@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Venta_entrada;
 use Illuminate\Support\Facades\DB;
-
+use App\Entrada;
 class Venta_entradaController extends Controller
 {   
     /*public function __construct()
@@ -19,7 +19,6 @@ class Venta_entradaController extends Controller
      */
     public function index(Request $request,$id_entrada,$precio_entrada,$correo)
     {
-
         $ventas=new Venta_entrada();
         $ventas->monto_total=($precio_entrada*0.16)+$precio_entrada;
         $now = new \DateTime();

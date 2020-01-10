@@ -121,7 +121,7 @@
                           {{ __('Cerrar sesion') }}
                       </a>
     
-                    <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/{{Auth::user()->name}}/funciona">Mis eventos</a>
                     <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                     <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
                     <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>

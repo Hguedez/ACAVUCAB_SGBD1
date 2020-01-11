@@ -15,7 +15,7 @@
 
           <ul class="navbar-nav mr-auto ">
             <li class="nav-item active">
-              <a class="nav-link tamano" href="/">Home
+              <a class="nav-link tamano" href="/home/{{$correo}}/funciona">Home
                     <span class="sr-only">(current)</span>
                   </a>
             </li>
@@ -35,6 +35,32 @@
           </ul>
           <ul class="navbar-nav mr-auto">
           <!-- Authentication Links -->
+
+          @if ($correo ?? '')
+              <li class="nav-item active dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+                  {{ $correo ?? '' ?? '' }} <span class="caret"></span>
+                </a>
+                <div class="dropdown"  >
+                  <a class="" href="{{ route('logout') }}">
+                  <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
+                    <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                              {{ __('Cerrar sesion') }}
+                    </a>
+    
+                    <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
+                    <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>
+                  </div>
+                </div>
+              </li>
+            @else
           @guest
 
           <li class="nav-item tamano">
@@ -70,7 +96,7 @@
             </div>
           </li>
         @endguest
-
+        @endif
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
@@ -84,7 +110,7 @@
 <!-- Page Content -->
 
   <div class="container">
-      <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
+      
       <h3 class="centro letra">Horario</h3>
       <table class="table table-light">
           <thead class="thead-dark">
@@ -109,14 +135,15 @@
                     </form>
               </td>
               <td>
-              <a href="/eventos/{{$id_evento}}/horarios/{{$item->id_horario}}/hola" class="btn btn-dark btn-sm letra">Evento</a>
+              <a href="/eventos/{{$id_evento}}/horarios/{{$item->id_horario}}/hola/{{$correo}}/funciona" class="btn btn-dark btn-sm letra">Ver</a>
+              <a href="/eventos/{{$id_evento}}/horarios/{{$item->id_horario}}/hola/{{$correo}}/funciona/create" class="btn btn-dark btn-sm letra">Agregar</a>
             </td>
           </tr>
       @endforeach
 
       </table>
       <!--<a href="/horario/create" class="btn btn-secondary btn-lg btn-block">Nuevo Horario</a>-->
-      <a href="/eventos/1/horarios/1/hola/create" class="btn btn-secondary btn-lg btn-block">Nuevo Horario Evento</a>
+      
       <!--Todo lo que tiene 1 es para que funcione la ruta y ya hola tambien-->
   </div>
 

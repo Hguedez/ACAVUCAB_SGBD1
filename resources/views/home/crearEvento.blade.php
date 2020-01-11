@@ -147,6 +147,32 @@ textarea.form-control {
                     </ul>
                     <ul class="navbar-nav mr-auto">
                     <!-- Authentication Links -->
+
+                    @if ($correo ?? '')
+              <li class="nav-item active dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+                  {{ $correo ?? '' ?? '' }} <span class="caret"></span>
+                </a>
+                <div class="dropdown"  >
+                  <a class="" href="{{ route('logout') }}">
+                  <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
+                    <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                              {{ __('Cerrar sesion') }}
+                    </a>
+    
+                    <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona">Miembros</a>
+                    <a class="dropnegro dropdown-item" href="/tipoCerveza/{{$correo}}/funciona">Tipo de cerveza</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>
+                  </div>
+                </div>
+              </li>
+              @else
                     @guest
                     
                     <li class="nav-item tamano">
@@ -181,7 +207,7 @@ textarea.form-control {
                       </div>
                     </li>
                   @endguest
-              
+                  @endif
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                       <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
@@ -201,7 +227,7 @@ textarea.form-control {
   <div class="container">
     
       <div class="col-md-6 centrado">
-        <form action="/eventos" method="POST">
+      <form action="/eventos/{{$correo}}/funciona" method="POST">
           @csrf
           <div class="form-group">
             <label for="nombre">Nombre</label>
@@ -212,20 +238,7 @@ textarea.form-control {
             <input type="date" class="form-control mb-2 sizee" id="fecha" placeholder="Fecha" name="fecha" required>
           </div>	
           
-          <div class="form-group row">
-            <label for="country" class="col-md-5 col-form-label text-md-right tamano">Cargo</label>
-            <div class="select-wrap col-md-7">
-                <select name="fk_cargo" id="" class="form-control tamano">
-                    
-                        @foreach ($empleado as $item)
-                            <option value="{{$item->id_cargo}}">{{$item->nombre_cargo}}</option>
-                        @endforeach
-                    
-                </select>
-            </div>
-        </div>
-
-            <a href="/eventos" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
+        <a href="/eventos/{{$correo}}/funciona" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
             <button type="submit" class="btn btn-default submit sizee"><i class="fa fa-paper-plane" aria-hidden="true"></i>Agregar</button>
         </div>
         

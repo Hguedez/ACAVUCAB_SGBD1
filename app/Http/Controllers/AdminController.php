@@ -4,21 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Tipo_cerveza;
-class Tipo_cervezaController extends Controller
+use App\Usuario;
+
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$correo)
+    public function index()
     {
-        $tipo_cerveza = DB::select( DB::raw("SELECT id_tipo_cerveza,nombre, descripcion,historia,fk_tipo_cerveza
-                                            FROM tipo_cerveza
-                                            WHERE nombre is not null"
-                                        ));
-        return view('home.tipo_cerveza')->with('tipo_cerveza',$tipo_cerveza)->with('correo',$correo);
+        return view('home.home2');
     }
 
     /**
@@ -26,9 +23,13 @@ class Tipo_cervezaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$correo)
+    public function create()
     {
-        return view('home.crearTipo_cerveza')->with('correo',$correo);
+        $admin = DB::select( DB::raw("SELECT id_usuario,password,email,fk_rol
+                                            FROM usuario"
+                                        ));
+
+        return view('auth.register')->with('admin',$admin);                                
     }
 
     /**
@@ -37,16 +38,19 @@ class Tipo_cervezaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
     public function store(Request $request)
     {
-        $tipo_cerveza = new Tipo_cerveza();
-        $tipo_cerveza->nombre=$request->nombre;
-        $tipo_cerveza->descripcion=$request->descripcion;
-        $tipo_cerveza->historia=$request->historia;
-        $tipo_cerveza->save();
-        return back();
+        $usuario=new Usuario();
+        $this->validate(request(), [
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+        ]);
+        $usuario->email=$request->email;
+        $usuario->password=$request->password;
+        $usuario->fk_rol=1;
+        $usuario->save();
+        
+        return view('home.home2');
     }
 
     /**
@@ -91,8 +95,6 @@ class Tipo_cervezaController extends Controller
      */
     public function destroy($id)
     {
-        $tipo_cerveza=Tipo_cerveza::find($id);
-        $tipo_cerveza->delete();
-        return back()->with('Evento eliminado');
+        //
     }
 }

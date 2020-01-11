@@ -30,8 +30,10 @@ class EntradaController extends Controller
         $entradas = DB::select(DB::raw("SELECT id_entrada, numero_entrada, precio_entrada,disponible, fk_evento, (
             SELECT nombre_evento FROM evento WHERE id_evento = fk_evento
         ) FROM entrada WHERE fk_evento = '$id'"));
+        $checkT = DB::select(DB::raw("SELECT fk_rol  from usuario WHERE email = '$correo'"));
+        $rol = $checkT[0]->fk_rol;
 
-        return view ('home.entrada')->with('entradas',$entradas)->with('correo',$correo);
+        return view ('home.entrada')->with('entradas',$entradas)->with('correo',$correo)->with('rol',$rol);
     }
 
     /**

@@ -9,21 +9,18 @@ use App\Evento;
 
 class Miembro_eventoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id_evento,$id_miembro)
+    public function index(Request $request, $id_evento,$id_miembro,$correo)
     {
        $miembro_evento = DB::select(DB::raw("SELECT id_miembro_evento, fk_evento,fk_miembro,cantidad, (
              SELECT razon_social FROM miembro WHERE id_miembro = fk_miembro ),(SELECT nombre_evento FROM evento WHERE id_evento = fk_evento ),(SELECT fecha FROM evento WHERE id_evento = fk_evento )
              FROM miembro_evento WHERE fk_evento = '$id_evento' and fk_miembro='$id_miembro' "));
-        return view ('home.miembro_evento', compact('miembro_evento'));
+        return view ('home.miembro_evento')->with('miembro_evento',$miembro_evento)->with('correo',$correo);
 
     }
 
@@ -32,13 +29,13 @@ class Miembro_eventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id_evento,$id_miembro)
+    public function create(Request $request, $id_evento,$id_miembro,$correo)
     {
         $miembro_evento = DB::select(DB::raw("SELECT id_miembro_evento, fk_evento,fk_miembro,cantidad, (
             SELECT razon_social FROM miembro where id_miembro='$id_miembro'),(SELECT nombre_evento FROM evento where id_evento='$id_evento'),(SELECT fecha FROM evento where id_evento='$id_evento')
             FROM miembro_evento WHERE fk_evento = '$id_evento' and fk_miembro='$id_miembro' "));
 
-        return view('home.crearMiembro_evento')->with('miembro_evento',$miembro_evento)->with('id_evento', $id_evento)->with('id_miembro',$id_miembro);
+        return view('home.crearMiembro_evento')->with('miembro_evento',$miembro_evento)->with('id_evento', $id_evento)->with('id_miembro',$id_miembro)->with('correo',$correo);
     }
 
     /**

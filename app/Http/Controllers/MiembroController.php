@@ -11,23 +11,20 @@ use SebastianBergmann\Environment\Console;
 
 class MiembroController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id_evento,$id_miembro){
+    public function index(Request $request, $id_evento,$id_miembro,$correo){
         $miembros = DB::select(DB::raw(
             "SELECT id_miembro, razon_social, denominacion_comercial, web,
                     rif
             FROM miembro
            " ));
 
-        return view ('home.miembro')->with('miembros', $miembros)->with('id_evento', $id_evento)->with('id_miembro', $id_miembro);
+        return view ('home.miembro')->with('miembros', $miembros)->with('id_evento', $id_evento)->with('id_miembro', $id_miembro)->with('correo',$correo);
     }
 
     /**
@@ -35,9 +32,9 @@ class MiembroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $correo)
     {
-        return view('home.crearMiembro');
+        return view('home.crearMiembro')->with('correo',$correo);
     }
 
     /**

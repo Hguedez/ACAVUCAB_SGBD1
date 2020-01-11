@@ -8,21 +8,18 @@ use App\Persona_de_contacto;
 use App\Telefono;
 class Persona_de_contactoController extends Controller
 {
-    public function __construct()
-{
-    $this->middleware('auth');
-}
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id_miembro){
+    public function index(Request $request, $id_miembro,$correo){
         $contactos = DB::select(DB::raw("SELECT id_persona, cedula, nombre, apellido, fk_miembro,(
             SELECT razon_social FROM miembro WHERE id_miembro = fk_miembro)
             FROM persona_de_contacto WHERE fk_miembro = '$id_miembro'"));
 
-        return view ('home.persona_de_contacto')->with('contactos',$contactos)->with('id_miembro',$id_miembro);
+        return view ('home.persona_de_contacto')->with('contactos',$contactos)->with('id_miembro',$id_miembro)->with('correo',$correo);
     }
 
     /**
@@ -30,13 +27,13 @@ class Persona_de_contactoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id_miembro)
+    public function create(Request $request, $id_miembro,$correo)
     {
         $contactos = DB::select(DB::raw("SELECT id_persona, cedula, nombre, apellido, fk_miembro,(
             SELECT razon_social FROM miembro WHERE id_miembro = fk_miembro)
             FROM persona_de_contacto WHERE fk_miembro = '$id_miembro'"));
 
-        return view ('home.crearPersona_de_contacto')->with('contactos',$contactos)->with('id_miembro',$id_miembro);
+        return view ('home.crearPersona_de_contacto')->with('contactos',$contactos)->with('id_miembro',$id_miembro)->with('correo',$correo);
         //return view('home.crearPersona_de_contacto');
     }
 

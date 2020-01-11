@@ -49,6 +49,8 @@ Route::resource('/home/{correo}/funciona', 'Home2Controller');
 
 Route::resource('/loginCliente', 'Login_clienteController');
 
+Route::resource('/loginAdmin', 'AdminController');
+
 Route::get('/municipios', 'Cliente_juridicoController@getMunicipio');
 
 Route::get('/parroquias','Cliente_juridicoController@getParroquia');
@@ -67,7 +69,7 @@ Route::delete('/evento/{id_evento}', 'EventoController@destroy')->name('eventosD
 
 Route::resource('/detalle', 'DetalleController');
 
-Route::resource('/entradas', 'EntradaController');
+//Route::resource('/entradas', 'EntradaController');
 
 Route::resource('/eventos/{evento}/entradas/{correo}/funciona', 'EntradaController');
 
@@ -75,11 +77,11 @@ Route::delete('/entrada/{id_entrada}', 'EntradaController@destroy')->name('entra
 
 //Route::resource('/horario', 'HorarioController');
 //Route::resource('/eventos/{evento}/horarios', 'HorarioeventoController');
-Route::resource('/eventos/{evento}/horarios/{eventos}/funciona', 'HorarioController');
+Route::resource('/eventos/{evento}/horarios/{eventos}/funciona/{correo}/funciona', 'HorarioController');
 
 Route::delete('/horario/{id_horario}', 'HorarioController@destroy')->name('horariosDestroy');
 
-Route::resource('/eventos/{evento}/horarios/{horario}/hola', 'HorarioeventoController');
+Route::resource('/eventos/{id_evento}/horarios/{id_horario}/hola/{correo}/funciona', 'HorarioeventoController');
 
 Route::delete('/horario_evento/{id_horario_evento}', 'HorarioeventoController@destroy')->name('horarioeventosDestroy');
 
@@ -89,39 +91,40 @@ Route::delete('/miembros/{id_miembro}', 'miembroController@destroy')->name('miem
 
 Route::resource('/contactos', 'Persona_de_contactoController');
 
-Route::resource('/miembros/{miembros}/contactos', 'Persona_de_contactoController');
+Route::resource('/miembros/{miembros}/contactos/{correo}/funciona', 'Persona_de_contactoController');
 
 Route::delete('/contacto/{id_contacto}', 'Persona_de_contactoController@destroy')->name('contactosDestroy');
 
-Route::resource('/miembros/{miembros}/telefonos', 'TelefonoController');
+Route::resource('/miembros/{miembros}/telefonos/{correo}/funciona', 'TelefonoController');
 
 Route::delete('/telefono/{id_telefono}', 'TelefonoController@destroy')->name('telefonosDestroy');
 
-Route::resource('/correos/{correo}/miembros', 'CorreoController');
+Route::resource('/correos/{correos}/miembros/{correo}/funciona', 'CorreoController');
 
 Route::delete('/correo/{id_correo}', 'CorreoController@destroy')->name('correosDestroy');
 
-Route::resource('/miembros/{miembros}/correos', 'CorreoController');
+Route::resource('/miembros/{miembros}/correos/{correo}/funciona', 'CorreoController');
 
-Route::resource('/eventos/{eventos}/miembros/{miembros}/asociados', 'miembroController');
+Route::resource('/eventos/{eventos}/miembros/{miembros}/asociados/{correo}/funciona', 'miembroController');
 
-Route::resource('/eventos/{eventos}/miembros/{miembros}/miembroevento', 'Miembro_eventoController');
+Route::resource('/eventos/{eventos}/miembros/{miembros}/miembroevento/{correo}/funciona', 'Miembro_eventoController');
 
 Route::delete('/miembro_evento/{id_miembro_evento}', 'Miembro_eventoController@destroy')->name('miembroeventosDestroy');
 
-Route::resource('/tipoCerveza', 'Tipo_cervezaController');
+Route::resource('/tipoCerveza/{correo}/funciona', 'Tipo_cervezaController');
+Route::delete('/tipoCervezas/{id_tipo_cerveza}', 'Tipo_cervezaController@destroy')->name('tipoCervezasDestroy');
 
-Route::resource('/cervezas/{cervezas}/tipos', 'CervezaController');
+Route::resource('/cervezas/{cervezas}/tipos/{correo}/funciona', 'CervezaController');
 
 Route::delete('/cerveza/{id_cerveza}', 'CervezaController@destroy')->name('cervezasDestroy');
 
-Route::resource('/comentarios/{comentarios}/tipos', 'ComentarioController');
+Route::resource('/comentarios/{comentarios}/tipos/{correo}/funciona', 'ComentarioController');
 
 Route::delete('/comentario/{id_comentario}', 'ComentarioController@destroy')->name('comentariosDestroy');
 
-Route::resource('/tipos/{tipos}/ofers', 'OfertaController');
+Route::resource('/tipos/{tipos}/ofers/{correo}/funciona', 'OfertaController');
 
-Route::resource('/tipos/{tipos}/ofertas/{ofertas}/ofertasCerveza', 'Oferta_cervezaController');
+Route::resource('/tipos/{tipos}/ofertas/{ofertas}/ofertasCerveza/{correo}/funciona', 'Oferta_cervezaController');
 
 Route::resource('/entradas/{id_entrada}/ventaEntrada/{precio_entrada}/montoTotal/{correo}/funciona', 'Venta_entradaController');
 

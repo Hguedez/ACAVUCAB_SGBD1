@@ -16,7 +16,7 @@
               <div class="card-body col-sm-6">
                   <h5 class="card-title text-center">Registrarse</h5>
                   
-                  <form method="POST" action="{{ route('register') }}">
+                  <form method="POST" action="/loginAdmin">
                       @csrf
                       <ul class="nav nav-tabs linea">
                         <li class="nav-item">
@@ -36,65 +36,7 @@
                             <!--<input type="radio" id="empleado" value="empleado" name="tipo">
                             <label for="empleado">Empleado</label>-->
                            
-                      <div class="form-group row " id="name" >
-                          <label for="name" class="col-md-5 col-form-label text-md-right" >{{ __('Primer Nombre') }}</label>
-
-                          <div class="col-md-7">
-                               
-                              <input id="name" type="text" placeholder="Primer Nombre" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                              @error('name')
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
-                              @enderror
-                          </div>
-                      </div>
-
-                      <div class="form-group row" id="name2">
-                        <label class="col-md-5 col-form-label text-md-right" >{{ __('Segundo Nombre') }}</label>
-                      
-                      <div class="col-md-7">                                
-                        <input type="text" placeholder="Segundo Nombre" class="form-control" name="name2" required autocomplete="name2">
-                      </div>
-                      </div>
-                      
-                      <div class="form-group row" id="apellido">
-                          <label for="apellido" class="col-md-5 col-form-label text-md-right" >{{ __('Primer Apellido') }}</label>
-
-                          <div class="col-md-7">
-                              <input id="apellido" type="text" placeholder="Primer Apellido" class="form-control" name="apellido" required autocomplete="apellido">
-
-                          </div>
-                      </div>
-
-                      <div class="form-group row" id="apellido2">
-                          <label for="apellido2" class="col-md-5 col-form-label text-md-right" >{{ __('Segundo Apellido') }}</label>
-
-                          <div class="col-md-7">
-                              <input id="apellido2" type="text" placeholder="Segundo Apellido" class="form-control" name="apellido2" required autocomplete="apellido2">
-
-                          </div>
-                      </div>
-
-                      <div class="form-group row" id="cedula">
-                          <label for="cedula" class="col-md-5 col-form-label text-md-right" >{{ __('Cedula') }}</label>
-
-                          <div class="col-md-7">
-                              <input id="cedula" type="number" placeholder="Cedula" class="form-control" name="cedula" required autocomplete="cedula">
-
-                          </div>
-                      </div>
-
-                      <div class="form-group row" id="rif">
-                          <label for="rif" class="col-md-5 col-form-label text-md-right" >{{ __('Rif') }}</label>
-
-                          <div class="col-md-7">
-                              <input id="rif" type="text" placeholder="Rif" class="form-control" name="rif" required autocomplete="rif">
-
-                          </div>
-                      </div>
-
+        
                       <div class="form-group row" id="email">
                           <label for="email" class="col-md-5 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 

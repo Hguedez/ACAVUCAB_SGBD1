@@ -7,21 +7,18 @@ use App\Correo;
 use Illuminate\Support\Facades\DB;
 class CorreoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id_miembro)
+    public function index(Request $request,$id_miembro,$correo)
     {
         $correos = DB::select(DB::raw("SELECT id_correo, nombre
                                      FROM correo WHERE fk_miembro = '$id_miembro'"));
 
-        return view ('home.correo')->with('correos',$correos)->with('id_miembro',$id_miembro);
+        return view ('home.correo')->with('correos',$correos)->with('id_miembro',$id_miembro)->with('correo',$correo);
     }
 
     /**
@@ -29,12 +26,12 @@ class CorreoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_miembro)
+    public function create(Request $request,$id_miembro,$correo)
     {
         $correos = DB::select(DB::raw("SELECT id_correo, nombre
                                      FROM correo WHERE fk_miembro = '$id_miembro'"));
 
-        return view ('home.crearCorreo')->with('correos',$correos)->with('id_miembro',$id_miembro);
+        return view ('home.crearCorreo')->with('correos',$correos)->with('id_miembro',$id_miembro)->with('correo',$correo);
         //return view('home.crearCorreo');
     }
 

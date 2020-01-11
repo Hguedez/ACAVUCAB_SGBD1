@@ -7,33 +7,26 @@ use Illuminate\Support\Facades\DB;
 use App\Telefono;
 class TelefonoController extends Controller
 {
-    public function __construct()
-{
-    $this->middleware('auth');
-}
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    /*public function index(Request $request, $id)
+    
+    public function index(Request $request,$id_miembro,$correo)
     {
         $telefonos = DB::select(DB::raw("SELECT codigo_telefono, codigo_area,
-                                         numero, fk_cliente_natural, fk_cliente_juridico,
-                                         fk_empleado,fk_persona_de_contacto,fk_tienda_fisica,
-                                         fk_tienda_web,fk_miembro,(
-                                        SELECT razon_social FROM miembro WHERE id_miembro = fk_miembro
-                                        ) FROM telefono WHERE fk_miembro = '$id'"));
-        return view ('home.telefono', compact('telefonos'));
-    }*/
-    public function index(Request $request,$id_miembro)
-    {
-        $telefonos = DB::select(DB::raw("SELECT codigo_telefono, codigo_area,
-                                         numero, fk_cliente_natural, fk_cliente_juridico,
-                                         fk_empleado,fk_tienda_fisica,
-                                         fk_tienda_web,fk_miembro
-                                         FROM telefono Where fk_miembro = $id_miembro"));
-        return view ('home.telefono')->with('telefonos',$telefonos)->with('id_miembro',$id_miembro);
+        numero, fk_cliente_natural, fk_cliente_juridico,
+        fk_empleado,fk_tienda_fisica,
+        fk_tienda_web,fk_miembro
+        FROM telefono Where fk_miembro = $id_miembro"));
+
+        return view ('home.telefono')
+                                        ->with('telefonos',$telefonos)
+                                        ->with('id_miembro',$id_miembro)
+                                        ->with('correo',$correo);
+        
     }
 
     /**
@@ -41,15 +34,19 @@ class TelefonoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_miembro)
+    public function create(Request $request,$id_miembro,$correo)
     {
         $telefonos = DB::select(DB::raw("SELECT codigo_telefono, codigo_area,
         numero, fk_cliente_natural, fk_cliente_juridico,
         fk_empleado,fk_tienda_fisica,
         fk_tienda_web,fk_miembro
         FROM telefono Where fk_miembro = $id_miembro"));
-        return view ('home.crearTelefono')->with('telefonos',$telefonos)->with('id_miembro',$id_miembro);
-        //return view('home.telefono');
+
+        return view ('home.crearTelefono')
+                                        ->with('telefonos',$telefonos)
+                                        ->with('id_miembro',$id_miembro)
+                                        ->with('correo',$correo);
+        
     }
 
     /**

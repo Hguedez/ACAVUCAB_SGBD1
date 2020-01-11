@@ -17,7 +17,7 @@
                   <input type="radio" id="cliente" value="cliente" name="tipo">
                   <label for="natural">Cliente</label>
 
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="/loginCliente">
                         @csrf
                        
                         <div class="form-group row" id="email_1">

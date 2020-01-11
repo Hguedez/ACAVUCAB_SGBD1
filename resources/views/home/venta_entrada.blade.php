@@ -48,8 +48,8 @@
           
                           <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
                           <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
-                          <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
-                          <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                          <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona">Miembros</a>
+                          <a class="dropnegro dropdown-item" href="/tipoCerveza/{{$correo}}/funciona">Tipo de cerveza</a>
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                           </form>
@@ -132,7 +132,7 @@
         @endforeach
         </table>
         <!--<a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva Entrada</a>-->
-        <a href="/entradas/{{$id_entrada}}/ventaEntrada/{{$precio_entrada}}/montoTotal/create" class="btn btn-secondary btn-lg btn-block">Agregar</a>
+      <a href="/entradas/{{$id_entrada}}/ventaEntrada/{{$precio_entrada}}/montoTotal/{{$correo}}/funciona/create" class="btn btn-secondary btn-lg btn-block">Agregar</a>
   </div>
     </div>
 @endsection

@@ -148,8 +148,8 @@
 
                 <a class="dropnegro dropdown-item tamano" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
                 <a class="dropnegro dropdown-item tamano" href="/ordenes">Mis ordenes</a>
-                <a class="dropnegro dropdown-item tamano" href="/eventos/1/miembros/1/asociados">Miembros</a>
-                <a class="dropnegro dropdown-item tamano" href="/tipoCerveza">Tipo de cerveza</a>
+                <a class="dropnegro dropdown-item tamano" href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona">Miembros</a>
+                <a class="dropnegro dropdown-item tamano" href="/tipoCerveza/{{$correo}}/funciona">Tipo de cerveza</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>

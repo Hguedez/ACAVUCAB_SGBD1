@@ -85,10 +85,10 @@
                               {{ __('Cerrar sesion') }}
                     </a>
     
-                    <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
                     <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
-                    <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
-                    <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona">Miembros</a>
+                    <a class="dropnegro dropdown-item" href="/tipoCerveza/{{$correo}}/funciona">Tipo de cerveza</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                     </form>
@@ -121,7 +121,7 @@
                           {{ __('Cerrar sesion') }}
                       </a>
     
-                    <a class="dropnegro dropdown-item" href="/eventos/{{Auth::user()->name}}/funciona">Mis eventos</a>
+                      <a class="dropnegro dropdown-item" href="/eventos/{{Auth::user()->name}}/funciona">Mis eventos</a>
                     <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                     <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados">Miembros</a>
                     <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
@@ -151,10 +151,10 @@
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Fecha</th>
-                <th scope="col">Eliminar</th>
+                <th scope="col" id="eliminar">Eliminar</th>
                 <th scope="col">Entradas disponibles</th>
                 <th scope="col">Horario</th>
-                <th scope="col">Miembros responsables</th>
+                <th scope="col" id="miembros">Miembros responsables</th>
               </tr>
             </thead>
         @foreach ($eventos as $item)
@@ -162,7 +162,8 @@
                 <td>{{$item->nombre_evento}}</td>
                 <td>{{$item->fecha}}</td>
 
-                <td>
+                @if($rol != 3)
+                <td id="eliminarbtn">
                   <form action={{ route('eventosDestroy',['id_evento' => $item->id_evento]) }} method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
@@ -170,23 +171,31 @@
                   </form>
 
                 </td>
+                @endif
+
                 <td>
                     <a href="/eventos/{{$item->id_evento}}/entradas/{{$correo}}/funciona" class="btn btn-dark btn-sm">Ver</a>
+                    @if($rol != 3)
                     <a href="/eventos/{{$item->id_evento}}/entradas/{{$correo}}/funciona/create" class="btn btn-dark btn-sm">Agregar</a>
+                    @endif
                 </td>
                 <td>
-                  <a href="/eventos/{{$item->id_evento}}/horarios/1/funciona" class="btn btn-dark btn-sm">Horarios</a>
+                <a href="/eventos/{{$item->id_evento}}/horarios/1/funciona/{{$correo}}/funciona" class="btn btn-dark btn-sm">Horarios</a>
                 </td>
-                <td>
-                    <a href="/eventos/{{$item->id_evento}}/miembros/{{$item->id_miembro}}/asociados" class="btn btn-dark btn-sm letra">Miembros </a>
+
+                @if($rol != 3)
+                <td id="miembrosbtn">
+                    <a href="/eventos/{{$item->id_evento}}/miembros/{{$item->id_miembro}}/asociados/{{$correo}}/funciona" class="btn btn-dark btn-sm letra">Miembros </a>
                 </td>
+                @endif
+
             </tr>
 
         @endforeach
         </table>
-        <a href="/eventos/create" class="btn btn-secondary btn-lg btn-block">Nuevo Evento</a>
+      <a href="/eventos/{{$correo}}/funciona/create" class="btn btn-secondary btn-lg btn-block" id="nuevoevento">Nuevo Evento</a>
         <!--<a href="/entradas/create" class="btn btn-secondary btn-lg btn-block">Nueva entrada</a>-->
-        <a href="/eventos/1/horarios/1/funciona/create" class="btn btn-secondary btn-lg btn-block">Crear Horario</a>
+      <a href="/eventos/{{$correo}}/horarios/{{$correo}}/funciona/{{$correo}}/funciona/create" class="btn btn-secondary btn-lg btn-block" id="crearhorario">Crear Horario</a>
         <!--<a href="/eventos/1/miembros/1/miembroevento/create" class="btn btn-secondary btn-lg btn-block">Asignar un Evento a un miembro</a>-->
         <!--<a href="/eventos/1/miembros/1/asociados/create" class="btn btn-secondary btn-lg btn-block">Crear miembro</a>-->
 
@@ -198,5 +207,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    @if ($correo ?? '')
+    <script>
+      if ({{$rol}} == 3){
+        $('#miembros').hide();
+        $('#miembrosbtn').hide();
+        $('#eliminar').hide();
+        $('#eliminarbtn').hide();
+        $('#nuevoevento').hide();
+        $('#crearhorario').hide();
+      }
+    </script>
+    @endif
+
   </body>
 </html>

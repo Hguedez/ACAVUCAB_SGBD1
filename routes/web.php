@@ -145,6 +145,10 @@ Route::post('/comprar/{id_venta}/venta/{id_entrada}/entrada/{correo}/funciona', 
 Route::resource('/empleado', 'EmpleadoController');
 //Route::post('/empleado', 'EmpleadoController@store');
 
+//--------Update-----------//
+Route::get('/eventos/{id_evento}/correos/{correo}/funciona', 'EventoController@edit')->name('eventoUpdate');
+Route::put('/eventos/{id_evento}', 'EventoController@update');
+
 Route::get('/homes', 'HomeController@index')->name('homes');
 
 Route::get('/compilar', function () {

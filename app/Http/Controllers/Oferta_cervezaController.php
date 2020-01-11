@@ -8,21 +8,18 @@ use App\Cerveza;
 
 class Oferta_cervezaController extends Controller
 {   
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id_tipo_cerveza,$id_oferta)
+    public function index(Request $request,$id_tipo_cerveza,$id_oferta,$correo)
     {
         $cervezas = DB::select(DB::raw("SELECT numero_cerveza, nombre,descripcion,costo,precio_venta,fk_tipo_cerveza,fk_oferta
         FROM cerveza WHERE fk_oferta = '$id_oferta' and fk_tipo_cerveza='$id_tipo_cerveza'"));
 
-        return view ('home.cervezaOferta')->with('cervezas',$cervezas)->with('id_oferta',$id_oferta)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.cervezaOferta')->with('cervezas',$cervezas)->with('id_oferta',$id_oferta)->with('id_tipo_cerveza',$id_tipo_cerveza)->with('correo',$correo);
     }
 
     /**
@@ -30,12 +27,12 @@ class Oferta_cervezaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_tipo_cerveza,$id_oferta)
+    public function create(Request $request,$id_tipo_cerveza,$id_oferta,$correo)
     {
         $cervezas = DB::select(DB::raw("SELECT numero_cerveza, nombre,descripcion,costo,precio_venta,fk_tipo_cerveza,fk_oferta
         FROM cerveza WHERE fk_oferta = '$id_oferta' and fk_tipo_cerveza='$id_tipo_cerveza'"));
 
-        return view ('home.crearOfertaCerveza')->with('cervezas',$cervezas)->with('id_oferta',$id_oferta)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.crearOfertaCerveza')->with('cervezas',$cervezas)->with('id_oferta',$id_oferta)->with('id_tipo_cerveza',$id_tipo_cerveza)->with('correo',$correo);
     }
 
     /**

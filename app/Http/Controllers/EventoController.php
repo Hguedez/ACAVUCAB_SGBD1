@@ -24,7 +24,10 @@ class EventoController extends Controller
                                         FROM evento
                                         WHERE nombre_evento is not null"
                                         ));
-        return view('home.listaEventos')->with('eventos',$eventos)->with('correo',$correo);
+       $checkT = DB::select(DB::raw("SELECT fk_rol  from usuario WHERE email = '$correo'"));
+       $rol = $checkT[0]->fk_rol;
+                                        
+       return view('home.listaEventos')->with('eventos',$eventos)->with('correo',$correo)->with('rol',$rol);
     }
 
     /**
@@ -32,13 +35,9 @@ class EventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request,$correo)
     {
-        /*$lugar = DB::select( DB::raw(
-        "SELECT nombre
-        from lugar"
-        ));*/
-        return view('home.crearEvento');//,compact('lugar'));
+        return view('home.crearEvento')->with('correo',$correo);
     }
 
     /**

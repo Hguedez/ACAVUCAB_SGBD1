@@ -48,8 +48,8 @@
           
                           <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
                           <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
-                          <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
-                          <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
+                          <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona">Miembros</a>
+                          <a class="dropnegro dropdown-item" href="/tipoCerveza/{{$correo}}/funciona">Tipo de cerveza</a>
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                           </form>
@@ -81,7 +81,7 @@
                                          document.getElementById('logout-form').submit();">
                             {{ __('Cerrar sesion') }}
                         </a>
-                        <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
+                        <a class="dropnegro dropdown-item" href="/eventos/{{Auth::user()->name}}/funciona">Mis eventos</a>
                         <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                         <a class="dropnegro dropdown-item" href="/eventos/1/horarios/1/funciona">Horarios</a>
                         <a class="dropnegro dropdown-item" href="/tipoCerveza">Tipo de cerveza</a>
@@ -113,7 +113,9 @@
                 <th scope="col">Precio Entrada</th>
                 <th scope="col">Nombre Del evento</th>
                 <th scope="col">Comprar</th>
+                @if($rol != 3)
                 <th scope="col">Eliminar</th>
+                @endif
 
               </tr>
             </thead>
@@ -127,6 +129,8 @@
                 <td>
                 <a href="/entradas/{{$item->id_entrada}}/ventaEntrada/{{$item->precio_entrada}}/montoTotal/{{$correo}}/funciona" class="btn btn-dark btn-sm tamano ">Comprar</a>
                 </td>
+                
+                @if($rol != 3)
                 <td>
                   <form action={{ route('entradasDestroy',['id_entrada' => $item->id_entrada]) }} method="POST" class="d-inline">
                     @csrf
@@ -134,6 +138,7 @@
                         <button class="btn btn-dark btn-sm tamano" type="submit">Eliminar</button>
                       </form>
                 </td>
+                @endif
 
             </tr>
         @endforeach

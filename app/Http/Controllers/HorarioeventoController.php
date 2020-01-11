@@ -7,24 +7,24 @@ use App\horario_evento;
 use Illuminate\Support\Facades\DB;
 class HorarioeventoController extends Controller
 {   
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id,$id2) 
+    public function index(Request $request, $id_evento,$id_horario,$correo) 
     {
       
        $horario_evento = DB::select(DB::raw("SELECT id_horario_evento, fk_evento,fk_horario, (
              SELECT nombre_evento FROM evento WHERE id_evento = fk_evento ),(SELECT dia FROM horario WHERE id_horario = fk_horario ),(SELECT hora_inicio FROM horario WHERE id_horario = fk_horario ),(SELECT hora_fin FROM horario WHERE id_horario = fk_horario )
-             FROM horario_evento WHERE fk_evento = '$id' and fk_horario='$id2' "));
+             FROM horario_evento WHERE fk_evento = '$id_evento' and fk_horario='$id_horario' "));
        
        
-        return view ('home.horario_evento', compact('horario_evento'));
+        return view ('home.horario_evento')->with('horario_evento',$horario_evento)
+                                            ->with('correo',$correo)
+                                            ->with('id_evento',$id_evento)
+                                            ->with('id_horario',$id_horario);
         
     }
 
@@ -33,9 +33,16 @@ class HorarioeventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request,$id_evento,$id_horario,$correo)
     {
-        return view('home.crearHorarioEvento');
+        $horario_evento = DB::select(DB::raw("SELECT id_horario_evento, fk_evento,fk_horario, (
+            SELECT nombre_evento FROM evento WHERE id_evento = fk_evento ),(SELECT dia FROM horario WHERE id_horario = fk_horario ),(SELECT hora_inicio FROM horario WHERE id_horario = fk_horario ),(SELECT hora_fin FROM horario WHERE id_horario = fk_horario )
+            FROM horario_evento WHERE fk_evento = '$id_evento' and fk_horario='$id_horario'"));
+
+        return view('home.crearHorarioEvento')->with('horario_evento',$horario_evento)
+                                            ->with('correo',$correo)
+                                            ->with('id_evento',$id_evento)
+                                            ->with('id_horario',$id_horario);
     }
 
     /**
@@ -44,11 +51,11 @@ class HorarioeventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id_evento,$id_horario)
     {
         $horario_evento=new horario_evento();
-        $horario_evento->fk_evento=$request->fk_evento;
-        $horario_evento->fk_horario=$request->fk_horario;
+        $horario_evento->fk_evento=$id_evento;
+        $horario_evento->fk_horario=$id_horario;
         $horario_evento->save();
         return back();
     }

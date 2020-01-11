@@ -7,22 +7,19 @@ use App\Horario;
 use Illuminate\Support\Facades\DB;
 class HorarioController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id_evento,$id_horario)
+    public function index(Request $request, $id_evento,$id_horario,$correo)
     {   
         $horarios = DB::select( DB::raw("SELECT id_horario,dia,hora_inicio,hora_fin
         from horario 
         WHERE dia is not null"
         ));
-        return view('home.horario')->with('horarios', $horarios)->with('id_evento', $id_evento);
+        return view('home.horario')->with('horarios', $horarios)->with('id_evento', $id_evento)->with('correo',$correo);
     }
 
     /**
@@ -30,9 +27,9 @@ class HorarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request,$correo)
     {
-       return view('home.crearHorario');
+       return view('home.crearHorario')->with('correo',$correo);
     }
 
     /**

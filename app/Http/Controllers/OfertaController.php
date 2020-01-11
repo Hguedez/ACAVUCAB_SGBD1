@@ -8,21 +8,18 @@ use App\Oferta;
 
 class OfertaController extends Controller
 {   
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id_tipo_cerveza)
+    public function index(Request $request,$id_tipo_cerveza,$correo)
     {
         $ofertas = DB::select(DB::raw("SELECT id_oferta, descuento,fecha_inicio,fecha_fin
         FROM oferta "));
 
-        return view ('home.oferta')->with('ofertas',$ofertas)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.oferta')->with('ofertas',$ofertas)->with('id_tipo_cerveza',$id_tipo_cerveza)->with('correo',$correo);
     }
 
     /**
@@ -30,12 +27,12 @@ class OfertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_tipo_cerveza)
+    public function create(Request $request,$id_tipo_cerveza,$correo)
     {
         $ofertas = DB::select(DB::raw("SELECT id_oferta, descuento,fecha_inicio,fecha_fin
         FROM oferta "));
 
-        return view ('home.crearOferta')->with('ofertas',$ofertas)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.crearOferta')->with('ofertas',$ofertas)->with('id_tipo_cerveza',$id_tipo_cerveza)->with('correo',$correo);
     }
 
     /**

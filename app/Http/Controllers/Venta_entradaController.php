@@ -46,12 +46,16 @@ class Venta_entradaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_entrada,$precio_entrada)
+    public function create(Request $request,$id_entrada,$precio_entrada,$correo)
     {   
 
         $venta_entrada = DB::select(DB::raw("SELECT monto_total,fecha,fk_cliente_natural,fk_cliente_juridico
                                              FROM venta_entrada "));
-        return view ('home.crearVenta_entrada')->with('venta_entrada',$venta_entrada)->with('id_entrada',$id_entrada)->with('precio_entrada',$precio_entrada);
+        return view ('home.crearVenta_entrada')
+                                            ->with('venta_entrada',$venta_entrada)
+                                            ->with('id_entrada',$id_entrada)
+                                            ->with('precio_entrada',$precio_entrada)
+                                            ->with('correo',$correo);
     }
 
     /**

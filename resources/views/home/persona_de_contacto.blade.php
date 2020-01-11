@@ -10,7 +10,7 @@
 
             <ul class="navbar-nav mr-auto ">
               <li class="nav-item active tamano">
-                <a class="nav-link " href="/">Home
+                <a class="nav-link " href="/home/{{$correo}}/funciona">Home
                       <span class="sr-only">(current)</span>
                     </a>
               </li>
@@ -30,6 +30,32 @@
             </ul>
             <ul class="navbar-nav mr-auto">
                     <!-- Authentication Links -->
+
+                    @if ($correo ?? '')
+              <li class="nav-item active dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
+                  {{ $correo ?? '' ?? '' }} <span class="caret"></span>
+                </a>
+                <div class="dropdown"  >
+                  <a class="" href="{{ route('logout') }}">
+                  <div class="dropdown-menu" id="dropme" aria-labelledby="dropdown04">
+                    <a class="dropnegro dropdown-item " href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                              {{ __('Cerrar sesion') }}
+                    </a>
+    
+                    <a class="dropnegro dropdown-item" href="/eventos/{{$correo}}/funciona">Mis eventos</a>
+                    <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
+                    <a class="dropnegro dropdown-item" href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona">Miembros</a>
+                    <a class="dropnegro dropdown-item" href="/tipoCerveza/{{$correo}}/funciona">Tipo de cerveza</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>
+                  </div>
+                </div>
+              </li>
+              @else
                     @guest
 
                     <li class="nav-item tamano">
@@ -64,6 +90,7 @@
                   </div>
                 </li>
                   @endguest
+                  @endif
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2 tamano" type="search" placeholder="Search" aria-label="Search">
@@ -75,7 +102,7 @@
     <!-- Page Content -->
     <div class="event">
   <div class="container " >
-        <!--<h1>Lista de eventos creadas por el usuario: {{ auth()->user()->name }}</h1>-->
+       
         <h4 class="centro">Personas de contacto</h4>
         <table class="table table-primary table-bordered tope">
             <thead>
@@ -105,7 +132,7 @@
 
         @endforeach
         </table>
-        <a href="/eventos/1/miembros/1/asociados" class="btn btn-secondary btn-lg btn-block">Atras</a>
+        <a href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona" class="btn btn-secondary btn-lg btn-block">Atras</a>
 
 
   </div>

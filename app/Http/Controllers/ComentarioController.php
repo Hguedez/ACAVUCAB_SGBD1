@@ -8,21 +8,21 @@ use App\Comentario;
 
 class ComentarioController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id_tipo_cerveza)
+    public function index(Request $request,$id_tipo_cerveza,$correo)
     {
         $comentarios = DB::select(DB::raw("SELECT id_comentario, nombre,descripcion,fk_tipo_cerveza
         FROM comentario WHERE fk_tipo_cerveza = '$id_tipo_cerveza'"));
 
-        return view ('home.comentario')->with('comentarios',$comentarios)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.comentario')
+                                        ->with('comentarios',$comentarios)
+                                        ->with('id_tipo_cerveza',$id_tipo_cerveza)
+                                        ->with('correo',$correo);
     }
 
     /**
@@ -30,12 +30,15 @@ class ComentarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id_tipo_cerveza)
+    public function create(Request $request,$id_tipo_cerveza,$correo)
     {
         $comentarios = DB::select(DB::raw("SELECT id_comentario, nombre,descripcion,fk_tipo_cerveza
         FROM comentario WHERE fk_tipo_cerveza = '$id_tipo_cerveza'"));
 
-        return view ('home.crearComentario')->with('comentarios',$comentarios)->with('id_tipo_cerveza',$id_tipo_cerveza);
+        return view ('home.crearComentario')
+                                            ->with('comentarios',$comentarios)
+                                            ->with('id_tipo_cerveza',$id_tipo_cerveza)
+                                            ->with('correo',$correo);
     }
 
     /**

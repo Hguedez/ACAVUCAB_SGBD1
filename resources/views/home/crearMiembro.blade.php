@@ -8,6 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+   	<link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+   	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>ACAVUCAB</title>
     <style >
          .fondo{
@@ -35,6 +43,74 @@
 }
 .izquierda{
     margin-bottom: 100px;
+}
+/*Contact sectiom*/
+.content-header{
+  font-family: 'Oleo Script', cursive;
+  color:#fcc500;
+  font-size: 45px;
+}
+
+.section-content{
+  text-align: center; 
+
+}
+body{
+  background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color : #fff;
+}
+#contact{
+    
+    font-family: 'Teko', sans-serif;
+  padding-top: 60px;
+  width: 100%;
+  width: 100vw;
+  height: 550px;
+  background: #3a6186; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left , #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color : #fff;    
+}
+.contact-section{
+  padding-top: 40px;
+}
+.contact-section .col-md-6{
+  width: 50%;
+}
+
+.centrado{
+  /*margin-left: 30px;*/
+  margin-left :auto;
+  margin-right :auto;
+}
+.form-group{
+  margin-top: 10px;
+}
+label{
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: normal;
+}
+.form-control{
+  color: #080808;
+}
+textarea.form-control {
+    height: 135px;
+   /* margin-top: px;*/
+}
+
+.submit{
+  font-size: 1.1em;
+  float: right;
+  width: 150px;
+  background-color: transparent;
+  color: #fff;
+
+}
+
+
+.sizee{
+  font-size: 18px;
 }
     </style>
 
@@ -141,39 +217,55 @@
                 </div>
 
               </nav>
-<div class="container">
 
-    <h2>Agregar Miembro</h2>
-    <!--<form action=/miembros/1/telefonos method="POST" class="d-inline">-->
-
-    <form action="/eventos/1/miembros/1/asociados/{{$correo}}/funciona" method="POST">
-        @csrf
-
-       <input type="text" name="razon_social" placeholder="Razon Social" class="form-control mb-2" required>
-       <input type="text" name="denominacion_comercial" placeholder="Denominacion Comercial" class="form-control mb-2" required >
-       <input type="text" name="web" placeholder="Web" class="form-control mb-2" required >
-       <input type="text" name="rif" placeholder="Rif" class="form-control mb-2" required >
-       <input type="number" name="codigo_area" placeholder="Codigo de area" class="form-control mb-2" required>
-       <input type="number" name="numero" placeholder="Numero" class="form-control mb-2" required>
-
-       <!--<div class="container form-inline ">
-               <input type="text" name="correo" placeholder="Correo" class="form-control mb-2" required>
-                <div class="form-group col-md-4 izquierda">
-                        <select id="inputState" class="form-control">
-                          <option selected>Tipo de corrreo</option>
-                          <option>@gmail</option>
-                          <option>@outlook</option>
-                          <option>@yahoo</option>
-                        </select>
-                </div>
-       </div>-->
-
-       <button clas="btn btn-primary btn-block" type="submit">Agregar</button>
-       <a href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona" class="btn btn-primary btn-sm">Volver al menu anterior</a>
-    </form>
-
-
+<div id="contact">
+  <div class="section-content">
+    <h1 class="section-header">ACAVUCAB <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">Crear miembro</span></h1>
+    <h3>Lo mejor en cervezas artesanales</h3>
+  </div>
+  <div class="contact-section">
+  <div class="container">
+    
+      <div class="col-md-6 centrado">
+      <form action="/eventos/1/miembros/1/asociados/{{$correo}}/funciona" method="POST">
+          @csrf
+          <div class="form-group">
+            <label for="razon_social">Razon social</label>
+            <input type="text" class="form-control mb-2 sizee" id="razon_social" placeholder="Razon social" name="razon_social"  required>
+          </div>
+          <div class="form-group">
+            <label for="denominacion_comercial">Denominacion comercial</label>
+            <input type="text" class="form-control mb-2 sizee" id="denominacion_comercial" placeholder="denominacion_comercial" name="denominacion_comercial" required>
+          </div>	
+          <div class="form-group">
+            <label for="web">Web</label>
+            <input type="text" class="form-control mb-2 sizee" id="web" placeholder="web" name="web" required>
+          </div>
+          <div class="form-group">
+            <label for="rif">Rif</label>
+            <input type="text" class="form-control mb-2 sizee" id="rif" placeholder="rif" name="rif" required>
+          </div>
+          <div class="form-group">
+            <label for="codigo">Codigo de area</label>
+            <input type="number" class="form-control mb-2 sizee" id="codigo" placeholder="Codigo de area" name="codigo_area" required>
+          </div>
+          <div class="form-group">
+            <label for="numero">Numero</label>
+            <input type="number" class="form-control mb-2 sizee" id="numero" placeholder="Numero" name="numero" required>
+          </div>
+        <a href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
+            <button type="submit" class="btn btn-default submit sizee"><i class="fa fa-paper-plane" aria-hidden="true"></i>Agregar</button>
+        </div>
+        <br>
+        
+          
+        </form>
+      
+    
+  </div>
 </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>

@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
@@ -27,23 +27,21 @@
     color: white;
   }
   nav.navbar {
-
+  
     background: #141519;
     background: linear-gradient(to right, #424448, #B7BCCD);
 
-
+ 
 }
 .dropnegro{
   color: #141519;
   text-align: center;
-
+  
 }
 .tamano{
     font-size: 16px;
 }
-.izquierda{
-    margin-bottom: 100px;
-}
+
 /*Contact sectiom*/
 .content-header{
   font-family: 'Oleo Script', cursive;
@@ -112,22 +110,24 @@ textarea.form-control {
 .sizee{
   font-size: 18px;
 }
-    </style>
 
+/*Se agrego el color al body la clase centrado y sizee*/
+    </style>
+  
   </head>
   <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
-
+    
                 <div class="container">
-
+                 
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
                   <div class="collapse navbar-collapse" id="navbarResponsive">
-
+                    
                     <ul class="navbar-nav mr-auto ">
                       <li class="nav-item active tamano">
-                        <a class="nav-link " href="/home/{{$correo}}/funciona">Home
+                        <a class="nav-link " href="/">Home
                               <span class="sr-only">(current)</span>
                             </a>
                       </li>
@@ -143,7 +143,7 @@ textarea.form-control {
                       <li class="nav-item tamano">
                         <a class="nav-link" href="#">Ayuda</a>
                       </li>
-
+              
                     </ul>
                     <ul class="navbar-nav mr-auto">
                     <!-- Authentication Links -->
@@ -174,7 +174,7 @@ textarea.form-control {
               </li>
               @else
                     @guest
-
+                    
                     <li class="nav-item tamano">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                     </li>
@@ -183,7 +183,7 @@ textarea.form-control {
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                         </li>
                     @endif
-
+                    
                   @else
                     <li class="nav-item active dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle tamano" id="dropdown04" data-toggle="dropdown" data-target="dropme" aria-haspopup="true" aria-expanded="false">
@@ -197,7 +197,7 @@ textarea.form-control {
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Cerrar sesion') }}
                             </a>
-
+                           
                           <a class="dropnegro dropdown-item" href="/eventos">Mis eventos</a>
                           <a class="dropnegro dropdown-item" href="/ordenes">Mis ordenes</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -215,55 +215,39 @@ textarea.form-control {
                     </form>
                   </div>
                 </div>
-
+                
               </nav>
 
 <div id="contact">
   <div class="section-content">
-    <h1 class="section-header">ACAVUCAB <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">Crear miembro</span></h1>
+    <h1 class="section-header">ACAVUCAB <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">Modificar evento</span></h1>
     <h3>Lo mejor en cervezas artesanales</h3>
   </div>
   <div class="contact-section">
   <div class="container">
     
       <div class="col-md-6 centrado">
-      <form action="/eventos/1/miembros/1/asociados/{{$correo}}/funciona" method="POST">
+      <form action="/eventos/{{$id_evento}}" method="POST">
           @csrf
+          @method('PUT')
           <div class="form-group">
-            <label for="razon_social">Razon social</label>
-            <input type="text" class="form-control mb-2 sizee" id="razon_social" placeholder="Razon social" name="razon_social"  required>
+            <label for="nombre">Nombre actual</label>
+          <input type="text" class="form-control mb-2 sizee" id="nombre" value="{{$evento_actualizado->nombre_evento}}" name="nombre_evento"  required>
           </div>
           <div class="form-group">
-            <label for="denominacion_comercial">Denominacion comercial</label>
-            <input type="text" class="form-control mb-2 sizee" id="denominacion_comercial" placeholder="denominacion_comercial" name="denominacion_comercial" required>
+            <label for="fecha">Fecha actual</label>
+            <input type="date" class="form-control mb-2 sizee" id="fecha" value="{{$evento_actualizado->fecha}}" name="fecha" required>
           </div>	
-          <div class="form-group">
-            <label for="web">Web</label>
-            <input type="text" class="form-control mb-2 sizee" id="web" placeholder="web" name="web" required>
-          </div>
-          <div class="form-group">
-            <label for="rif">Rif</label>
-            <input type="text" class="form-control mb-2 sizee" id="rif" placeholder="rif" name="rif" required>
-          </div>
-          <div class="form-group">
-            <label for="codigo">Codigo de area</label>
-            <input type="number" class="form-control mb-2 sizee" id="codigo" placeholder="Codigo de area" name="codigo_area" required>
-          </div>
-          <div class="form-group">
-            <label for="numero">Numero</label>
-            <input type="number" class="form-control mb-2 sizee" id="numero" placeholder="Numero" name="numero" required>
-          </div>
-        <a href="/eventos/1/miembros/1/asociados/{{$correo}}/funciona" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
+          
+        <a href="/eventos/{{$correo}}/funciona" class="btn btn-primary btn-sm sizee">Volver al menu anterior</a>
             <button type="submit" class="btn btn-default submit sizee"><i class="fa fa-paper-plane" aria-hidden="true"></i>Agregar</button>
         </div>
-        <br>
         
           
         </form>
       
     
   </div>
-</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

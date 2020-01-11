@@ -155,6 +155,7 @@
                 <th scope="col">Entradas disponibles</th>
                 <th scope="col">Horario</th>
                 <th scope="col" id="miembros">Miembros responsables</th>
+                <th scope="col">Modificar</th>
               </tr>
             </thead>
         @foreach ($eventos as $item)
@@ -188,7 +189,13 @@
                     <a href="/eventos/{{$item->id_evento}}/miembros/{{$item->id_miembro}}/asociados/{{$correo}}/funciona" class="btn btn-dark btn-sm letra">Miembros </a>
                 </td>
                 @endif
-
+                <td>
+                  <form action={{ route('eventoUpdate',['id_evento' => $item->id_evento,'correo' => $correo]) }} method="GET" class="d-inline">
+                    @csrf
+              
+                    <button class="btn btn-dark btn-sm" type="submit">Modificar</button>
+                  </form>
+                </td>
             </tr>
 
         @endforeach

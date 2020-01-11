@@ -76,9 +76,12 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id_evento,$correo)
+    {   $evento_actualizado = Evento::find($id_evento);
+        return view('update.update_eventos')
+                                            ->with('correo',$correo)
+                                            ->with('evento_actualizado',$evento_actualizado)
+                                            ->with('id_evento',$id_evento);
     }
 
     /**
@@ -88,9 +91,13 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_evento)
     {
-        //
+        $evento_actualizado = Evento::find($id_evento);
+        $evento_actualizado->nombre_evento = $request->nombre_evento;
+        $evento_actualizado->fecha = $request->fecha;
+        $evento_actualizado->save();
+        return back();
     }
 
     /**
